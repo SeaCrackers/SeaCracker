@@ -2,7 +2,7 @@ import {Injectable, signal, Signal, WritableSignal} from '@angular/core';
 import {RoomCommunicationsService} from "./room-communications.service";
 import {Observable} from "rxjs";
 import {SocketRelayService} from "../transport/websockets/socket-relay.service";
-import {RoomEvents} from "./RoomEvents";
+import {RoomEvents} from "./room-events";
 
 /**
  * Note : using implementation instead of extension to avoid circular dependencies
