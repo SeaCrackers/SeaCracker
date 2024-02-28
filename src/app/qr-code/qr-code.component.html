@@ -1,1 +1,16 @@
-<p>qr-code works!</p>
+<div class="qrcodeImage">
+    <qrcode
+      [qrdata]="'https://static.wikia.nocookie.net/dirtybiologistan/images/5/58/Rickroll.gif/revision/latest?cb=20220620191052&path-prefix=fr'"
+      [allowEmptyString]="true"
+      [alt]="'A custom alt attribute'"
+      [ariaLabel]="'QR Code image with the following content...'"
+      [colorDark]="'#000000'"
+      [colorLight]="'#ffffff'"
+      [elementType]="'url'"
+      [errorCorrectionLevel]="'M'"
+      [margin]="4"
+      [scale]="1"
+      [title]="'A custom title attribute'"
+      [width]="300"
+    ></qrcode>
+  </div>
