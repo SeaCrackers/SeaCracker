@@ -6,6 +6,6 @@ import {Socket} from "ngx-socket-io";
 })
 export class SocketRelayService extends Socket {
   constructor() {
-    super({ url: 'http://localhost:3010', options: {} });
+    super({ url: 'http://localhost:3000', options: {} });
   }
 }

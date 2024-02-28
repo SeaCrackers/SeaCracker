@@ -9,13 +9,13 @@ import {RoomCommunicationsService} from "../services/communications/room-communi
 })
 export class HostPageComponent {
   constructor(private room:RoomCommunicationsService) {
-    room.sendEvent("hello",[]);
-    room.onEventReceived<any>("hello").subscribe((value)=>{
-      console.log("Received message!")
+    room.joinRoom("AAAA")
+    room.onEventReceived<any>().subscribe((value)=>{
+      console.log("Received message : "+value)
     });
   }
 
   sendMessage() {
-    this.room.sendEvent("hello",[])
+    this.room.sendEventTo("AAAA","Mouahaha!")
   }
 }
