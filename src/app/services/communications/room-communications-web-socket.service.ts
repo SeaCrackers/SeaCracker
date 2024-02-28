@@ -27,7 +27,7 @@ export class RoomCommunicationsWebSocketService implements RoomCommunicationsSer
   }
 
   leaveRoom(roomName: string): void {
-    this.socket.emit(RoomEvents.Join, roomName);
+    this.socket.emit(RoomEvents.Leave, roomName);
     this.roomsSignal.update(rooms => {
       return rooms.filter(room => room !== roomName)
     });
