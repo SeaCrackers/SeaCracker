@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class RoomPlayerPageComponent {
 
     roomID: string | null;
+    playerNickname: string | null = null;
 
     constructor(private _Activatedroute: ActivatedRoute) {
         this.roomID = this._Activatedroute.snapshot.paramMap.get("id");
