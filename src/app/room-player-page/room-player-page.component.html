@@ -1,16 +1,22 @@
 <h1 class="text-center mb-5">You are in the room {{roomID}}</h1>
 
-<span class="d-flex flex-column text-center">
-    <!-- Form -->
-    <form class="form-inline justify-content-center mb-3">
-        <div class="form-group">
-            <label for="nickname" class="mr-2">Your nickname:</label>
-            <input type="text" class="form-control" id="nickname" name="nickname" required  #nicknameInput>
-        </div>
-        <button type="submit" class="btn btn-primary ml-2" (click)="setPlayerNickName(nicknameInput.value)">Set</button>
-    </form>
+<div class="d-flex flex-column text-center">
 
     <!-- Name -->
-    <h5 class="text-center">Your name for this room is <span class="text-primary">{{playerNickName}}</span>.</h5>
-    <span class="text-secondary">wait for the host to start the game...</span>
-</span>
+    <div *ngIf="playerNickName; else formBlock">
+        <h5 class="text-center">Your name for this room is <span class="text-primary">{{playerNickName}}</span>.</h5>
+        <span class="text-secondary">wait for the host to start the game...</span>
+    </div>
+
+    <!-- Form -->
+    <ng-template #formBlock>
+        <form class="form-inline justify-content-center mb-3">
+            <div class="form-group">
+                <label for="nickname" class="mr-2">Pick a nickname:</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" required #nicknameInput>
+            </div>
+            <button type="submit" class="btn btn-primary ml-2"
+                (click)="setPlayerNickName(nicknameInput.value)">Set</button>
+        </form>
+    </ng-template>
+</div>
