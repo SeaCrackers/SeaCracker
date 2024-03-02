@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-room-code-player-page',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './room-code-player-page.component.html',
   styleUrl: './room-code-player-page.component.scss'
 })
 export class RoomCodePlayerPageComponent {
-
+  roomID: string | null = null;
 }
