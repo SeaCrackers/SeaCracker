@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
 
 @Component({
     selector: 'app-room-player-page',
     standalone: true,
-    imports: [FormsModule, NgIf],
+    imports: [NgIf],
     templateUrl: './room-player-page.component.html',
     styleUrl: './room-player-page.component.scss'
 })
