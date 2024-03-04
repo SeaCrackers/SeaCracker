@@ -39,6 +39,11 @@ export class HostService extends UserService{
     });
   }
 
+  public nextStep() {
+    //TODO : Implement the next step logic
+    this.startAnsweringBroadcast();
+  }
+
   private startAnsweringBroadcast(): void{
     this.room.sendEventTo(this.roomCode!,new GameEvent(GameEventType.StartAnswering))
   }
