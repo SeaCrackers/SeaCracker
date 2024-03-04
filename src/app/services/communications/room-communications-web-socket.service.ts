@@ -40,4 +40,8 @@ export class RoomCommunicationsWebSocketService implements RoomCommunicationsSer
   onEventReceived<T>(): Observable<T> {
     return this.socket.fromEvent<T>(RoomEvents.Broadcast);
   }
+
+  getMyUniqueIdentifier(): string {
+    return this.socket.ioSocket.engine.id;
+  }
 }

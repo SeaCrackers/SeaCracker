@@ -13,4 +13,5 @@ export abstract class RoomCommunicationsService {
   public abstract leaveRoom(roomName:string):void;
   public abstract sendEventTo(roomName:string,content:any) : void;
   public abstract onEventReceived<T>(): Observable<T>;
+  public abstract getMyUniqueIdentifier(): string;
 }
