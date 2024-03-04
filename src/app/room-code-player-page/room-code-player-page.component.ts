@@ -15,6 +15,6 @@ export class RoomCodePlayerPageComponent {
   constructor(private router: Router) { }
 
   joinRoom() {
-    this.router.navigate(['/room/', this.roomID]);
+    this.router.navigate(['/play/', this.roomID]);
   }
 }
