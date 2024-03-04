@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
+import {HostService} from "../services/game/host.service";
+import {PlayerService} from "../services/game/player.service";
 
 
 @Component({
@@ -11,15 +13,15 @@ import { NgIf } from '@angular/common';
     styleUrl: './player-page.component.scss'
 })
 export class PlayerPageComponent {
-
-    roomID: string | null;
     playerNickName: string | null = null;
 
-    setPlayerNickName(nickname: string | null) {
+    setPlayerNickName(nickname: string) {
         this.playerNickName = nickname;
+        this.player.setupName(nickname);
     }
 
-    constructor(private _Activatedroute: ActivatedRoute) {
-        this.roomID = this._Activatedroute.snapshot.paramMap.get("id");
+    constructor(private _Activatedroute: ActivatedRoute, public player: PlayerService) {
+        const roomID = this._Activatedroute.snapshot.paramMap.get("id");
+        player.joinRoom(roomID!);
     }
 }

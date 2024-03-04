@@ -4,6 +4,7 @@ import {RoomCommunicationsService} from "../communications/room-communications.s
 import {filter, Observable} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
+import {HostService} from "./host.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +21,16 @@ export class PlayerService extends UserService{
     this.registerEvents()
   }
 
+  public setupName(pseudo: string): void{
+    this.room.sendEventTo(HostService.getHostOnlyRoom(this.roomCode!),new GameEvent(GameEventType.Setup,this.room.getMyUniqueIdentifier(),pseudo))
+  }
+
   public getCanAnswer() : Signal<boolean>{
     return this.canAnswer.asReadonly()
   }
 
   public answerQuestion(answerId: number): void{
-    this.room.sendEventTo(this.roomCode!,new GameEvent(GameEventType.Answer,this.room.getMyUniqueIdentifier(),answerId))
+    this.room.sendEventTo(HostService.getHostOnlyRoom(this.roomCode!),new GameEvent(GameEventType.Answer,this.room.getMyUniqueIdentifier(),answerId))
     this.canAnswer.set(false)
   }
 
