@@ -1,3 +1,6 @@
 <h1>Host</h1>
 <h2>Code : {{ host.getRoomCode() }}</h2>
 <button (click)="host.nextStep()">Send test message</button>
+@for (player of host.getPlayerPseudos()(); track player) {
+  <div>{{ player }}</div>
+}

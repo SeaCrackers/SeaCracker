@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {UserService} from "./user.service";
 import {RoomCommunicationsService} from "../communications/room-communications.service";
 import {RandomGenerator} from "../../utils/random-generator";
@@ -10,6 +10,7 @@ import {GameEventType} from "./game-event-type";
   providedIn: 'root'
 })
 export class HostService extends UserService{
+  private playersPseudos:WritableSignal<string[]> = signal([])
   constructor(room:RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
     this.joinRoom()
@@ -32,11 +33,15 @@ export class HostService extends UserService{
 
   private registerEvents(): void{
     this.onPlayerSetup().subscribe((gameEvent)=>{
-      console.log("Received setup event"+gameEvent.content)
+      console.log("Received setup event "+gameEvent.content)
+      this.playersPseudos.update((pseudos)=>[...pseudos,gameEvent.content])
     });
     this.onPlayerAnswer().subscribe((gameEvent)=>{
-      console.log("Received answer event"+gameEvent.content)
+      console.log("Received answer event "+gameEvent.content)
     });
+  }
+  public getPlayerPseudos() : Signal<string[]>{
+    return this.playersPseudos.asReadonly();
   }
 
   public nextStep() {
