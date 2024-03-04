@@ -13,11 +13,11 @@ export class HostService extends UserService{
   constructor(room:RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
     this.joinRoom()
-    this.registerEvents()
   }
 
-  protected joinRoom(): void {
+  private joinRoom(): void {
     this.room.joinRoom(HostService.getHostOnlyRoom(this.roomCode!))
+    this.registerEvents()
   }
 
   private onPlayerSetup(): Observable<GameEvent>{
