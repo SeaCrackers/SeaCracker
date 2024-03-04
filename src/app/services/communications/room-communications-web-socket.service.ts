@@ -42,6 +42,6 @@ export class RoomCommunicationsWebSocketService implements RoomCommunicationsSer
   }
 
   getMyUniqueIdentifier(): string {
-    return this.socket.ioSocket.engine.id;
+    return this.socket.ioSocket.id;
   }
 }
