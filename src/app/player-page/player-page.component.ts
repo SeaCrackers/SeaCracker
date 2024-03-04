@@ -4,13 +4,13 @@ import { NgIf } from '@angular/common';
 
 
 @Component({
-    selector: 'app-room-player-page',
+    selector: 'app-player-page',
     standalone: true,
     imports: [NgIf],
-    templateUrl: './room-player-page.component.html',
-    styleUrl: './room-player-page.component.scss'
+    templateUrl: './player-page.component.html',
+    styleUrl: './player-page.component.scss'
 })
-export class RoomPlayerPageComponent {
+export class PlayerPageComponent {
 
     roomID: string | null;
     playerNickName: string | null = null;

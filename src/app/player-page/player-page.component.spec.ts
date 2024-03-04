@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoomPlayerPageComponent } from './room-player-page.component';
+import { PlayerPageComponent } from './player-page.component';
 
 describe('RoomPlayerPageComponent', () => {
-  let component: RoomPlayerPageComponent;
-  let fixture: ComponentFixture<RoomPlayerPageComponent>;
+  let component: PlayerPageComponent;
+  let fixture: ComponentFixture<PlayerPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RoomPlayerPageComponent]
+      imports: [PlayerPageComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(RoomPlayerPageComponent);
+
+    fixture = TestBed.createComponent(PlayerPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
