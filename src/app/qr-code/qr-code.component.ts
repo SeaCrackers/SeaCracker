@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
 
 
@@ -11,14 +11,11 @@ import { QRCodeModule } from 'angularx-qrcode';
 })
 export class QrCodeComponent {
 
-    private baseLink: string = 'https://www.seacrackers.com/room/';
-    private roomCode: string;
+    private baseLink: string = window.location.origin;
+    @Input() roomCode?: string;
 
-    constructor() {
-        this.roomCode = 'ABCDEF';
-    }
 
     getLink() {
-        return this.baseLink + this.roomCode;
+        return this.baseLink + "/" + this.roomCode;
     }
 }
