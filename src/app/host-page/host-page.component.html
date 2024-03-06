@@ -3,7 +3,7 @@
 <button (click)="host.nextStep()">Send test message</button>
 
 <div class="d-flex flex-column align-items-center">
-  <app-qr-code [roomCode]="host.getRoomCode()"></app-qr-code>
+  <app-qr-code [location]="'play'" [roomCode]="host.getRoomCode()"></app-qr-code>
   <span>Scanner pour rejoindre</span>
 </div>
 

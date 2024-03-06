@@ -13,9 +13,10 @@ export class QrCodeComponent {
 
     private baseLink: string = window.location.origin;
     @Input() roomCode?: string;
+    @Input() location?: string;
 
 
     getLink() {
-        return this.baseLink + "/" + this.roomCode;
+        return location? this.baseLink + "/" + this.location + "/" + this.roomCode : this.baseLink + "/" + this.roomCode;
     }
 }
