@@ -1,16 +1,25 @@
-import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
+import {computed, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {UserService} from "./user.service";
 import {RoomCommunicationsService} from "../communications/room-communications.service";
 import {RandomGenerator} from "../../utils/random-generator";
 import {filter, Observable} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
+import {GameStatusEnum} from "./game-status-enum";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HostService extends UserService{
   private playersPseudos:WritableSignal<string[]> = signal([])
+  private currentStatus:WritableSignal<GameStatusEnum> = signal(GameStatusEnum.PlayerList);
+  private currentQuestion:WritableSignal<number> = signal(0);
+  private isLastQuestion:Signal<boolean> = computed(()=>{
+    return this.currentQuestion() == this.quizz.getQuestions().length-1
+  });
+  private quizz:any = {};
+
   constructor(room:RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
     this.joinRoom()
@@ -21,8 +30,27 @@ export class HostService extends UserService{
   }
 
   public nextStep() {
-    //TODO : Implement the next step logic
-    this.startAnsweringBroadcast();
+    //TODO : Refactor / split the logic
+    switch (this.currentStatus()){
+      case GameStatusEnum.PlayerList:
+        this.currentStatus.set(GameStatusEnum.PresentQuestion);
+        break;
+      case GameStatusEnum.PresentQuestion:
+        this.currentStatus.set(GameStatusEnum.Answer);
+        this.startAnsweringBroadcast();
+        break;
+      case GameStatusEnum.Answer:
+        this.currentStatus.set(GameStatusEnum.Leaderboard);
+        break;
+      case GameStatusEnum.Leaderboard:
+        if(this.isLastQuestion()){
+          this.currentStatus.set(GameStatusEnum.Podium);
+        }else{
+          this.currentStatus.set(GameStatusEnum.PresentQuestion);
+          this.currentQuestion.update((value)=>value++);
+        }
+        break;
+    }
   }
 
   private joinRoom(): void {
