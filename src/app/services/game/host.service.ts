@@ -41,10 +41,10 @@ export class HostService extends UserService{
   }
 
   private registerEvents(): void{
-    this.onPlayerSetup().subscribe((gameEvent)=>{
+    this.onPlayerSetup().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
       this.setupPlayer(gameEvent);
     });
-    this.onPlayerAnswer().subscribe((gameEvent)=>{
+    this.onPlayerAnswer().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
       this.addPlayerAnswer(gameEvent);
     });
   }
