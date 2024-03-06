@@ -1,6 +1,6 @@
 <h1>Host</h1>
 <h2>Code : {{ host.getRoomCode() }}</h2>
-<button (click)="host.nextStep()">Send test message</button>
+<button (click)="host.nextStep()">Next Step</button>
 
 <div class="d-flex flex-column align-items-center">
   <app-qr-code [roomCode]="host.getRoomCode()"></app-qr-code>
@@ -10,3 +10,5 @@
 @for (player of host.getPlayerPseudos()(); track player) {
 <div>{{ player }}</div>
 }
+<p>Status : {{ host.getCurrentStatus()() }}</p>
+<p>Question ID : {{ host.getCurrentQuestion()() }}</p>

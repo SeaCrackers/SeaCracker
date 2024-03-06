@@ -28,6 +28,12 @@ export class HostService extends UserService{
   public getPlayerPseudos() : Signal<string[]>{
     return this.playersPseudos.asReadonly();
   }
+  public getCurrentStatus() : Signal<GameStatusEnum>{
+    return this.currentStatus.asReadonly();
+  }
+  public getCurrentQuestion() : Signal<number>{
+    return this.currentQuestion.asReadonly();
+  }
 
   public nextStep() {
     //TODO : Refactor / split the logic
