@@ -1,14 +1,30 @@
 <h1>Host</h1>
 <h2>Code : {{ host.getRoomCode() }}</h2>
-<button (click)="host.nextStep()">Next Step</button>
 
 <div class="d-flex flex-column align-items-center">
   <app-qr-code [roomCode]="host.getRoomCode()"></app-qr-code>
   <span>Scanner pour rejoindre</span>
 </div>
 
-@for (player of host.getPlayerPseudos()(); track player) {
-<div>{{ player }}</div>
-}
 <p>Status : {{ host.getCurrentStatus()() }}</p>
 <p>Question ID : {{ host.getCurrentQuestion()() }}</p>
+
+@switch (host.getCurrentStatus()()){
+  @case (GameStatusEnum.PlayerList){
+    <app-host-playerlist></app-host-playerlist>
+  }
+  @case (GameStatusEnum.PresentQuestion){
+    <app-host-question></app-host-question>
+  }
+  @case (GameStatusEnum.Answer){
+    <app-host-question></app-host-question>
+  }
+  @case (GameStatusEnum.Leaderboard){
+    <app-host-podium></app-host-podium>
+  }
+  @case (GameStatusEnum.Podium){
+    <app-host-podium></app-host-podium>
+  }
+}
+
+<button (click)="host.nextStep()">Next Step</button>
