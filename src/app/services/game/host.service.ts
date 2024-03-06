@@ -16,6 +16,15 @@ export class HostService extends UserService{
     this.joinRoom()
   }
 
+  public getPlayerPseudos() : Signal<string[]>{
+    return this.playersPseudos.asReadonly();
+  }
+
+  public nextStep() {
+    //TODO : Implement the next step logic
+    this.startAnsweringBroadcast();
+  }
+
   private joinRoom(): void {
     this.room.joinRoom(HostService.getHostOnlyRoom(this.roomCode!))
     this.registerEvents()
@@ -33,20 +42,20 @@ export class HostService extends UserService{
 
   private registerEvents(): void{
     this.onPlayerSetup().subscribe((gameEvent)=>{
-      console.log("Received setup event "+gameEvent.content)
-      this.playersPseudos.update((pseudos)=>[...pseudos,gameEvent.content])
+      this.setupPlayer(gameEvent);
     });
     this.onPlayerAnswer().subscribe((gameEvent)=>{
-      console.log("Received answer event "+gameEvent.content)
+      this.addPlayerAnswer(gameEvent);
     });
   }
-  public getPlayerPseudos() : Signal<string[]>{
-    return this.playersPseudos.asReadonly();
+
+  private setupPlayer(event : GameEvent): void{
+    console.log("Received setup event "+event.content)
+    this.playersPseudos.update((pseudos)=>[...pseudos,event.content])
   }
 
-  public nextStep() {
-    //TODO : Implement the next step logic
-    this.startAnsweringBroadcast();
+  private addPlayerAnswer(event : GameEvent){
+    console.log("Received answer event "+event.content)
   }
 
   private startAnsweringBroadcast(): void{
