@@ -42,10 +42,10 @@ export class HostService extends UserService{
 
   private registerEvents(): void{
     this.onPlayerSetup().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
-      this.setupPlayer(gameEvent);
+      this.setupPlayer(gameEvent as GameEvent);
     });
     this.onPlayerAnswer().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
-      this.addPlayerAnswer(gameEvent);
+      this.addPlayerAnswer(gameEvent as GameEvent);
     });
   }
 
@@ -65,4 +65,8 @@ export class HostService extends UserService{
   public static getHostOnlyRoom(roomCode:string): string{
     return "host-"+roomCode
   }
+}
+
+function takeUntilDestroyed(): import("rxjs").OperatorFunction<GameEvent, unknown> {
+  throw new Error('Function not implemented.');
 }
