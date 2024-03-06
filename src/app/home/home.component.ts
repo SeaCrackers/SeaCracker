@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import { Quiz } from "../models/quiz.model";
 import { QuizService } from "../services/quiz.service"
 import { CommonModule } from '@angular/common';
@@ -10,17 +10,15 @@ import { Router } from '@angular/router';
   imports: [CommonModule],
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent{
 
   title = 'Home Page';
-  constructor(private quizService: QuizService, private router: Router) { }
+  constructor(private quizService: QuizService, private router: Router) {
+    this.quizzes = this.quizService.getQuizzes();
+  }
 
   public quizzes: Quiz[] = [];
 
-  ngOnInit(): Promise<void> {
-    this.quizzes = this.quizService.getQuizzes();
-    return Promise.resolve();
-  }
   public deleteQuiz(quiz: Quiz) {
     this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
   }
