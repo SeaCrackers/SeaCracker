@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import {RoomCommunicationsService} from "../services/communications/room-communications.service";
 import {RandomGenerator} from "../utils/random-generator";
 import {HostService} from "../services/game/host.service";
+import { QrCodeComponent } from '../qr-code/qr-code.component';
 @Component({
   selector: 'app-host-page',
   standalone: true,
-  imports: [],
+  imports: [QrCodeComponent],
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.scss'
 })
