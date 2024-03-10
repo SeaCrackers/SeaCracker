@@ -1,7 +1,24 @@
 <div class="container">
-    <div class="text-center">
-        <h1>SeaCracker - {{ title }}</h1>
-        <h2>{{ quiz.title }}</h2>
+  <header class="text-center mt-2">
+    <h1>SeaCracker - {{ title }}</h1>
+    <h2>{{ quiz.getTitle() }}</h2>
+  </header>
+
+  <main class="container mt-5">
+    <div class="row">
+      <!-- Left Container -->
+      <section class="col-md-3">
+        @for (question of quiz.getQuestions(); track question) {
+        <div class="card m-2">
+          <div class="card-body d-flex align-items-center justify-content-between" (click)="selectedQuestion(question)">
+            <h5 class="text-wrap">Question {{ question.getId() }}</h5>
+            <i class="fa fa-trash" (click)="deleteQuestion(question.getId())"></i>
+          </div>
+        </div>
+        }
+        <button class="btn btn-primary mt-3" (click)="addQuestion()">Add Question</button>
+      </section>
+
     </div>
 </div>
 
