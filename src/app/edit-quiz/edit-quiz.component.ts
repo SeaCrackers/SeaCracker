@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../services/quiz.service";
-import {Question} from "../models/question.model";
+import {Question, Timers} from "../models/question.model";
 import {Quiz} from "../models/quiz.model";
 import {Answer} from "../models/answer.model";
 
@@ -60,4 +60,15 @@ export class EditQuizComponent{
     this.saveQuiz();
   }
 
+  setQuestionTimer(question : Question, timer: Timers) {
+    question.setTimer(timer);
+    this.saveQuiz();
+  }
+
+  getTimers() {
+    return this.question.getTimers();
+  }
+  saveQuiz() {
+    this.quizService.saveQuizzesToLocalStorage();
+  }
 }

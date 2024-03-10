@@ -36,7 +36,23 @@
         </div>
       </section>
 
+      <!-- Right Container -->
+      <section class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Timer in seconds for :</h5>
+            <p class="card-text">Question n°{{ question.getId() }}</p>
+            <select class="form-select mb-3">
+              <option selected>{{ question.getTimer() }}</option>
+              @for (time of getTimers(); track time) {
+                @if (time !== question.getTimer()) {
+                <option (change)="setQuestionTimer(question, time)">{{ time }}</option>
+                }
+              }
+            </select>
+          </div>
+        </div>
+      </section>
     </div>
+  </main>
 </div>
-
-<!-- Left side of a quiz editor -->
