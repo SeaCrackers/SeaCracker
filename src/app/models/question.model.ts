@@ -1,7 +1,13 @@
 import {Answer} from "./answer.model";
 
+export enum Timers {
+  TWENTY = 20,
+  FORTY = 40,
+  SIXTY = 60,
+  EIGHTY = 80
+}
 export class Question {
-  constructor(private id: number, private question: string, private timer : string, private answers: Answer[] = []){}
+  constructor(private id: number, private question: string, private timer : Timers, private answers: Answer[] = []){}
 
   public getId(): number {
     return this.id;
@@ -11,10 +17,12 @@ export class Question {
     return this.question;
   }
 
-  public getTimer(): string {
+  public getTimer(): Timers {
     return this.timer;
   }
-
+  public getTimers(): Timers[] {
+    return [Timers.TWENTY, Timers.FORTY, Timers.SIXTY, Timers.EIGHTY];
+  }
   public getAnswers(): Answer[] {
     return this.answers;
   }
@@ -27,7 +35,7 @@ export class Question {
     this.question = question;
   }
 
-  public setTimer(timer: string) : void{
+  public setTimer(timer: Timers) : void{
     this.timer = timer;
   }
 
