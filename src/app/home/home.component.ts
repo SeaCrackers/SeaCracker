@@ -20,18 +20,20 @@ export class HomeComponent{
   public quizzes: Quiz[] = [];
 
   public deleteQuiz(quiz: Quiz) {
-    this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
+    this.quizzes = this.quizzes.filter(q => q.getId() !== quiz.getId());
   }
 
   public editQuiz(quiz: Quiz) {
-    this.router.navigate(['/quiz', quiz.id, 'edit']);
+    this.router.navigate(['/quiz', quiz.getId(), 'edit']);
   }
   public playQuiz(quiz: Quiz) {
     console.log(quiz);
   }
 
   public addQuiz() {
-    //
+    let newQuiz = new Quiz(this.quizzes.length, "New Quiz");
+    this.quizzes.push(newQuiz);
+    this.router.navigate(['/quiz', newQuiz.getId(), 'edit']);
   }
 
 }
