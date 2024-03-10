@@ -53,5 +53,11 @@ export class EditQuizComponent{
     return newQuestion;
   }
 
+  setCorrectAnswer(answer: Answer) {
+    this.question.getAnswers().forEach(a => {
+      a.setCorrect(a === answer);
+    });
+    this.saveQuiz();
+  }
 
 }

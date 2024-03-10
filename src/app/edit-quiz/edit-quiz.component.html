@@ -19,6 +19,23 @@
         <button class="btn btn-primary mt-3" (click)="addQuestion()">Add Question</button>
       </section>
 
+      <!-- Middle Container -->
+      <section class="col-md-6">
+        <div class="container mt-2">
+        <h5 class="text-center">{{ question.getQuestion() }}</h5>
+        </div>
+        <div class="row m-5">
+          @for (answer of question.getAnswers(); track answer) {
+          <div class="card mt-5 me-1">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <label class="form-check-label" for="correctAnswer">{{ answer.getAnswer() }}</label>
+              <input class="form-check-input" type="radio" [value]="answer.getCorrect()" [checked]="answer.getCorrect()" name="correctAnswer" id="correctAnswer" (click)="setCorrectAnswer(answer)">
+            </div>
+          </div>
+          }
+        </div>
+      </section>
+
     </div>
 </div>
 
