@@ -24,7 +24,7 @@ export class QuizService {
 
   getQuizzesFromLocalStorage() {
     let item = localStorage.getItem('quizzes');
-    return item ? JSON.parse(item) : null;
+    return item ? JSON.parse(item) : [];
   }
 
   saveQuizzesToLocalStorage() {
