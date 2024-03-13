@@ -20,8 +20,19 @@ export class PlayerPageComponent {
         this.player.setupName(nickname);
     }
 
-    constructor(private _Activatedroute: ActivatedRoute, public player: PlayerService) {
+    constructor(private _Activatedroute: ActivatedRoute, private player: PlayerService) {
         const roomID = this._Activatedroute.snapshot.paramMap.get("id");
         player.joinRoom(roomID!);
     }
+
+    canAnswer() {
+        return this.player.getCanAnswer();
+    }
+
+    getRoomCode() {
+        return this.player.getRoomCode();
+    }
+
+    
+
 }

@@ -1,12 +1,12 @@
-<h1 class="text-center">You are in the room {{player.getRoomCode()}}</h1>
-
 <div class="d-flex h-100 flex-column text-center">
 
     @if (playerNickName) {
-        
-    <!-- Name -->
+    @if(canAnswer()){
+
+    }@else{
     <div class="d-flex flex-column flex-grow-1 justify-content-center ">
-        <h5 class="text-center mb-5">Your name for this room is <span class="text-primary">{{playerNickName}}</span>.</h5>
+        <h5 class="text-center mb-5">Your name for this room is <span class="text-primary">{{playerNickName}}</span>.
+        </h5>
         <span class="text-secondary">Waiting for the host...</span>
         <div>
             <div class="spinner-grow text-primary" role="status">
@@ -20,7 +20,11 @@
             </div>
         </div>
     </div>
+    }
+
+
     } @else {
+    <h1 class="text-center">You are in the room {{getRoomCode()}}</h1>
 
     <!-- Form -->
     <form class="d-flex flex-grow-1 form-inline justify-content-center mb-3">
