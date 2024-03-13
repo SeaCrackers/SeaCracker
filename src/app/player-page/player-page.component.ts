@@ -33,6 +33,10 @@ export class PlayerPageComponent {
         return this.player.getRoomCode();
     }
 
+    answerQuestion(answerId: number) {
+        this.player.answerQuestion(answerId);
+    }
+
     
 
 }
