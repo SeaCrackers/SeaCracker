@@ -5,20 +5,18 @@ import {RandomGenerator} from "../../utils/random-generator";
 import {filter, Observable} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
-import {GameStatusEnum} from "./game-status-enum";
 // import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {GameStep} from "./steps/game-step";
+import {PlayerListStep} from "./steps/player-list-step";
+import {GameState, Question, Quiz} from "./steps/game-state";
+import {GameStepType} from "./steps/game-step-type";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HostService extends UserService{
   private playersPseudos:WritableSignal<string[]> = signal([])
-  private currentStatus:WritableSignal<GameStatusEnum> = signal(GameStatusEnum.PlayerList);
-  private currentQuestion:WritableSignal<number> = signal(0);
-  private isLastQuestion:Signal<boolean> = computed(()=>{
-    return this.currentQuestion() == this.quizz.getQuestions().length-1
-  });
-  private quizz:any = {};
+  private currentStep:WritableSignal<GameStep> = signal(new PlayerListStep(new GameState(new Quiz())));
 
   constructor(room:RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
@@ -28,35 +26,19 @@ export class HostService extends UserService{
   public getPlayerPseudos() : Signal<string[]>{
     return this.playersPseudos.asReadonly();
   }
-  public getCurrentStatus() : Signal<GameStatusEnum>{
-    return this.currentStatus.asReadonly();
+  public getCurrentStepType() : Signal<GameStepType>{
+    return computed(()=>{
+      return this.currentStep().getType();
+    });
   }
-  public getCurrentQuestion() : Signal<number>{
-    return this.currentQuestion.asReadonly();
+  public getCurrentQuestion() : Signal<Question>{
+    return computed(()=>{
+      return this.currentStep().getGameState().getCurrentQuestion()();
+    });
   }
 
   public nextStep() {
-    //TODO : Refactor / split the logic
-    switch (this.currentStatus()){
-      case GameStatusEnum.PlayerList:
-        this.currentStatus.set(GameStatusEnum.PresentQuestion);
-        break;
-      case GameStatusEnum.PresentQuestion:
-        this.currentStatus.set(GameStatusEnum.Answer);
-        this.startAnsweringBroadcast();
-        break;
-      case GameStatusEnum.Answer:
-        this.currentStatus.set(GameStatusEnum.Leaderboard);
-        break;
-      case GameStatusEnum.Leaderboard:
-        if(this.isLastQuestion()){
-          this.currentStatus.set(GameStatusEnum.Podium);
-        }else{
-          this.currentStatus.set(GameStatusEnum.PresentQuestion);
-          this.currentQuestion.update((value)=>value++);
-        }
-        break;
-    }
+    this.currentStep.set(this.currentStep().goToNextStep());
   }
 
   private joinRoom(): void {

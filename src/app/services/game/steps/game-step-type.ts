@@ -1,0 +1,5 @@
+export enum GameStepType{
+  PLAYER_LIST="PLAYER_LIST",
+  QUESTION="QUESTION",
+  LEADERBOARD="LEADERBOARD",
+}
