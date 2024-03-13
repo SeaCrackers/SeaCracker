@@ -6,7 +6,7 @@ import {filter, Observable} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
 import {GameStatusEnum} from "./game-status-enum";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+// import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
