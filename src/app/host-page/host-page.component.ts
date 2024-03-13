@@ -3,7 +3,6 @@ import {RoomCommunicationsService} from "../services/communications/room-communi
 import {RandomGenerator} from "../utils/random-generator";
 import {HostService} from "../services/game/host.service";
 import { QrCodeComponent } from '../qr-code/qr-code.component';
-import {GameStatus} from "../services/game/gamestatus/game-status";
 import {GameStatusEnum} from "../services/game/game-status-enum";
 import {HostQuestionComponent} from "../host/host-question/host-question.component";
 import {HostPlayerlistComponent} from "../host/host-playerlist/host-playerlist.component";
