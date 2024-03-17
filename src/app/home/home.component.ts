@@ -1,39 +1,35 @@
 import {Component} from '@angular/core';
-import { Quiz } from "../models/quiz.model";
-import { QuizService } from "../services/quiz.service"
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import {QuizHelper} from "../helpers/quiz.helper";
+import {Quiz} from "../interfaces/quiz.interface";
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   styleUrl: './home.component.scss'
 })
 export class HomeComponent{
 
-  title = 'Home Page';
-  constructor(private quizService: QuizService, private router: Router) {
-    this.quizzes = this.quizService.getQuizzes();
+  quizzes: Quiz[] = this.quizHelper.getQuizzes();
+  title: string = 'Home Page';
+  constructor(private quizHelper: QuizHelper, private router: Router) {
   }
 
-  public quizzes: Quiz[] = [];
 
   public deleteQuiz(quiz: Quiz) {
-    this.quizzes = this.quizzes.filter(q => q.getId() !== quiz.getId());
+    this.quizHelper.deleteQuiz(quiz.id);
   }
 
   public editQuiz(quiz: Quiz) {
-    this.router.navigate(['/quiz', quiz.getId(), 'edit']);
+    this.router.navigate(['/quiz', quiz.id, 'edit']);
   }
   public playQuiz(quiz: Quiz) {
-    console.log(quiz);
+    this.router.navigate(['/quiz', quiz.id, 'play']);
   }
 
   public addQuiz() {
-    let newQuiz = new Quiz(this.quizzes.length, "New Quiz");
-    this.quizzes.push(newQuiz);
-    this.router.navigate(['/quiz', newQuiz.getId(), 'edit']);
+    this.quizHelper.addEmptyQuiz();
   }
 
 }

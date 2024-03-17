@@ -5,24 +5,26 @@
   </div>
 
   <div class="row justify-content-center">
-    <div *ngFor="let quiz of quizzes" class="col-12 col-md-6 col-lg-4">
-      <div class="card m-2 p-3 border border-light rounded bg-light shadow-sm">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 class="text-dark fs-4">{{ quiz.getTitle() }}</h2>
-          <div class="d-flex">
-            <button (click)="editQuiz(quiz)" class="btn btn-warning btn-sm">
-              Edit
-            </button>
-            <button (click)="deleteQuiz(quiz)" class="btn btn-warning btn-sm ms-1">
-              Delete
-            </button>
-            <button (click)="playQuiz(quiz)" class="btn btn-warning btn-sm ms-1">
-              Play
-            </button>
+    @for (quiz of quizzes; track quiz){
+      <div  class="col-12 col-md-6 col-lg-4">
+        <div class="card m-2 p-3 border border-light rounded bg-light shadow-sm">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="text-dark fs-4">{{ quiz.title }}</h2>
+            <div class="d-flex">
+              <button (click)="editQuiz(quiz)" class="btn btn-warning btn-sm">
+                Edit
+              </button>
+              <button (click)="deleteQuiz(quiz)" class="btn btn-warning btn-sm ms-1">
+                Delete
+              </button>
+              <button (click)="playQuiz(quiz)" class="btn btn-warning btn-sm ms-1">
+                Play
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    }
   </div>
 
   <div class="text-center mt-3">
