@@ -10,6 +10,7 @@ import {GameStep} from "./steps/game-step";
 import {PlayerListStep} from "./steps/player-list-step";
 import {GameState, Question, Quiz} from "./steps/game-state";
 import {GameStepType} from "./steps/game-step-type";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
@@ -81,8 +82,4 @@ export class HostService extends UserService{
   public static getHostOnlyRoom(roomCode:string): string{
     return "host-"+roomCode
   }
-}
-
-function takeUntilDestroyed(): import("rxjs").OperatorFunction<GameEvent, unknown> {
-  throw new Error('Function not implemented.');
 }
