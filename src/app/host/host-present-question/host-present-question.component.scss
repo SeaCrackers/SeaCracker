@@ -1,0 +1,12 @@
+#loading-bar {
+  top: 0;
+  margin-top: 8rem;
+  width: 60rem;
+  height: 2rem;
+  border: 5px solid white;
+}
+
+#loading-progress {
+    background: white;
+    transition: all 1s linear;
+  }
