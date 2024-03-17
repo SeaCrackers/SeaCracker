@@ -34,6 +34,17 @@ export class QuizHelper {
       throw new Error('Failed to save quizzes to local storage');
     }
   }
+
+  // CREATE
+
+  addQuestionToQuiz(quizId: number, question: Question): void{
+    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    if (quiz) {
+      quiz.questions.push(question);
+      this.updateQuiz(quiz);
+    }
+  }
+
   addQuiz(quiz: Quiz) : void {
     this.quizzes.push(quiz);
     this.saveQuizzesToLocalStorage();
@@ -70,6 +81,8 @@ export class QuizHelper {
       ]
     } as Quiz;
   }
+
+  // READ
 
   getQuizzes(): Quiz[] {
     return this.quizzes;
