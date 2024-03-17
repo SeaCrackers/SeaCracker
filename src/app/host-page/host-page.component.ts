@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Type} from '@angular/core';
 import {RoomCommunicationsService} from "../services/communications/room-communications.service";
 import {RandomGenerator} from "../utils/random-generator";
 import {HostService} from "../services/game/host.service";
@@ -16,6 +16,8 @@ import {HostLeaderboardComponent} from "../host/host-leaderboard/host-leaderboar
 import {PodiumStep} from "../services/game/steps/podium-step";
 import {HostAnswerComponent} from "../host/host-answer/host-answer.component";
 import {NgComponentOutlet} from "@angular/common";
+import {GameStep} from "../services/game/steps/game-step";
+import {HostComponent} from "../host/host-component";
 @Component({
   selector: 'app-host-page',
   standalone: true,
@@ -31,7 +33,7 @@ export class HostPageComponent {
   /**
    * For now, we simply return one component per step. 1:1 mapping.
    */
-  get activeStepComponent() {
+  get activeStepComponent() : Type<HostComponent>  {
     switch (this.host.getCurrentStep()().constructor) {
       case PlayerListStep:
         return HostPlayerlistComponent;
