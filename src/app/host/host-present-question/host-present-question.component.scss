@@ -1,12 +1,22 @@
 #loading-bar {
-  top: 0;
-  margin-top: 8rem;
-  width: 60rem;
-  height: 2rem;
-  border: 5px solid white;
+    top: 0;
+    margin-top: 8rem;
+    width: 60rem;
+    height: 2rem;
+    border: 5px solid white;
 }
 
 #loading-progress {
     background: white;
     transition: all 1s linear;
-  }
+}
+
+#question {
+    max-width: 75%;
+}
+
+#page-container {
+    background-image: url(../../../assets/images/vecteezy_abandoned-pirate-captain-ship-cabin-broken-room_15916932.jpg);
+    background-size: cover;
+    background-position: center;
+}
