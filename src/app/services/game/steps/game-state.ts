@@ -9,7 +9,9 @@ export interface Question{
 }
 
 export class Quiz implements Quiz{
-
+  getQuestions(): Question[] {
+    return [];
+  }
 }
 
 export class GameState {

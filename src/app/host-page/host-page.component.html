@@ -8,23 +8,6 @@
 
 <p>Status : {{ host.getCurrentStep()().constructor }}</p>
 <p>Question ID : {{ host.getCurrentQuestion()() }}</p>
-
-@switch (host.getCurrentStep()().constructor){
-  @case (PlayerListStep){
-    <app-host-playerlist></app-host-playerlist>
-  }
-  @case (PresentQuestionStep){
-    <app-host-present-question></app-host-present-question>
-  }
-  @case (AnswerStep){
-    <app-host-answer></app-host-answer>
-  }
-  @case (LeaderboardStep){
-    <app-host-leaderboard></app-host-leaderboard>
-  }
-  @case (PodiumStep){
-    <app-host-podium></app-host-podium>
-  }
-}
+<ng-container *ngComponentOutlet="activeStepComponent"></ng-container>
 
 <button (click)="host.nextStep()">Next Step</button>

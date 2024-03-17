@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {PlayerListStep} from "../../services/game/steps/player-list-step";
+import {LeaderboardStep} from "../../services/game/steps/leaderboard-step";
 
 @Component({
   selector: 'app-host-leaderboard',
@@ -8,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './host-leaderboard.component.scss'
 })
 export class HostLeaderboardComponent {
-
+  @Input({ required: true }) step!: LeaderboardStep;
 }

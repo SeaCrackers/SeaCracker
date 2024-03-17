@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {PlayerListStep} from "../../services/game/steps/player-list-step";
+import {AnswerStep} from "../../services/game/steps/answer-step";
 
 @Component({
   selector: 'app-host-answer',
@@ -8,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './host-answer.component.scss'
 })
 export class HostAnswerComponent {
-
+  @Input({ required: true }) step!: AnswerStep;
 }
