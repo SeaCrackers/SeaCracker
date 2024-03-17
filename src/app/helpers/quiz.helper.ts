@@ -34,4 +34,8 @@ export class QuizHelper {
       throw new Error('Failed to save quizzes to local storage');
     }
   }
+  addQuiz(quiz: Quiz) : void {
+    this.quizzes.push(quiz);
+    this.saveQuizzesToLocalStorage();
+  }
 }
