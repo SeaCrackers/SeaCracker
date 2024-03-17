@@ -38,4 +38,36 @@ export class QuizHelper {
     this.quizzes.push(quiz);
     this.saveQuizzesToLocalStorage();
   }
+
+  emptyAnswerFactory(id : number, correct = false): Answer {
+    return {
+      id: id,
+      answer: '',
+      correct: correct
+    } as Answer;
+  }
+
+  emptyQuestionFactory(id : number): Question {
+    return {
+      id: id,
+      question: '',
+      timer: Timers.FORTY,
+      answers: [
+        this.emptyAnswerFactory(1, true),
+        this.emptyAnswerFactory(2),
+        this.emptyAnswerFactory(3),
+        this.emptyAnswerFactory(4)
+      ]
+    } as Question;
+  }
+
+  emptyQuizFactory(id: number): Quiz {
+    return {
+      id: id,
+      title: '',
+      questions: [
+        this.emptyQuestionFactory(0)
+      ]
+    } as Quiz;
+  }
 }
