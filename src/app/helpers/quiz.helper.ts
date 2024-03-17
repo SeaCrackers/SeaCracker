@@ -70,4 +70,14 @@ export class QuizHelper {
       ]
     } as Quiz;
   }
+
+  getQuizzes(): Quiz[] {
+    return this.quizzes;
+  }
+
+  getQuizById(quizId : number) : Quiz | undefined{
+    return this.quizzes.find((q : Quiz)=> {
+      return q.id == quizId
+    });
+  }
 }
