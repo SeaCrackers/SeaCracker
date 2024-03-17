@@ -9,7 +9,5 @@ import {HostService} from "../../services/game/host.service";
   styleUrl: './host-podium.component.scss'
 })
 export class HostPodiumComponent {
-  constructor(public host:HostService) {
 
-  }
 }

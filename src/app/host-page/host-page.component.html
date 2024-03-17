@@ -6,17 +6,23 @@
   <span>Scanner pour rejoindre</span>
 </div>
 
-<p>Status : {{ host.getCurrentStepType()() }}</p>
+<p>Status : {{ host.getCurrentStep()().constructor }}</p>
 <p>Question ID : {{ host.getCurrentQuestion()() }}</p>
 
-@switch (host.getCurrentStepType()()){
-  @case (GameStepType.PLAYER_LIST){
+@switch (host.getCurrentStep()().constructor){
+  @case (PlayerListStep){
     <app-host-playerlist></app-host-playerlist>
   }
-  @case (GameStepType.QUESTION){
-    <app-host-question></app-host-question>
+  @case (PresentQuestionStep){
+    <app-host-present-question></app-host-present-question>
   }
-  @case (GameStepType.LEADERBOARD){
+  @case (AnswerStep){
+    <app-host-answer></app-host-answer>
+  }
+  @case (LeaderboardStep){
+    <app-host-leaderboard></app-host-leaderboard>
+  }
+  @case (PodiumStep){
     <app-host-podium></app-host-podium>
   }
 }

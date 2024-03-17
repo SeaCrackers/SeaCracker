@@ -9,7 +9,6 @@ import {GameEventType} from "./game-event-type";
 import {GameStep} from "./steps/game-step";
 import {PlayerListStep} from "./steps/player-list-step";
 import {GameState, Question, Quiz} from "./steps/game-state";
-import {GameStepType} from "./steps/game-step-type";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable({
@@ -27,9 +26,9 @@ export class HostService extends UserService{
   public getPlayerPseudos() : Signal<string[]>{
     return this.playersPseudos.asReadonly();
   }
-  public getCurrentStepType() : Signal<GameStepType>{
+  public getCurrentStep() : Signal<GameStep>{
     return computed(()=>{
-      return this.currentStep().getType();
+      return this.currentStep();
     });
   }
   public getCurrentQuestion() : Signal<Question>{

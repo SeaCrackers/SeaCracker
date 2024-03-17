@@ -9,7 +9,5 @@ import {HostService} from "../../services/game/host.service";
   styleUrl: './host-playerlist.component.scss'
 })
 export class HostPlayerlistComponent {
-  constructor(public host:HostService) {
 
-  }
 }
