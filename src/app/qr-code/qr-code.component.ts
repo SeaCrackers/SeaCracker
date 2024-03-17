@@ -16,6 +16,6 @@ export class QrCodeComponent {
 
 
     getLink() {
-        return this.baseLink + "/" + this.roomCode;
+        return this.baseLink + "/play/" + this.roomCode;
     }
 }
