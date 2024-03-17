@@ -6,23 +6,17 @@
   <span>Scanner pour rejoindre</span>
 </div>
 
-<p>Status : {{ host.getCurrentStatus()() }}</p>
+<p>Status : {{ host.getCurrentStepType()() }}</p>
 <p>Question ID : {{ host.getCurrentQuestion()() }}</p>
 
-@switch (host.getCurrentStatus()()){
-  @case (GameStatusEnum.PLAYER_LIST){
+@switch (host.getCurrentStepType()()){
+  @case (GameStepType.PLAYER_LIST){
     <app-host-playerlist></app-host-playerlist>
   }
-  @case (GameStatusEnum.PRESENT_QUESTION){
+  @case (GameStepType.QUESTION){
     <app-host-question></app-host-question>
   }
-  @case (GameStatusEnum.ANSWER){
-    <app-host-question></app-host-question>
-  }
-  @case (GameStatusEnum.LEADERBOARD){
-    <app-host-podium></app-host-podium>
-  }
-  @case (GameStatusEnum.PODIUM){
+  @case (GameStepType.LEADERBOARD){
     <app-host-podium></app-host-podium>
   }
 }
