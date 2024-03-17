@@ -24,24 +24,25 @@
     background-position: center;
 }
 
-.grid{
+.grid {
     opacity: 0;
-    animation: show 1.5s 0.5s 1 forwards;
+    animation: show 1s 0.5s 1 linear forwards;
     margin-top: 10rem;
     justify-content: center;
-    display:grid;
+    display: grid;
     grid-template-columns: calc(50% - 4rem) calc(50% - 4rem);
     grid-template-rows: 12rem 12rem;
     gap: 2.5rem;
-    .box{
-      padding:2rem;
-      font-size:1.8rem;
-      font-weight: 600;
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow-wrap: break-word;
-      overflow: hidden;
+
+    .box {
+        padding: 2rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-wrap: break-word;
+        overflow: hidden;
     }
-  }
+}
