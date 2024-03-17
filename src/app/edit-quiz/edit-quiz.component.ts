@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {QuizService} from "../services/quiz.service";
-import {Question, Timers} from "../models/question.model";
-import {Quiz} from "../models/quiz.model";
-import {Answer} from "../models/answer.model";
+import {Quiz} from "../interfaces/quiz.interface";
+import {Question, Timers} from "../interfaces/question.interface";
+import {Answer} from "../interfaces/answer.interface";
+import {QuizHelper} from "../helpers/quiz.helper";
 
 @Component({
   selector: 'app-edit-quiz',
@@ -17,58 +17,60 @@ export class EditQuizComponent{
   quiz!: Quiz;
   question!: Question;
 
-  constructor(private quizService: QuizService, private router: Router, private route:ActivatedRoute) {
+  constructor(private quizHelper: QuizHelper, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    let potentialQuiz = this.quizService.getQuizById(id);
+    let potentialQuiz = this.quizHelper.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }
     this.quiz = potentialQuiz!;
-    if (this.quiz.getQuestions().length > 0) {
-      this.selectedQuestion(this.quiz.getQuestions()[0]);
-    }else {
-      this.question = this.addQuestion();
-      this.saveQuiz();
+    if (this.quiz.questions.length > 0) {
+      this.selectedQuestion(this.quiz.questions[0]);
+    }else{
+      this.question = this.quizHelper.emptyQuestionFactory(0);
     }
   }
   selectedQuestion(question: Question) {
-    return this.question = question;
+     this.question = question;
   }
-  deleteQuestion(id: number) {
-    const deleteQuestion = this.quiz.getQuestions().find(q=>q.getId()=== id);
-    if (deleteQuestion) {
-      this.quiz.removeQuestion(deleteQuestion);
-      this.saveQuiz();
-    }
+
+  deleteQuestion(question: Question) {
+    this.quizHelper.deleteQuestion(this.quiz.id, question.id);
   }
+
   addQuestion() : Question {
-    const newQuestion = new Question(this.quiz.getQuestions().length, "New Question", 20, [
-        new Answer('0', "New Answer 1", false),
-        new Answer('1', "New Answer 2", false),
-        new Answer('2', "New Answer 3", false),
-        new Answer('3', "New Answer 4", true)]);
-    this.quiz.addQuestion(newQuestion);
-    this.saveQuiz();
+    const newQuestion: Question = this.quizHelper.emptyQuestionFactory(this.quizHelper.getHighestQuestionId(this.quiz.id) + 1);
+    this.quizHelper.addQuestionToQuiz(this.quiz.id, newQuestion)
     return newQuestion;
   }
 
   setCorrectAnswer(answer: Answer) {
-    this.question.getAnswers().forEach(a => {
-      a.setCorrect(a === answer);
-    });
-    this.saveQuiz();
+    this.question.answers.forEach(answer => answer.correct = false);
+    answer.correct = true;
+    this.quizHelper.updateQuestion(this.quiz.id, this.question);
   }
 
-  setQuestionTimer(question : Question, timer: Timers) {
-    question.setTimer(timer);
-    this.saveQuiz();
+  updateQuizTitle(event: Event) {
+    this.quiz.title = (event.target as HTMLInputElement).value;
+    this.quizHelper.updateQuiz(this.quiz);
   }
 
-  getTimers() {
-    return this.question.getTimers();
+  updateQuestionTimer(question: Question, event: Event) {
+    question.timer = parseInt((event.target as HTMLInputElement).value);
+    this.quizHelper.updateQuestion(this.quiz.id, question);
   }
-  saveQuiz() {
-    this.quizService.saveQuizzesToLocalStorage();
+
+  getTimers() : number[] {
+    return Object.values(Timers).filter(value => typeof value === 'number') as number[];
+  }
+  updateQuestionTitle(question: Question, event: Event) {
+    question.question = (event.target as HTMLInputElement).value;
+    this.quizHelper.updateQuestion(this.quiz.id, question);
+  }
+
+  updateAnswer(question: Question, answer: Answer, $event: Event) {
+    answer.answer = ($event.target as HTMLInputElement).value;
+    this.quizHelper.updateQuestion(this.quiz.id, question);
   }
 }
