@@ -110,4 +110,21 @@ export class QuizHelper {
     let quiz : Quiz | undefined = this.getQuizById(quizId);
     return quiz ? Math.max(...quiz.questions.map(q => q.id), 0): 0;
   }
+
+  // UPDATE
+
+  updateQuiz(quiz: Quiz): void{
+    this.quizzes[this.quizzes.findIndex((q: Quiz) => {return q.id == quiz.id;})] = quiz;
+    this.saveQuizzesToLocalStorage();
+  }
+
+  // DELETE
+
+  deleteQuiz(quizId: number): void{
+    let index = this.quizzes.findIndex((q: Quiz) => {
+      return q.id == quizId;
+    });
+    this.quizzes.splice(index, 1);
+    this.saveQuizzesToLocalStorage();
+  }
 }
