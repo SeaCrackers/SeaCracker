@@ -1,4 +1,4 @@
-<div class="d-flex p-2 justify-content-between position-absolute w-100">
+<div class="d-flex p-2 justify-content-between position-absolute w-100" [style.zIndex]="'10'">
 
     <div class="d-flex flex-column align-items-center bg-light">
         <app-qr-code [roomCode]="host.getRoomCode()"></app-qr-code>
