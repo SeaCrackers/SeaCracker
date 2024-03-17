@@ -50,6 +50,14 @@ export class QuizHelper {
     this.saveQuizzesToLocalStorage();
   }
 
+  addEmptyQuiz(): void{
+    this.addQuiz(
+      this.emptyQuizFactory(
+        this.getHighestQuizId() + 1
+      )
+    );
+  }
+
   emptyAnswerFactory(id : number, correct = false): Answer {
     return {
       id: id,
@@ -92,5 +100,9 @@ export class QuizHelper {
     return this.quizzes.find((q : Quiz)=> {
       return q.id == quizId
     });
+  }
+
+  getHighestQuizId(): number {
+    return Math.max(...this.quizzes.map(q => q.id), 0);
   }
 }
