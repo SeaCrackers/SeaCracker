@@ -105,4 +105,9 @@ export class QuizHelper {
   getHighestQuizId(): number {
     return Math.max(...this.quizzes.map(q => q.id), 0);
   }
+
+  getHighestQuestionId(quizId: number): number {
+    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    return quiz ? Math.max(...quiz.questions.map(q => q.id), 0): 0;
+  }
 }
