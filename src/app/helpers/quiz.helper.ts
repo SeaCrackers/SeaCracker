@@ -111,11 +111,29 @@ export class QuizHelper {
     return quiz ? Math.max(...quiz.questions.map(q => q.id), 0): 0;
   }
 
+  getQuestionById(quizId: number, questionId: number): Question | undefined{
+    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    return quiz ? quiz.questions.find((q: Question) => {
+      return q.id == questionId;
+    }): undefined;
+  }
+
   // UPDATE
 
   updateQuiz(quiz: Quiz): void{
     this.quizzes[this.quizzes.findIndex((q: Quiz) => {return q.id == quiz.id;})] = quiz;
     this.saveQuizzesToLocalStorage();
+  }
+
+  updateQuestion(quizId: number, question: Question): void{
+    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    if (quiz) {
+      let index = quiz.questions.findIndex((q: Question) => {
+        return q.id == question.id;
+      });
+      quiz.questions[index] = question;
+      this.updateQuiz(quiz);
+    }
   }
 
   // DELETE
@@ -126,5 +144,16 @@ export class QuizHelper {
     });
     this.quizzes.splice(index, 1);
     this.saveQuizzesToLocalStorage();
+  }
+
+  deleteQuestion(quizId: number, questionId: number): void{
+    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    if (quiz) {
+      let index = quiz.questions.findIndex((q: Question) => {
+        return q.id == questionId;
+      });
+      quiz.questions.splice(index, 1);
+      this.updateQuiz(quiz);
+    }
   }
 }
