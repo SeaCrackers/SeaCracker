@@ -38,7 +38,7 @@ export class HostService extends UserService{
     if(this.currentStep().acceptPlayerAnswer())
       this.startAnsweringBroadcast();
     if(!this.currentStep().needManualInput()){
-      this.currentStep().onIsReadyToMoveToNextStep().then(()=>{
+      this.currentStep().onIsReadyToMoveToNextStep().subscribe(()=>{
         this.nextStep();
       });
     }

@@ -1,6 +1,6 @@
-import {GameStep} from "./game-step";
-import {LeaderboardStep} from "./leaderboard-step";
-import {effect, signal, Signal, WritableSignal} from "@angular/core";
+import { GameStep } from "./game-step";
+import { LeaderboardStep } from "./leaderboard-step";
+import { effect, signal, Signal, WritableSignal } from "@angular/core";
 import {
   catchError,
   filter, firstValueFrom,
@@ -14,12 +14,12 @@ import {
   takeWhile,
   timeout
 } from "rxjs";
-import {toObservable} from "@angular/core/rxjs-interop";
+import { toObservable } from "@angular/core/rxjs-interop";
 
-export class AnswerStep extends GameStep{
-  private playerAnswers$ : Subject<void> = new Subject();
+export class AnswerStep extends GameStep {
+  private playerAnswers$: Subject<void> = new Subject();
   private isReadyToMoveToNextStep: WritableSignal<boolean> = signal(false);
-  private readonly timeout$ : Observable<void> = new Observable(function subscribe(subscriber) {
+  private readonly timeout$: Observable<void> = new Observable(function subscribe(subscriber) {
     const intervalId = setTimeout(() => {
       subscriber.next();
     }, 30000);
@@ -36,16 +36,14 @@ export class AnswerStep extends GameStep{
     return true;
   }
 
-  override onIsReadyToMoveToNextStep(): Promise<void> {
-    return firstValueFrom(
-      merge(
-        this.playerAnswers$.pipe(
-          scan((answersCount) => answersCount + 1, 0),
-          filter((answersCount) => answersCount === this.gameState.getPlayers().length),
-          map(() => {})
-        ),
-        this.timeout$
-      )
+  override onIsReadyToMoveToNextStep(): Observable<void> {
+    return merge(
+      this.playerAnswers$.pipe(
+        scan((answersCount) => answersCount + 1, 0),
+        filter((answersCount) => answersCount === this.gameState.getPlayers().length),
+        map(() => { })
+      ),
+      this.timeout$
     );
   }
 

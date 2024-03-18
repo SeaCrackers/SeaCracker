@@ -1,11 +1,11 @@
-import {GameStep} from "./game-step";
-import {AnswerStep} from "./answer-step";
-import {LeaderboardStep} from "./leaderboard-step";
-import {filter, firstValueFrom, map, merge, scan} from "rxjs";
+import { GameStep } from "./game-step";
+import { AnswerStep } from "./answer-step";
+import { LeaderboardStep } from "./leaderboard-step";
+import { filter, firstValueFrom, map, merge, scan, Observable } from "rxjs";
 
 const TIME_TO_PRESENT_QUESTION = 3000;
 
-export class PresentQuestionStep extends GameStep{
+export class PresentQuestionStep extends GameStep {
   goToNextStep(): GameStep {
     return new AnswerStep(this.gameState);
   }
@@ -14,10 +14,10 @@ export class PresentQuestionStep extends GameStep{
     return true;
   }
 
-  override onIsReadyToMoveToNextStep(): Promise<void> {
-    return new Promise((resolve, reject) => {
+  override onIsReadyToMoveToNextStep(): Observable<void> {
+    return new Observable((subscriber) => {
       setTimeout(() => {
-        resolve();
+        subscriber.next();
       }, TIME_TO_PRESENT_QUESTION);
     });
   }

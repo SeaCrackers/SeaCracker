@@ -1,5 +1,6 @@
 import {GameState} from "./game-state";
 import {signal, Signal} from "@angular/core";
+import { Observable } from "rxjs";
 
 export abstract class GameStep {
   constructor(protected gameState : GameState) {
@@ -7,11 +8,12 @@ export abstract class GameStep {
   public abstract hasNextStep():boolean;
   public abstract goToNextStep():GameStep;
 
-  public onIsReadyToMoveToNextStep():Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      resolve();
+  public onIsReadyToMoveToNextStep():Observable<void> {
+    return new Observable<void>((subscriber) => {
+      subscriber.next();
     });
   }
+
   public getGameState(){
     return this.gameState;
   }
