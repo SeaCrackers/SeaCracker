@@ -16,19 +16,18 @@ export class HomeComponent{
   constructor(private QuizManager: QuizManagerService, private router: Router) {
   }
 
-  public deleteQuiz(quiz: Quiz) {
+  public deleteQuiz(quiz: Quiz) : void {
     this.QuizManager.deleteQuiz(quiz.id);
   }
 
-  public editQuiz(quiz: Quiz) {
+  public editQuiz(quiz: Quiz): void {
     this.router.navigate(['/quiz', quiz.id, 'edit']);
   }
-  public playQuiz(quiz: Quiz) {
+  public playQuiz(quiz: Quiz): void {
     this.router.navigate(['/quiz', quiz.id, 'play']);
   }
 
-  public addQuiz() {
+  public addQuiz() : void {
     this.QuizManager.addEmptyQuiz();
   }
-
 }
