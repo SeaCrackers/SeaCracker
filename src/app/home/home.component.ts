@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QuizHelper} from "../helpers/quiz.helper";
+import {QuizManagerService} from "../services/quizManager.service";
 import {Quiz} from "../interfaces/quiz.interface";
 import {Router} from '@angular/router';
 @Component({
@@ -11,14 +11,13 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent{
 
-  quizzes: Quiz[] = this.quizHelper.getQuizzes();
+  quizzes: Quiz[] = this.QuizManager.getQuizzes();
   title: string = 'Home Page';
-  constructor(private quizHelper: QuizHelper, private router: Router) {
+  constructor(private QuizManager: QuizManagerService, private router: Router) {
   }
 
-
   public deleteQuiz(quiz: Quiz) {
-    this.quizHelper.deleteQuiz(quiz.id);
+    this.QuizManager.deleteQuiz(quiz.id);
   }
 
   public editQuiz(quiz: Quiz) {
@@ -29,7 +28,7 @@ export class HomeComponent{
   }
 
   public addQuiz() {
-    this.quizHelper.addEmptyQuiz();
+    this.QuizManager.addEmptyQuiz();
   }
 
 }

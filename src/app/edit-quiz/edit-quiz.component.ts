@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Quiz} from "../interfaces/quiz.interface";
 import {Question, Timers} from "../interfaces/question.interface";
 import {Answer} from "../interfaces/answer.interface";
-import {QuizHelper} from "../helpers/quiz.helper";
+import {QuizManagerService} from "../services/quizManager.service";
 
 @Component({
   selector: 'app-edit-quiz',
@@ -17,10 +17,10 @@ export class EditQuizComponent{
   quiz!: Quiz;
   question!: Question;
 
-  constructor(private quizHelper: QuizHelper, private router: Router, private route: ActivatedRoute) {
+  constructor(private quizManger: QuizManagerService, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    let potentialQuiz = this.quizHelper.getQuizById(id);
+    let potentialQuiz = this.quizManger.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }
@@ -28,7 +28,7 @@ export class EditQuizComponent{
     if (this.quiz.questions.length > 0) {
       this.selectedQuestion(this.quiz.questions[0]);
     }else{
-      this.question = this.quizHelper.emptyQuestionFactory(0);
+      this.question = this.quizManger.emptyQuestionFactory(0);
     }
   }
   selectedQuestion(question: Question) {
@@ -36,29 +36,29 @@ export class EditQuizComponent{
   }
 
   deleteQuestion(question: Question) {
-    this.quizHelper.deleteQuestion(this.quiz.id, question.id);
+    this.quizManger.deleteQuestion(this.quiz.id, question.id);
   }
 
   addQuestion() : Question {
-    const newQuestion: Question = this.quizHelper.emptyQuestionFactory(this.quizHelper.getHighestQuestionId(this.quiz.id) + 1);
-    this.quizHelper.addQuestionToQuiz(this.quiz.id, newQuestion)
+    const newQuestion: Question = this.quizManger.emptyQuestionFactory(this.quizManger.getHighestQuestionId(this.quiz.id) + 1);
+    this.quizManger.addQuestionToQuiz(this.quiz.id, newQuestion)
     return newQuestion;
   }
 
   setCorrectAnswer(answer: Answer) {
     this.question.answers.forEach(answer => answer.correct = false);
     answer.correct = true;
-    this.quizHelper.updateQuestion(this.quiz.id, this.question);
+    this.quizManger.updateQuestion(this.quiz.id, this.question);
   }
 
   updateQuizTitle(event: Event) {
     this.quiz.title = (event.target as HTMLInputElement).value;
-    this.quizHelper.updateQuiz(this.quiz);
+    this.quizManger.updateQuiz(this.quiz);
   }
 
   updateQuestionTimer(question: Question, event: Event) {
     question.timer = parseInt((event.target as HTMLInputElement).value);
-    this.quizHelper.updateQuestion(this.quiz.id, question);
+    this.quizManger.updateQuestion(this.quiz.id, question);
   }
 
   getTimers() : number[] {
@@ -66,11 +66,11 @@ export class EditQuizComponent{
   }
   updateQuestionTitle(question: Question, event: Event) {
     question.question = (event.target as HTMLInputElement).value;
-    this.quizHelper.updateQuestion(this.quiz.id, question);
+    this.quizManger.updateQuestion(this.quiz.id, question);
   }
 
   updateAnswer(question: Question, answer: Answer, $event: Event) {
     answer.answer = ($event.target as HTMLInputElement).value;
-    this.quizHelper.updateQuestion(this.quiz.id, question);
+    this.quizManger.updateQuestion(this.quiz.id, question);
   }
 }
