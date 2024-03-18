@@ -31,32 +31,31 @@ export class EditQuizComponent{
       this.question = this.quizHelper.emptyQuestionFactory(0);
     }
   }
-  selectedQuestion(question: Question) {
+  selectedQuestion(question: Question): void {
      this.question = question;
   }
 
-  deleteQuestion(question: Question) {
+  deleteQuestion(question: Question): void {
     this.quizHelper.deleteQuestion(this.quiz.id, question.id);
   }
 
-  addQuestion() : Question {
+  addQuestion() : void {
     const newQuestion: Question = this.quizHelper.emptyQuestionFactory(this.quizHelper.getHighestQuestionId(this.quiz.id) + 1);
     this.quizHelper.addQuestionToQuiz(this.quiz.id, newQuestion)
-    return newQuestion;
   }
 
-  setCorrectAnswer(answer: Answer) {
+  setCorrectAnswer(answer: Answer): void {
     this.question.answers.forEach(answer => answer.correct = false);
     answer.correct = true;
     this.quizHelper.updateQuestion(this.quiz.id, this.question);
   }
 
-  updateQuizTitle(event: Event) {
+  updateQuizTitle(event: Event): void {
     this.quiz.title = (event.target as HTMLInputElement).value;
     this.quizHelper.updateQuiz(this.quiz);
   }
 
-  updateQuestionTimer(question: Question, event: Event) {
+  updateQuestionTimer(question: Question, event: Event): void {
     question.timer = parseInt((event.target as HTMLInputElement).value);
     this.quizHelper.updateQuestion(this.quiz.id, question);
   }
@@ -64,12 +63,12 @@ export class EditQuizComponent{
   getTimers() : number[] {
     return Object.values(Timers).filter(value => typeof value === 'number') as number[];
   }
-  updateQuestionTitle(question: Question, event: Event) {
+  updateQuestionTitle(question: Question, event: Event): void {
     question.question = (event.target as HTMLInputElement).value;
     this.quizHelper.updateQuestion(this.quiz.id, question);
   }
 
-  updateAnswer(question: Question, answer: Answer, $event: Event) {
+  updateAnswer(question: Question, answer: Answer, $event: Event): void {
     answer.answer = ($event.target as HTMLInputElement).value;
     this.quizHelper.updateQuestion(this.quiz.id, question);
   }

@@ -17,18 +17,18 @@ export class HomeComponent{
   }
 
 
-  public deleteQuiz(quiz: Quiz) {
+  public deleteQuiz(quiz: Quiz): void {
     this.quizHelper.deleteQuiz(quiz.id);
   }
 
-  public editQuiz(quiz: Quiz) {
+  public editQuiz(quiz: Quiz): void {
     this.router.navigate(['/quiz', quiz.id, 'edit']);
   }
-  public playQuiz(quiz: Quiz) {
+  public playQuiz(quiz: Quiz): void {
     this.router.navigate(['/quiz', quiz.id, 'play']);
   }
 
-  public addQuiz() {
+  public addQuiz(): void {
     this.quizHelper.addEmptyQuiz();
   }
 
