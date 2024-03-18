@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
 export class HomeComponent{
 
   quizzes: Quiz[] = this.QuizManager.getQuizzes();
-  title: string = 'Home Page';
   constructor(private QuizManager: QuizManagerService, private router: Router) {
   }
 

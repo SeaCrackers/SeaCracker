@@ -12,7 +12,11 @@
       <div  class="col-12 col-md-6 col-lg-4">
         <div class="card m-2 p-3 border border-light rounded bg-light shadow-sm">
           <div class="d-flex justify-content-between align-items-center">
-            <span class="text-dark">{{ quiz.title }}</span>
+            @if (quiz.title != ''){
+              <span class="text-dark fs-4">{{ quiz.title }}</span>
+            } @else {
+            <span class="text-dark fs-4">New Quiz</span>
+            }
             <div class="d-flex">
               <button (click)="editQuiz(quiz)" class="btn btn-warning btn-sm">
                 Edit
