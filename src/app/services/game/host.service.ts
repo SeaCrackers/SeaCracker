@@ -37,10 +37,11 @@ export class HostService extends UserService{
     this.currentStep.set(this.currentStep().goToNextStep());
     if(this.currentStep().acceptPlayerAnswer())
       this.startAnsweringBroadcast();
-    this.currentStep().onIsReadyToMoveToNextStep().then(()=>{
-      console.log("Ready to move to next step")
-      this.nextStep();
-    });
+    if(!this.currentStep().needManualInput()){
+      this.currentStep().onIsReadyToMoveToNextStep().then(()=>{
+        this.nextStep();
+      });
+    }
   }
 
   private joinRoom(): void {

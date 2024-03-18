@@ -1,7 +1,19 @@
 import {GameStep} from "./game-step";
 import {LeaderboardStep} from "./leaderboard-step";
 import {effect, signal, Signal, WritableSignal} from "@angular/core";
-import {catchError, filter, lastValueFrom, map, merge, Observable, scan, Subject, switchMap, timeout} from "rxjs";
+import {
+  catchError,
+  filter, firstValueFrom,
+  lastValueFrom,
+  map,
+  merge,
+  Observable,
+  scan,
+  Subject,
+  switchMap,
+  takeWhile,
+  timeout
+} from "rxjs";
 import {toObservable} from "@angular/core/rxjs-interop";
 
 export class AnswerStep extends GameStep{
@@ -25,7 +37,7 @@ export class AnswerStep extends GameStep{
   }
 
   override onIsReadyToMoveToNextStep(): Promise<void> {
-    return lastValueFrom(
+    return firstValueFrom(
       merge(
         this.playerAnswers$.pipe(
           scan((answersCount) => answersCount + 1, 0),
@@ -35,6 +47,10 @@ export class AnswerStep extends GameStep{
         this.timeout$
       )
     );
+  }
+
+  override needManualInput(): boolean {
+    return false;
   }
 
   override acceptPlayerAnswer(): boolean {

@@ -1,9 +1,9 @@
 import {GameStep} from "./game-step";
 import {AnswerStep} from "./answer-step";
+import {LeaderboardStep} from "./leaderboard-step";
 
 export class PresentQuestionStep extends GameStep{
   goToNextStep(): GameStep {
-    //TODO : startAnswering for clients
     return new AnswerStep(this.gameState);
   }
 

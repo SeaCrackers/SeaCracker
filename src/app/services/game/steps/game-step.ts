@@ -22,4 +22,8 @@ export abstract class GameStep {
   public acceptPlayerAnswer():boolean{
     return false;
   }
+
+  public needManualInput():boolean{
+    return true;
+  }
 }
