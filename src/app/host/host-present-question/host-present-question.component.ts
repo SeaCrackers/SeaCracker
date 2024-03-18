@@ -14,6 +14,9 @@ import {AnswerStep} from "../../services/game/steps/answer-step";
 })
 export class HostPresentQuestionComponent extends HostComponent{
   private step: PresentQuestionStep;
+  private timerTotal: number = 6;
+  private timer: number = this.timerTotal;
+
   constructor(host:HostService) {
     super(host);
     this.step = host.getCurrentStep()() as PresentQuestionStep;
