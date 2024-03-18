@@ -52,9 +52,8 @@ export class QuizManagerService{
     } as Answer;
   }
 
-  emptyQuestionFactory(id : number): Question {
+  emptyQuestionFactory(): Question {
     return {
-      id: id,
       question: '',
       timer: 40,
       answers: [
@@ -71,7 +70,7 @@ export class QuizManagerService{
       id: id,
       title: '',
       questions: [
-        this.emptyQuestionFactory(0)
+        this.emptyQuestionFactory()
       ]
     } as Quiz;
   }
@@ -92,11 +91,6 @@ export class QuizManagerService{
     return Math.max(...this.quizzes.map(q => q.id), 0);
   }
 
-  getHighestQuestionId(quizId: number): number {
-    let quiz : Quiz | undefined = this.getQuizById(quizId);
-    return quiz ? Math.max(...quiz.questions.map(q => q.id), 0): 0;
-  }
-
   // UPDATE
 
   updateQuiz(quiz: Quiz): void{
@@ -104,14 +98,14 @@ export class QuizManagerService{
     this.saveQuizzesToLocalStorage();
   }
 
-  updateQuestion(quizId: number, question: Question): void{
+  updateQuestion(quizId: number, question: Question): void {
     let quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      let index = quiz.questions.findIndex((q: Question) => {
-        return q.id == question.id;
-      });
-      quiz.questions[index] = question;
-      this.updateQuiz(quiz);
+      let index = quiz.questions.indexOf(question);
+      if (index !== -1) {
+        quiz.questions[index] = question;
+        this.updateQuiz(quiz);
+      }
     }
   }
 
@@ -125,14 +119,14 @@ export class QuizManagerService{
     this.saveQuizzesToLocalStorage();
   }
 
-  deleteQuestion(quizId: number, questionId: number): void{
+  deleteQuestion(quizId: number, question: Question): void {
     let quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      let index = quiz.questions.findIndex((q: Question) => {
-        return q.id == questionId;
-      });
-      quiz.questions.splice(index, 1);
-      this.updateQuiz(quiz);
+      let index = quiz.questions.indexOf(question);
+      if (index !== -1) {
+        quiz.questions.splice(index, 1);
+        this.updateQuiz(quiz);
+      }
     }
   }
 }

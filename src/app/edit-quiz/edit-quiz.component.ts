@@ -28,7 +28,7 @@ export class EditQuizComponent{
     if (this.quiz.questions.length > 0) {
       this.selectedQuestion(this.quiz.questions[0]);
     }else{
-      this.question = this.quizManger.emptyQuestionFactory(0);
+      this.question = this.quizManger.emptyQuestionFactory();
     }
   }
   selectedQuestion(question: Question) {
@@ -36,11 +36,11 @@ export class EditQuizComponent{
   }
 
   deleteQuestion(question: Question) {
-    this.quizManger.deleteQuestion(this.quiz.id, question.id);
+    this.quizManger.deleteQuestion(this.quiz.id, question);
   }
 
   addQuestion() : Question {
-    const newQuestion: Question = this.quizManger.emptyQuestionFactory(this.quizManger.getHighestQuestionId(this.quiz.id) + 1);
+    const newQuestion: Question = this.quizManger.emptyQuestionFactory();
     this.quizManger.addQuestionToQuiz(this.quiz.id, newQuestion)
     return newQuestion;
   }
