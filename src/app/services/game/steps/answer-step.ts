@@ -22,7 +22,7 @@ export class AnswerStep extends GameStep{
   private readonly timeout$ : Observable<void> = new Observable(function subscribe(subscriber) {
     const intervalId = setTimeout(() => {
       subscriber.next();
-    }, 2000);
+    }, 30000);
     return function unsubscribe() {
       clearInterval(intervalId);
     };
