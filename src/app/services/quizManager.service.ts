@@ -1,5 +1,5 @@
 import {Quiz} from "../interfaces/quiz.interface";
-import {Question, Timers} from "../interfaces/question.interface";
+import {Question} from "../interfaces/question.interface";
 import {Answer} from "../interfaces/answer.interface";
 import {LocalStorageDataSaverService} from "./localStorageDataSaver.service";
 import {DataSaver} from "../interfaces/dataSaver.interface";
@@ -57,7 +57,7 @@ export class QuizManagerService{
     return {
       id: id,
       question: '',
-      timer: Timers.FORTY,
+      timer: 40,
       answers: [
         this.emptyAnswerFactory(1, true),
         this.emptyAnswerFactory(2),

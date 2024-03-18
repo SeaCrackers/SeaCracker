@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Quiz} from "../interfaces/quiz.interface";
-import {Question, Timers} from "../interfaces/question.interface";
+import {Question} from "../interfaces/question.interface";
 import {Answer} from "../interfaces/answer.interface";
 import {QuizManagerService} from "../services/quizManager.service";
 
@@ -62,7 +62,7 @@ export class EditQuizComponent{
   }
 
   getTimers() : number[] {
-    return Object.values(Timers).filter(value => typeof value === 'number') as number[];
+    return [20, 40, 60, 80];
   }
   updateQuestionTitle(question: Question, event: Event) {
     question.question = (event.target as HTMLInputElement).value;
