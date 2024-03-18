@@ -2,7 +2,7 @@ import {computed, effect, Injectable, Signal, signal, WritableSignal} from '@ang
 import {UserService} from "./user.service";
 import {RoomCommunicationsService} from "../communications/room-communications.service";
 import {RandomGenerator} from "../../utils/random-generator";
-import {filter, Observable} from "rxjs";
+import {filter, Observable, Subscription} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
 // import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
@@ -16,6 +16,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 })
 export class HostService extends UserService{
   private currentStep:WritableSignal<GameStep> = signal(new PlayerListStep(new GameState(new Quiz())));
+  private timeoutSubscription?: Subscription;
 
   constructor(room:RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
@@ -34,11 +35,13 @@ export class HostService extends UserService{
   }
 
   public nextStep() {
+    if(this.timeoutSubscription)
+      this.timeoutSubscription.unsubscribe();
     this.currentStep.set(this.currentStep().goToNextStep());
     if(this.currentStep().acceptPlayerAnswer())
       this.startAnsweringBroadcast();
     if(!this.currentStep().needManualInput()){
-      this.currentStep().onIsReadyToMoveToNextStep().subscribe(()=>{
+      this.timeoutSubscription = this.currentStep().onIsReadyToMoveToNextStep().subscribe(()=>{
         this.nextStep();
       });
     }
