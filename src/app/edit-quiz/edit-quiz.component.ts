@@ -31,44 +31,44 @@ export class EditQuizComponent{
       this.question = this.quizManger.emptyQuestionFactory();
     }
   }
-  selectedQuestion(question: Question): void {
+  public selectedQuestion(question: Question): void {
      this.question = question;
   }
 
-  deleteQuestion(question: Question) : void {
+  public deleteQuestion(question: Question) : void {
     this.quizManger.deleteQuestion(this.quiz.id, question);
   }
 
-  addQuestion() : void {
+  public addQuestion() : void {
     const newQuestion: Question = this.quizManger.emptyQuestionFactory();
     this.quizManger.addQuestionToQuiz(this.quiz.id, newQuestion)
   }
 
-  setCorrectAnswer(answer: Answer): void {
+  public setCorrectAnswer(answer: Answer): void {
     this.question.answers.forEach(answer => answer.correct = false);
     answer.correct = true;
     this.quizManger.updateQuestion(this.quiz.id, this.question);
   }
 
-  updateQuizTitle(event: Event): void {
+  public updateQuizTitle(event: Event): void {
     this.quiz.title = (event.target as HTMLInputElement).value;
     this.quizManger.updateQuiz(this.quiz);
   }
 
-  updateQuestionTimer(question: Question, event: Event): void {
+  public updateQuestionTimer(question: Question, event: Event): void {
     question.timer = parseInt((event.target as HTMLInputElement).value);
     this.quizManger.updateQuestion(this.quiz.id, question);
   }
 
-  getTimers() : number[] {
+  public getTimers() : number[] {
     return [20, 40, 60, 80];
   }
-  updateQuestionTitle(question: Question, event: Event): void {
+  public updateQuestionTitle(question: Question, event: Event): void {
     question.question = (event.target as HTMLInputElement).value;
     this.quizManger.updateQuestion(this.quiz.id, question);
   }
 
-  updateAnswer(question: Question, answer: Answer, $event: Event): void {
+  public updateAnswer(question: Question, answer: Answer, $event: Event): void {
     answer.answer = ($event.target as HTMLInputElement).value;
     this.quizManger.updateQuestion(this.quiz.id, question);
   }
