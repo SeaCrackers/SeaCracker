@@ -1,45 +1,27 @@
 import {Quiz} from "../interfaces/quiz.interface";
 import {Question, Timers} from "../interfaces/question.interface";
 import {Answer} from "../interfaces/answer.interface";
+import {LocalStorageDataSaverService} from "./localStorageDataSaver.service";
+import {DataSaver} from "../interfaces/dataSaver.interface";
 import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class QuizHelper {
+export class QuizManagerService{
   private quizzes: Quiz[];
-  constructor(){
+  private dataSaver: DataSaver;
+  constructor() {
+    this.dataSaver = new LocalStorageDataSaverService('quizzes')
     this.quizzes = this.getQuizzesFromLocalStorage();
   }
 
-  // SAVED DATA
-
-  getQuizzesFromLocalStorage(): Quiz[]{
-    if (!localStorage) throw new Error('Local storage is not supported');
-
-    let item : string | null = localStorage.getItem('quizzes');
-    if (item) {
-      try {
-        return JSON.parse(item) as Quiz[];
-      } catch (error) {
-        throw new Error('Failed to parse quizzes from local storage');
-      }
-    } else {
-      return [];
-    }
+  getQuizzesFromLocalStorage(): Quiz[] {
+    return this.dataSaver.getData() as Quiz[];
   }
-
-  saveQuizzesToLocalStorage(): void{
-    if (!localStorage) throw new Error('Local storage is not supported');
-
-    try {
-      localStorage.setItem('quizzes', JSON.stringify(this.quizzes));
-    } catch (error) {
-      throw new Error('Failed to save quizzes to local storage');
-    }
+  saveQuizzesToLocalStorage(): void {
+    this.dataSaver.saveData(this.quizzes);
   }
-
   // CREATE
 
   addQuestionToQuiz(quizId: number, question: Question): void{
