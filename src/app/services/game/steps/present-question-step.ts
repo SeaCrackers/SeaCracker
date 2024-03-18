@@ -3,7 +3,7 @@ import { AnswerStep } from "./answer-step";
 import { LeaderboardStep } from "./leaderboard-step";
 import { filter, firstValueFrom, map, merge, scan, Observable } from "rxjs";
 
-const TIME_TO_PRESENT_QUESTION = 10000;
+const TIME_TO_PRESENT_QUESTION = 4000;
 
 export class PresentQuestionStep extends GameStep {
   private timeSpent: number = 0;
