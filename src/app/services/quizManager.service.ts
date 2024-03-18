@@ -16,15 +16,15 @@ export class QuizManagerService{
     this.quizzes = this.getQuizzesFromLocalStorage();
   }
 
-  getQuizzesFromLocalStorage(): Quiz[] {
+  private getQuizzesFromLocalStorage(): Quiz[] {
     return this.dataSaver.getData() as Quiz[];
   }
-  saveQuizzesToLocalStorage(): void {
+  private saveQuizzesToLocalStorage(): void {
     this.dataSaver.saveData(this.quizzes);
   }
   // CREATE
 
-  addQuestionToQuiz(quizId: number, question: Question): void{
+  public addQuestionToQuiz(quizId: number, question: Question): void{
     let quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
       quiz.questions.push(question);
@@ -32,12 +32,12 @@ export class QuizManagerService{
     }
   }
 
-  addQuiz(quiz: Quiz) : void {
+  private addQuiz(quiz: Quiz) : void {
     this.quizzes.push(quiz);
     this.saveQuizzesToLocalStorage();
   }
 
-  addEmptyQuiz(): void{
+  public addEmptyQuiz(): void{
     this.addQuiz(
       this.emptyQuizFactory(
         this.getHighestQuizId() + 1
@@ -45,14 +45,14 @@ export class QuizManagerService{
     );
   }
 
-  emptyAnswerFactory(correct = false): Answer {
+  private emptyAnswerFactory(correct = false): Answer {
     return {
       answer: '',
       correct: correct
     } as Answer;
   }
 
-  emptyQuestionFactory(): Question {
+  public emptyQuestionFactory(): Question {
     return {
       question: '',
       timer: 40,
@@ -65,7 +65,7 @@ export class QuizManagerService{
     } as Question;
   }
 
-  emptyQuizFactory(id: number): Quiz {
+  private emptyQuizFactory(id: number): Quiz {
     return {
       id: id,
       title: '',
@@ -77,28 +77,28 @@ export class QuizManagerService{
 
   // READ
 
-  getQuizzes(): Quiz[] {
+  public getQuizzes(): Quiz[] {
     return this.quizzes;
   }
 
-  getQuizById(quizId : number) : Quiz | undefined{
+  public getQuizById(quizId : number) : Quiz | undefined{
     return this.quizzes.find((q : Quiz)=> {
       return q.id == quizId
     });
   }
 
-  getHighestQuizId(): number {
+  private getHighestQuizId(): number {
     return Math.max(...this.quizzes.map(q => q.id), 0);
   }
 
   // UPDATE
 
-  updateQuiz(quiz: Quiz): void{
+  public updateQuiz(quiz: Quiz): void{
     this.quizzes[this.quizzes.findIndex((q: Quiz) => {return q.id == quiz.id;})] = quiz;
     this.saveQuizzesToLocalStorage();
   }
 
-  updateQuestion(quizId: number, question: Question): void {
+  public updateQuestion(quizId: number, question: Question): void {
     let quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
       let index = quiz.questions.indexOf(question);
@@ -111,7 +111,7 @@ export class QuizManagerService{
 
   // DELETE
 
-  deleteQuiz(quizId: number): void{
+  public deleteQuiz(quizId: number): void{
     let index = this.quizzes.findIndex((q: Quiz) => {
       return q.id == quizId;
     });
@@ -119,7 +119,7 @@ export class QuizManagerService{
     this.saveQuizzesToLocalStorage();
   }
 
-  deleteQuestion(quizId: number, question: Question): void {
+  public deleteQuestion(quizId: number, question: Question): void {
     let quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
       let index = quiz.questions.indexOf(question);

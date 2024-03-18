@@ -8,7 +8,7 @@ export class LocalStorageDataSaverService implements DataSaver {
     this.key = key;
   }
 
-  saveData(data : any): void {
+  public saveData(data : any): void {
     if (!localStorage) throw new Error('Local storage is not supported');
 
     try {
@@ -18,7 +18,7 @@ export class LocalStorageDataSaverService implements DataSaver {
     }
   }
 
-  getData(): any {
+  public getData(): any {
     if (!localStorage) throw new Error('Local storage is not supported');
 
     let item : string | null = localStorage.getItem(this.key);
