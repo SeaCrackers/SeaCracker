@@ -45,9 +45,8 @@ export class QuizManagerService{
     );
   }
 
-  emptyAnswerFactory(id : number, correct = false): Answer {
+  emptyAnswerFactory(correct = false): Answer {
     return {
-      id: id,
       answer: '',
       correct: correct
     } as Answer;
@@ -59,10 +58,10 @@ export class QuizManagerService{
       question: '',
       timer: 40,
       answers: [
-        this.emptyAnswerFactory(1, true),
-        this.emptyAnswerFactory(2),
-        this.emptyAnswerFactory(3),
-        this.emptyAnswerFactory(4)
+        this.emptyAnswerFactory(true),
+        this.emptyAnswerFactory(),
+        this.emptyAnswerFactory(),
+        this.emptyAnswerFactory()
       ]
     } as Question;
   }
