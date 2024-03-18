@@ -116,13 +116,6 @@ export class QuizHelper {
     return quiz ? Math.max(...quiz.questions.map(q => q.id), 0): 0;
   }
 
-  getQuestionById(quizId: number, questionId: number): Question | undefined{
-    let quiz : Quiz | undefined = this.getQuizById(quizId);
-    return quiz ? quiz.questions.find((q: Question) => {
-      return q.id == questionId;
-    }): undefined;
-  }
-
   // UPDATE
 
   updateQuiz(quiz: Quiz): void{
