@@ -13,7 +13,6 @@ import {QuizManagerService} from "../services/quizManager.service";
   styleUrl: './edit-quiz.component.scss'
 })
 export class EditQuizComponent{
-  title = 'Edit Quiz';
   quiz!: Quiz;
   question!: Question;
 
@@ -31,8 +30,9 @@ export class EditQuizComponent{
       this.question = this.quizManger.emptyQuestionFactory();
     }
   }
-  public selectedQuestion(question: Question): void {
+  public selectedQuestion(question: Question): Question {
      this.question = question;
+     return this.question;
   }
 
   public deleteQuestion(question: Question) : void {
