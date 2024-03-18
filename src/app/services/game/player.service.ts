@@ -5,6 +5,7 @@ import {filter, Observable} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
 import {HostService} from "./host.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,7 @@ export class PlayerService extends UserService{
   }
 
   private registerEvents(): void{
-    this.onHostStartAnswering().subscribe((gameEvent)=>{
+    this.onHostStartAnswering().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
       console.log("Received start answering event"+gameEvent.content)
       this.canAnswer.set(true)
     });

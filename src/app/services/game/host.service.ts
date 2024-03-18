@@ -1,4 +1,4 @@
-import {computed, Injectable, Signal, signal, WritableSignal} from '@angular/core';
+import {computed, effect, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {UserService} from "./user.service";
 import {RoomCommunicationsService} from "../communications/room-communications.service";
 import {RandomGenerator} from "../../utils/random-generator";
@@ -15,7 +15,6 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
   providedIn: 'root'
 })
 export class HostService extends UserService{
-  private playersPseudos:WritableSignal<string[]> = signal([])
   private currentStep:WritableSignal<GameStep> = signal(new PlayerListStep(new GameState(new Quiz())));
 
   constructor(room:RoomCommunicationsService) {
@@ -23,9 +22,6 @@ export class HostService extends UserService{
     this.joinRoom()
   }
 
-  public getPlayerPseudos() : Signal<string[]>{
-    return this.playersPseudos.asReadonly();
-  }
   public getCurrentStep() : Signal<GameStep>{
     return computed(()=>{
       return this.currentStep();
@@ -39,6 +35,12 @@ export class HostService extends UserService{
 
   public nextStep() {
     this.currentStep.set(this.currentStep().goToNextStep());
+    if(this.currentStep().acceptPlayerAnswer())
+      this.startAnsweringBroadcast();
+    this.currentStep().onIsReadyToMoveToNextStep().then(()=>{
+      console.log("Ready to move to next step")
+      this.nextStep();
+    });
   }
 
   private joinRoom(): void {
@@ -66,12 +68,11 @@ export class HostService extends UserService{
   }
 
   private setupPlayer(event : GameEvent): void{
-    console.log("Received setup event "+event.content)
-    this.playersPseudos.update((pseudos)=>[...pseudos,event.content])
+    this.currentStep().getGameState().addPlayer(event.emitter!, event.content)
   }
 
   private addPlayerAnswer(event : GameEvent){
-    console.log("Received answer event "+event.content)
+    this.currentStep().playerAnswer(event.emitter!, event.content)
   }
 
   private startAnsweringBroadcast(): void{
