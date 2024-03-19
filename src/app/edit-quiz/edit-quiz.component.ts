@@ -45,8 +45,7 @@ export class EditQuizComponent{
   }
 
   public setCorrectAnswer(answer: Answer): void {
-    this.question.answers.forEach(answer => answer.correct = false);
-    answer.correct = true;
+    answer.correct = !answer.correct;
     this.quizManger.updateQuestion(this.quiz.id, this.question);
   }
 

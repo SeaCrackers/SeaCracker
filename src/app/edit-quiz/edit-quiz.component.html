@@ -61,7 +61,7 @@
               }
               @else {
                 <input class="form-control" style="width:45rem;" type="text" placeholder="Write your answer and check the correct one" (change)="updateAnswer(question, answer, $event)">
-                <input class="form-check-input" type="radio" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="setCorrectAnswer(answer)">
+                <input class="form-check-input" type="checkbox" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="setCorrectAnswer(answer)">
               }
             </div>
           </div>
