@@ -41,7 +41,7 @@ export class HostPageComponent{
    * For now, we simply return one component per step. 1:1 mapping.
    */
   get activeStepComponent() : Type<HostComponent>  {
-    if(!this.host.getCurrentQuestion())
+    if(this.host.getCurrentQuestion()() == undefined)
       return HostLoadingComponent;
     switch (this.host.getCurrentStep()()!.constructor) {
       case PlayerListStep:

@@ -1,12 +1,7 @@
 import {computed, Signal, signal, WritableSignal} from "@angular/core";
 import {NoRemainingQuestionException} from "./exceptions/no-remaining-question-exception";
 import {Quiz} from "../../../interfaces/quiz.interface";
-
-export interface Player{
-  id: string;
-  pseudo: string;
-  score: number;
-}
+import {Player} from "../../../interfaces/player.interface";
 
 export class GameState {
   private currentQuestionId:WritableSignal<number> = signal(0);
@@ -21,12 +16,12 @@ export class GameState {
   }
   public hasNextQuestion(){
     return computed(()=>{
-      return this.currentQuestionId() == this.quiz.questions.length-1
+      return this.currentQuestionId() < this.quiz.questions.length-1
     });
   }
   public goToNextQuestion(){
     if(!this.hasNextQuestion()()) throw new NoRemainingQuestionException();
-    this.currentQuestionId.update((value)=>value++);
+    this.currentQuestionId.update((value)=>++value);
   }
 
   public getPlayers() : Signal<Player[]>{
