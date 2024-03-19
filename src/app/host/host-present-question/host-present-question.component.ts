@@ -21,19 +21,11 @@ export class HostPresentQuestionComponent extends HostComponent {
     this.step = host.getCurrentStep()() as PresentQuestionStep;
   }
 
-  getRemainingTime() {
-    if (!this.presentationDuration)
-      this.presentationDuration = this.step.getRemainingTime();
-    return this.step.getRemainingTime();
-  }
-
   getPresentationDuration() {
     return this.presentationDuration || 1;
   }
 
   getBarPercentage() {
-    if (this.presentationDuration)
-      return (this.getRemainingTime() - 1)*1.1 / this.getPresentationDuration() * 100 + '%';
     return '100%';
   }
 }
