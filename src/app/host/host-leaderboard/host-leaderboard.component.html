@@ -5,17 +5,11 @@
         <h1 id="question" class="bg-dark text-light p-2 rounded text-center">Leaderboard</h1>
         <table class="table rounded overflow-hidde">
             <tbody class="fs-4">
-                <tr class="d-flex bg-secondary-subtle">
-                    <th class="px-4 bg-transparent" scope="row">1</th>
-                    <td class="flex-fill bg-transparent">Player</td>
-                    <td class="px-4 bg-transparent">1000</td>
-                </tr>
-                @for (player of host.getCurrentStep()()!.getGameState().getPlayers()(); track player) {
-                <div class="bg-light p-2 rounded text-center m-2 shadow-lg player">{{ player.pseudo }}</div>
+                @for (player of getLeaderboard(); track player; let i = $index) {
                 <tr class="d-flex">
-                    <th class="px-4" scope="row">1</th>
-                    <td class="flex-fill">Player</td>
-                    <td class="px-4">1000</td>
+                    <th class="px-4" scope="row">{{i+1}}</th>
+                    <td class="flex-fill">{{ player.pseudo }}</td>
+                    <td class="px-4">{{ player.score }}</td>
                 </tr>
                 }
             </tbody>
