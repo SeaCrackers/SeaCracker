@@ -21,7 +21,7 @@ export class GameState {
   }
   public hasNextQuestion(){
     return computed(()=>{
-      return this.currentQuestionId() == this.quiz.questions.length-1
+      return this.currentQuestionId() < this.quiz.questions.length-1
     });
   }
   public goToNextQuestion(){
