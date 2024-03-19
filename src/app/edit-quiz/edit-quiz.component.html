@@ -1,11 +1,11 @@
 <div class="container-fluid">
 
   <header class="text-center">
-    <div class="card mb-4 mt-3 p-3 border border-light rounded bg-light shadow-sm">
-      <div class="nav d-flex justify-content-center position-fixed align-self-end">
-      <a class="btn btn-primary me-3" href="/home">
-        <i class="fa fa-arrow-left"></i>
-      </a>
+    <div class="card mb-4 mt-3 p-3 rounded bg-light shadow-sm mx-auto">
+      <div class="nav d-flex justify-content-center position-fixed align-self-start">
+        <a class="btn btn-primary me-3" href="/home">
+          <i class="fa fa-arrow-left"></i>
+        </a>
       </div>
       <h1>SeaCracker - Edit Quiz</h1>
       <div class="mt-4 align-self-center w-25">
@@ -25,16 +25,16 @@
       <!-- Left Container -->
       <section class="col-md-3">
         @for (q of quiz.questions; track question; let i = $index) {
-          <div class="card mb-3 p-3 border border-light rounded bg-light shadow-sm question" [class.selected]="q === question">
+          <div class="card mb-3 p-3 rounded bg-light shadow-sm question" [class.selected]="q === question">
           <div class="card-body d-flex align-items-center justify-content-between" (click)="setSelectedQuestion(q)">
             <p class="text fs-5">Question {{ i + 1 }}</p>
-            <button class="btn btn-primary" (click)="deleteQuestion(q)">
+            <button class="btn btn-danger" (click)="deleteQuestion(q)">
               <i class="fa fa-trash"></i>
             </button>
           </div>
         </div>
         }
-        <button class="btn btn-primary" (click)="addQuestion()">
+        <button class="btn btn-success" (click)="addQuestion()">
           <i class="fa fa-plus"></i>
         </button>
       </section>
@@ -42,7 +42,7 @@
       <!-- Middle Container -->
       <section class="col-md-6">
         <div class="row mx-5 mb-3">
-          <div class="card mb-5 p-3 border border-light rounded bg-light shadow-sm">
+          <div class="card mb-5 p-3 rounded bg-light shadow-sm">
             <p class="text-center fs-5">Question :</p>
             @if (question.question != ''){
               <input class="form-control " type="text" [value]="question.question" (change)="updateQuestionTitle(question, $event)">
@@ -50,11 +50,9 @@
               <input class="form-control " type="text" placeholder="Write your question" (change)="updateQuestionTitle(question, $event)">
             }
           </div>
-          <span class="text-center fs-5">Answers :</span>
           @for (answer of question.answers; track answer; let i = $index) {
-          <div class="card border border-light rounded bg-light shadow-sm mt-3 mb-4">
+          <div class="card rounded bg-light shadow-sm mt-3 mb-4">
             <div class="card-body d-flex align-items-center justify-content-between">
-              <span class="text-center">{{ i + 1 }}</span>
               @if (answer.answer != '') {
               <input class="form-control" style="width:45rem;" type="text" [value]="answer.answer" (change)="updateAnswer(question, answer, $event)">
               <input class="form-check-input" type="radio" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="setCorrectAnswer(answer)">
@@ -71,7 +69,7 @@
 
       <!-- Right Container -->
       <section class="col-md-3">
-        <div class="card border border-light rounded bg-light shadow-sm">
+        <div class="card rounded bg-light shadow-sm">
           <div class="card-body">
             <p class="card-title fs-5">Timer of the question in seconds</p>
             <select class="form-select w-25" (change)="updateQuestionTimer(question, $event)">
