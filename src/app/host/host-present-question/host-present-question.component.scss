@@ -1,3 +1,12 @@
+@keyframes countdown {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+ }
+
 #loading-bar {
     top: 0;
     margin-top: 8rem;
@@ -9,6 +18,7 @@
 #loading-progress {
     background: white;
     transition: all 1s linear;
+    animation: countdown 1 linear forwards;
 }
 
 @keyframes bounce {
@@ -28,7 +38,7 @@
 #question {
     font-size: 2rem;
     max-width: 75%;
-    animation: bounce 1.5s 1;
+    animation: bounce 1;
 }
 
 #page-container {

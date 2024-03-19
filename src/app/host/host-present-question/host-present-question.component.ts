@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { HostService } from "../../services/game/host.service";
 import { PlayerListStep } from "../../services/game/steps/player-list-step";
 import { PresentQuestionStep } from "../../services/game/steps/present-question-step";
@@ -14,18 +14,14 @@ import { AnswerStep } from "../../services/game/steps/answer-step";
 })
 export class HostPresentQuestionComponent extends HostComponent {
   private step: PresentQuestionStep;
-  private presentationDuration?: number;
 
   constructor(host: HostService) {
     super(host);
     this.step = host.getCurrentStep()() as PresentQuestionStep;
   }
 
-  getPresentationDuration() {
-    return this.presentationDuration || 1;
-  }
-
-  getBarPercentage() {
-    return '100%';
+  getTimerDuration() {
+    return this.step.getTimerDuration();
   }
 }
+

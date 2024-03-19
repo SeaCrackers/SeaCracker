@@ -23,6 +23,10 @@ export class PresentQuestionStep extends GameStep {
     });
   }
 
+  getTimerDuration(): number {
+    return TIME_TO_PRESENT_QUESTION;
+  }
+
   override needManualInput(): boolean {
     return false;
   }
