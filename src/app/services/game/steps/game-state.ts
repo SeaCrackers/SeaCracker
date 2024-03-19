@@ -26,7 +26,7 @@ export class GameState {
   }
   public goToNextQuestion(){
     if(!this.hasNextQuestion()()) throw new NoRemainingQuestionException();
-    this.currentQuestionId.update((value)=>value++);
+    this.currentQuestionId.update((value)=>++value);
   }
 
   public getPlayers() : Signal<Player[]>{
