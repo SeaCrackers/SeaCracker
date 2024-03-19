@@ -1,4 +1,4 @@
-import {Component, Type} from '@angular/core';
+import {Component, OnInit, Type} from '@angular/core';
 import {RoomCommunicationsService} from "../services/communications/room-communications.service";
 import {RandomGenerator} from "../utils/random-generator";
 import {HostService} from "../services/game/host.service";
@@ -18,6 +18,9 @@ import {HostAnswerComponent} from "../host/host-answer/host-answer.component";
 import {NgComponentOutlet} from "@angular/common";
 import {GameStep} from "../services/game/steps/game-step";
 import {HostComponent} from "../host/host-component";
+import {HostLoadingComponent} from "../host/host-loading/host-loading.component";
+import {QuizManagerService} from "../services/quizManager.service";
+import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-host-page',
   standalone: true,
@@ -25,16 +28,22 @@ import {HostComponent} from "../host/host-component";
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.scss'
 })
-export class HostPageComponent {
-  constructor(public host:HostService) {
-
+export class HostPageComponent{
+  constructor(public host:HostService, private quizManager : QuizManagerService, private activatedroute: ActivatedRoute, private router : Router) {
+    const quizId = parseInt(this.activatedroute.snapshot.paramMap.get("id") ?? "-1")
+    const quiz = this.quizManager.getQuizById(quizId);
+    if(!quiz)
+      this.router.navigate(['/']);
+    this.host.setupQuiz(quiz!)
   }
 
   /**
    * For now, we simply return one component per step. 1:1 mapping.
    */
   get activeStepComponent() : Type<HostComponent>  {
-    switch (this.host.getCurrentStep()().constructor) {
+    if(!this.host.getCurrentQuestion())
+      return HostLoadingComponent;
+    switch (this.host.getCurrentStep()()!.constructor) {
       case PlayerListStep:
         return HostPlayerlistComponent;
       case PresentQuestionStep:

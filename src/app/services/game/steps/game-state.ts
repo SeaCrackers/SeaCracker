@@ -1,22 +1,11 @@
 import {computed, Signal, signal, WritableSignal} from "@angular/core";
 import {NoRemainingQuestionException} from "./exceptions/no-remaining-question-exception";
+import {Quiz} from "../../../interfaces/quiz.interface";
 
 export interface Player{
   id: string;
   pseudo: string;
   score: number;
-}
-export interface Quiz{
-  getQuestions() : Question[];
-}
-export interface Question{
-  getQuestions() : string[];
-}
-
-export class Quiz implements Quiz{
-  getQuestions(): Question[] {
-    return [];
-  }
 }
 
 export class GameState {
@@ -27,12 +16,12 @@ export class GameState {
 
   public getCurrentQuestion(){
     return computed(()=>{
-      return this.quiz.getQuestions()[this.currentQuestionId()];
+      return this.quiz.questions[this.currentQuestionId()];
     });
   }
   public hasNextQuestion(){
     return computed(()=>{
-      return this.currentQuestionId() == this.quiz.getQuestions().length-1
+      return this.currentQuestionId() == this.quiz.questions.length-1
     });
   }
   public goToNextQuestion(){

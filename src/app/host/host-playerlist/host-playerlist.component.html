@@ -1,4 +1,4 @@
 <p>host-playerlist works!</p>
-@for (player of host.getCurrentStep()().getGameState().getPlayers()(); track player) {
+@for (player of host.getCurrentStep()()!.getGameState().getPlayers()(); track player) {
   <div>{{ player }}</div>
 }

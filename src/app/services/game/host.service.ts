@@ -1,47 +1,52 @@
-import {computed, effect, Injectable, Signal, signal, WritableSignal} from '@angular/core';
+import {computed, effect, Injectable, OnInit, Signal, signal, WritableSignal} from '@angular/core';
 import {UserService} from "./user.service";
 import {RoomCommunicationsService} from "../communications/room-communications.service";
 import {RandomGenerator} from "../../utils/random-generator";
 import {filter, Observable, Subscription} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
-// import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {GameStep} from "./steps/game-step";
 import {PlayerListStep} from "./steps/player-list-step";
-import {GameState, Question, Quiz} from "./steps/game-state";
+import {GameState} from "./steps/game-state";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {Question} from "../../interfaces/question.interface";
+import {Quiz} from "../../interfaces/quiz.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HostService extends UserService{
-  private currentStep:WritableSignal<GameStep> = signal(new PlayerListStep(new GameState(new Quiz())));
+  private currentStep:WritableSignal<GameStep | undefined> = signal(undefined);
   private timeoutSubscription?: Subscription;
 
   constructor(room:RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
+  }
+
+  public setupQuiz(quiz:Quiz){
+    this.currentStep.set(new PlayerListStep(new GameState(quiz)))
     this.joinRoom()
   }
 
-  public getCurrentStep() : Signal<GameStep>{
+  public getCurrentStep() : Signal<GameStep|undefined>{
     return computed(()=>{
       return this.currentStep();
     });
   }
-  public getCurrentQuestion() : Signal<Question>{
+  public getCurrentQuestion() : Signal<Question|undefined>{
     return computed(()=>{
-      return this.currentStep().getGameState().getCurrentQuestion()();
+      return this.currentStep()?.getGameState().getCurrentQuestion()();
     });
   }
 
   public nextStep() {
     if(this.timeoutSubscription)
       this.timeoutSubscription.unsubscribe();
-    this.currentStep.set(this.currentStep().goToNextStep());
-    if(this.currentStep().acceptPlayerAnswer())
+    this.currentStep.set(this.currentStep()!.goToNextStep());
+    if(this.currentStep()!.acceptPlayerAnswer())
       this.startAnsweringBroadcast();
-    if(!this.currentStep().needManualInput()){
-      this.timeoutSubscription = this.currentStep().onIsReadyToMoveToNextStep().subscribe(()=>{
+    if(!this.currentStep()!.needManualInput()){
+      this.timeoutSubscription = this.currentStep()!.onIsReadyToMoveToNextStep().subscribe(()=>{
         this.nextStep();
       });
     }
@@ -72,11 +77,11 @@ export class HostService extends UserService{
   }
 
   private setupPlayer(event : GameEvent): void{
-    this.currentStep().getGameState().addPlayer(event.emitter!, event.content)
+    this.currentStep()?.getGameState().addPlayer(event.emitter!, event.content)
   }
 
   private addPlayerAnswer(event : GameEvent){
-    this.currentStep().playerAnswer(event.emitter!, event.content)
+    this.currentStep()?.playerAnswer(event.emitter!, event.content)
   }
 
   private startAnsweringBroadcast(): void{

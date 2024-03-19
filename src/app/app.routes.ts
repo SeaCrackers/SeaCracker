@@ -8,7 +8,7 @@ import { HostPageComponent } from "./host-page/host-page.component";
 export const routes: Routes = [
   { path: 'play', component: RoomCodePlayerPageComponent },
   { path: 'play/:id', component: PlayerPageComponent },
-  { path: 'host/:quiz', component: HostPageComponent },
+  { path: 'host/:id', component: HostPageComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component:  HomeComponent},
   { path: 'quiz/:id/edit', component: EditQuizComponent}
