@@ -1,12 +1,7 @@
 import {computed, Signal, signal, WritableSignal} from "@angular/core";
 import {NoRemainingQuestionException} from "./exceptions/no-remaining-question-exception";
 import {Quiz} from "../../../interfaces/quiz.interface";
-
-export interface Player{
-  id: string;
-  pseudo: string;
-  score: number;
-}
+import {Player} from "../../../interfaces/player.interface";
 
 export class GameState {
   private currentQuestionId:WritableSignal<number> = signal(0);

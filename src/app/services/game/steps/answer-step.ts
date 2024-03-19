@@ -40,7 +40,7 @@ export class AnswerStep extends GameStep {
     return merge(
       this.playerAnswers$.pipe(
         scan((answersCount) => answersCount + 1, 0),
-        filter((answersCount) => answersCount === this.gameState.getPlayers().length),
+        filter((answersCount) => answersCount === this.gameState.getPlayers()().length),
         map(() => { })
       ),
       this.timeout$
@@ -56,8 +56,9 @@ export class AnswerStep extends GameStep {
   }
 
   override playerAnswer(playerId: string, answer: number): void {
-    //TODO : Check if the answer is correct
-    this.gameState.addPlayerScore(playerId, 100);
+    if(this.gameState.getCurrentQuestion()().answers[answer].correct){
+      this.gameState.addPlayerScore(playerId, 100);
+    }
     this.playerAnswers$.next();
   }
 }
