@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Quiz} from "../interfaces/quiz.interface";
 import {Question} from "../interfaces/question.interface";
 import {Answer} from "../interfaces/answer.interface";
@@ -8,7 +8,9 @@ import {QuizManagerService} from "../services/quizManager.service";
 @Component({
   selector: 'app-edit-quiz',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './edit-quiz.component.html',
   styleUrl: './edit-quiz.component.scss'
 })
