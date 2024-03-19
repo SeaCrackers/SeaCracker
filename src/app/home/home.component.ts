@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {QuizManagerService} from "../services/quizManager.service";
 import {Quiz} from "../interfaces/quiz.interface";
-import {Router, RouterLink} from '@angular/router';
+import {RouterLink} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +14,7 @@ import {Router, RouterLink} from '@angular/router';
 export class HomeComponent{
 
   quizzes: Quiz[] = this.quizManager.getQuizzes();
-  constructor(private quizManager: QuizManagerService, private router: Router) {
+  constructor(private quizManager: QuizManagerService) {
   }
 
   public deleteQuiz(quiz: Quiz) : void {
