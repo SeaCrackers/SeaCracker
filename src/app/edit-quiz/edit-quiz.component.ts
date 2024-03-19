@@ -72,4 +72,8 @@ export class EditQuizComponent{
     answer.answer = ($event.target as HTMLInputElement).value;
     this.quizManger.updateQuestion(this.quiz.id, question);
   }
+
+  public swapQuestions(question1: Question, question2: Question): void {
+    this.quizManger.swapQuestionIndexes(this.quiz.id, question1, question2);
+  }
 }
