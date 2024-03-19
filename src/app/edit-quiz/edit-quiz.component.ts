@@ -25,12 +25,12 @@ export class EditQuizComponent{
     }
     this.quiz = potentialQuiz!;
     if (this.quiz.questions.length > 0) {
-      this.selectedQuestion(this.quiz.questions[0]);
+      this.setSelectedQuestion(this.quiz.questions[0]);
     }else{
       this.question = this.quizManger.emptyQuestionFactory();
     }
   }
-  public selectedQuestion(question: Question): Question {
+  public setSelectedQuestion(question: Question): Question {
      this.question = question;
      return this.question;
   }
@@ -60,7 +60,7 @@ export class EditQuizComponent{
     this.quizManger.updateQuestion(this.quiz.id, question);
   }
 
-  public getTimers() : number[] {
+  public getPredefinedTimers() : number[] {
     return [20, 40, 60, 80];
   }
   public updateQuestionTitle(question: Question, event: Event): void {

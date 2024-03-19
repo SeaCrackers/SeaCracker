@@ -26,7 +26,7 @@
       <section class="col-md-3">
         @for (q of quiz.questions; track question; let i = $index) {
           <div class="card mb-3 p-3 border border-light rounded bg-light shadow-sm question" [class.selected]="q === question">
-          <div class="card-body d-flex align-items-center justify-content-between" (click)="selectedQuestion(q)">
+          <div class="card-body d-flex align-items-center justify-content-between" (click)="setSelectedQuestion(q)">
             <p class="text fs-5">Question {{ i + 1 }}</p>
             <button class="btn btn-primary" (click)="deleteQuestion(q)">
               <i class="fa fa-trash"></i>
@@ -76,7 +76,7 @@
             <p class="card-title fs-5">Timer of the question in seconds</p>
             <select class="form-select w-25" (change)="updateQuestionTimer(question, $event)">
               <option selected>{{ question.timer }}</option>
-              @for (time of getTimers(); track time) {
+              @for (time of getPredefinedTimers(); track time) {
                 @if (time != question.timer) {
                 <option [selected]="time === question.timer">{{ time }}</option>
                 }

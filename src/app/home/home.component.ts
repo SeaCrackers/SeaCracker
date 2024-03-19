@@ -11,12 +11,12 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent{
 
-  quizzes: Quiz[] = this.QuizManager.getQuizzes();
-  constructor(private QuizManager: QuizManagerService, private router: Router) {
+  quizzes: Quiz[] = this.quizManager.getQuizzes();
+  constructor(private quizManager: QuizManagerService, private router: Router) {
   }
 
   public deleteQuiz(quiz: Quiz) : void {
-    this.QuizManager.deleteQuiz(quiz.id);
+    this.quizManager.deleteQuiz(quiz.id);
   }
 
   public editQuiz(quiz: Quiz): void {
@@ -27,6 +27,6 @@ export class HomeComponent{
   }
 
   public addQuiz() : void {
-    this.QuizManager.addEmptyQuiz();
+    this.quizManager.addEmptyQuiz();
   }
 }
