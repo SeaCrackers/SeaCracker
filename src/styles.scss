@@ -1,15 +1,3 @@
-body {
-    display: flex;
-    height: 100dvh;
-}
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/scss/bootstrap';
 
-app-root {
-    display: flex;
-    flex-grow: 1;
-
-    > *:last-child {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-}
