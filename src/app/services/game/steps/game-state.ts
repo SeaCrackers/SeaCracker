@@ -3,6 +3,9 @@ import {NoRemainingQuestionException} from "./exceptions/no-remaining-question-e
 import {Quiz} from "../../../interfaces/quiz.interface";
 import {Player} from "../../../interfaces/player.interface";
 
+/**
+ * Game state is a model that shows the current status of the quiz and players in a host.
+ */
 export class GameState {
   private currentQuestionId:WritableSignal<number> = signal(0);
   private players:WritableSignal<Player[]> = signal([]);

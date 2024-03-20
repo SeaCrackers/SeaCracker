@@ -5,6 +5,10 @@ import {LocalStorageDataSaverService} from "./localStorageDataSaver.service";
 import {DataSaver} from "../interfaces/dataSaver.interface";
 import {Injectable} from "@angular/core";
 
+/**
+ * This service treat data of quizzes in a business way (and will save using a DataSaver).
+ * It supports most of the used CRUD operations.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +16,7 @@ export class QuizManagerService{
   private quizzes: Quiz[];
   private dataSaver: DataSaver;
   constructor() {
+    //TODO : Dependency injection instead
     this.dataSaver = new LocalStorageDataSaverService('quizzes')
     this.quizzes = this.getQuizzesFromLocalStorage();
   }

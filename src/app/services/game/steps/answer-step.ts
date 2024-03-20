@@ -16,13 +16,16 @@ import {
 } from "rxjs";
 import { toObservable } from "@angular/core/rxjs-interop";
 
+/**
+ * An answering phase in the host (retrieve player responses / timeout).
+ */
 export class AnswerStep extends GameStep {
   private playerAnswers$: Subject<void> = new Subject();
   private isReadyToMoveToNextStep: WritableSignal<boolean> = signal(false);
-  private readonly timeout$: Observable<void> = new Observable(function subscribe(subscriber) {
+  private readonly timeout$: Observable<void> = new Observable((subscriber) => {
     const intervalId = setTimeout(() => {
       subscriber.next();
-    }, 30000);
+    }, this.gameState.getCurrentQuestion()().timer*1000);
     return function unsubscribe() {
       clearInterval(intervalId);
     };

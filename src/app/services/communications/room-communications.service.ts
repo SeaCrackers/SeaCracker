@@ -3,6 +3,10 @@ import {Observable} from "rxjs";
 import {RoomCommunicationsWebSocketService} from "./room-communications-web-socket.service";
 import {RandomGenerator} from "../../utils/random-generator";
 
+/**
+ * A room communication service abstract the room concept (designed in a network way).
+ * Exemple : You can join a room and start to receive events from this room.
+ */
 @Injectable({
   providedIn: "root",
   useClass: forwardRef( () => RoomCommunicationsWebSocketService ) // Default implementation.

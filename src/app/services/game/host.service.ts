@@ -12,6 +12,10 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Question} from "../../interfaces/question.interface";
 import {Quiz} from "../../interfaces/quiz.interface";
 
+/**
+ * The host service manage the steps / phases of the game for a hosting game point of view.
+ * It's generally the 'entry point' for a controller that will display the host infos.
+ */
 @Injectable({
   providedIn: 'root'
 })

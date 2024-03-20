@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {DataSaver} from "../interfaces/dataSaver.interface";
 
+/**
+ * A implementation of the DataSaver for local storage.
+ */
 export class LocalStorageDataSaverService implements DataSaver {
   private readonly key: string;
 
