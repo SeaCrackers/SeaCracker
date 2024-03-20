@@ -5,6 +5,7 @@ import {SocketRelayService} from "../transport/websockets/socket-relay.service";
 import {RoomEvents} from "./room-events";
 
 /**
+ * A implementation of a room communication service relay in websockets.
  * Note : using implementation instead of extension to avoid circular dependencies
  */
 @Injectable({

@@ -1,9 +1,17 @@
+/**
+ * A helper that can generate things with random.
+ */
 export class RandomGenerator{
-  // program to generate random strings
-
-  // declare all characters
+  /**
+   * Supported chars in generateString
+   * @private
+   */
   private static readonly  characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
+  /**
+   * Generate a string / room code for a given length
+   * @param length
+   */
   public static generateString(length : number) {
     let result = '';
     const charactersLength = this.characters.length;

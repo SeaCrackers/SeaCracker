@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Socket} from "ngx-socket-io";
 
+/**
+ * A WebSocket from socket io with auto url initialization.
+ */
 @Injectable({
   providedIn: 'root'
 })

@@ -16,6 +16,9 @@ import {
 } from "rxjs";
 import { toObservable } from "@angular/core/rxjs-interop";
 
+/**
+ * An answering phase in the host (retrieve player responses / timeout).
+ */
 export class AnswerStep extends GameStep {
   private playerAnswers$: Subject<void> = new Subject();
   private isReadyToMoveToNextStep: WritableSignal<boolean> = signal(false);

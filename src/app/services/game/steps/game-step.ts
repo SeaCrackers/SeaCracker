@@ -2,6 +2,10 @@ import {GameState} from "./game-state";
 import {signal, Signal} from "@angular/core";
 import { Observable } from "rxjs";
 
+/**
+ * A step is a generic stage used in a game hosting context.
+ * Each inheritor will be a different phase of the presentation.
+ */
 export abstract class GameStep {
   constructor(protected gameState : GameState) {
   }

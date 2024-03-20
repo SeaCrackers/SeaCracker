@@ -7,6 +7,10 @@ import {GameEventType} from "./game-event-type";
 import {HostService} from "./host.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
+/**
+ * The player service is a service that manage the state of the game (minimalistic) for a player (the user answering).
+ * It's generally the 'entry point' for a controller that will display the host infos.
+ */
 @Injectable({
   providedIn: 'root'
 })
