@@ -4,10 +4,40 @@
     }
 }
 
+@keyframes slide-small {
+    100% {
+        translate: 0 -6rem;
+    }
+}
+
 @keyframes show {
     100% {
         opacity: 1;
     }
+}
+
+@keyframes countdown {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+ }
+
+#loading-bar {
+    top: 0;
+    margin-top: 8rem;
+    width: 60rem;
+    height: 2rem;
+    border: 5px solid white;
+    animation: slide-small 1.5s 1 forwards;
+}
+
+#loading-progress {
+    background: white;
+    transition: all 1s linear;
+    animation: countdown 1 linear forwards;
 }
 
 #question {

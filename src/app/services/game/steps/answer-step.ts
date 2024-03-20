@@ -38,6 +38,10 @@ export class AnswerStep extends GameStep {
     return true;
   }
 
+  getTimerDuration(): number {
+    return this.gameState.getCurrentQuestion()().timer*1000;
+  }
+
   override onIsReadyToMoveToNextStep(): Observable<void> {
     return merge(
       this.playerAnswers$.pipe(
