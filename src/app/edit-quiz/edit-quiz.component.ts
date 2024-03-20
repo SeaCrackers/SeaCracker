@@ -15,7 +15,7 @@ import {QuizManagerService} from "../services/quizManager.service";
   styleUrl: './edit-quiz.component.scss'
 })
 export class EditQuizComponent{
-  quiz!: Quiz;
+  quiz: Quiz;
   question!: Question;
 
   constructor(private quizManger: QuizManagerService, private router: Router, private route: ActivatedRoute) {
@@ -29,7 +29,7 @@ export class EditQuizComponent{
     if (this.quiz.questions.length > 0) {
       this.setSelectedQuestion(this.quiz.questions[0]);
     }else{
-      this.question = this.quizManger.emptyQuestionFactory();
+      this.addQuestion();
     }
   }
   public setSelectedQuestion(question: Question): Question {
@@ -38,17 +38,19 @@ export class EditQuizComponent{
   }
 
   public deleteQuestion(question: Question) : void {
-    this.quizManger.deleteQuestion(this.quiz.id, question);
+    if (confirm("Are you sure you want to delete this question?")) {
+      this.quizManger.deleteQuestion(this.quiz.id, question);
+    }
   }
 
   public addQuestion() : void {
     const newQuestion: Question = this.quizManger.emptyQuestionFactory();
     this.quizManger.addQuestionToQuiz(this.quiz.id, newQuestion)
+    this.question = newQuestion;
   }
 
   public setCorrectAnswer(answer: Answer): void {
-    this.question.answers.forEach(answer => answer.correct = false);
-    answer.correct = true;
+    answer.correct = !answer.correct;
     this.quizManger.updateQuestion(this.quiz.id, this.question);
   }
 

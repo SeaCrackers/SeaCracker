@@ -1,22 +1,20 @@
-<div class="container-fluid">
+<div id="pageContainer" class="container-fluid pt-3">
 
-  <div class="text-center mb-3 mt-4">
+  <div class="card mb-4 p-3 rounded bg-light shadow-sm text-center">
+    <div class="align-items-center">
     <h1 class="text-dark fs-1">SeaCracker - Home Page</h1>
-      <button (click)="addQuiz()" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add a Quiz
+      <button (click)="addQuiz()" class="btn btn-success mt-4">
+        <i class="fas fa-plus"></i> Add a quiz
       </button>
+    </div>
   </div>
 
   <div class="row justify-content-center">
     @for (quiz of quizzes; track quiz){
       <div  class="col-12 col-md-6 col-lg-4">
-        <div class="card m-2 p-3 border border-light rounded bg-light shadow-sm">
+        <div class="card mt-4 p-3 border border-light rounded bg-light shadow-sm">
           <div class="d-flex justify-content-between align-items-center">
-            @if (quiz.title != ''){
-              <span class="text-dark fs-4">{{ quiz.title }}</span>
-            } @else {
-            <span class="text-dark fs-4">New Quiz</span>
-            }
+              <span class="text-dark fs-4">{{ quiz.title || 'New Quiz' }}</span>
             <div class="d-flex">
               <a [routerLink]="['/quiz', quiz.id, 'edit']" class="btn btn-primary">
                 Edit
