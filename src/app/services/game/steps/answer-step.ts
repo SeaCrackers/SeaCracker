@@ -24,7 +24,7 @@ export class AnswerStep extends GameStep {
   private readonly timeout$: Observable<void> = new Observable((subscriber) => {
     const intervalId = setTimeout(() => {
       subscriber.next();
-    }, this.gameState.getCurrentQuestion()().timer*1000);
+    }, this.getTimerDuration());
     return function unsubscribe() {
       clearInterval(intervalId);
     };
@@ -36,6 +36,10 @@ export class AnswerStep extends GameStep {
 
   hasNextStep(): boolean {
     return true;
+  }
+
+  getTimerDuration(): number {
+    return this.gameState.getCurrentQuestion()().timer*1000;
   }
 
   override onIsReadyToMoveToNextStep(): Observable<void> {

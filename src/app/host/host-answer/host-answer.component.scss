@@ -1,13 +1,5 @@
-@keyframes slide {
-    100% {
-        translate: 0 calc(-50dvh + 8rem);
-    }
-}
-
-@keyframes show {
-    100% {
-        opacity: 1;
-    }
+#loading-bar {
+    animation: slide-small 1.5s 1 forwards;
 }
 
 #question {

@@ -17,4 +17,8 @@ export class HostAnswerComponent extends HostComponent{
     super(host);
     this.step = host.getCurrentStep()() as AnswerStep;
   }
+
+  getTimerDuration() {
+    return this.step.getTimerDuration();
+  }
 }
