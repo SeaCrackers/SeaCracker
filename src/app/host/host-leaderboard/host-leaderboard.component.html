@@ -1,0 +1,21 @@
+<div id="page-container" class="vh-100 position-relative d-flex justify-content-center align-items-center">
+
+
+    <div class="container mt-5">
+        <h1 id="question" class="bg-dark text-light p-2 rounded text-center">Leaderboard</h1>
+        <table class="table rounded overflow-hidde">
+            <tbody class="fs-4">
+                @for (player of getLeaderboard(); track player; let i = $index) {
+                <tr class="d-flex">
+                    <th class="px-4" scope="row">{{i+1}}</th>
+                    <td class="flex-fill">{{ player.pseudo }}</td>
+                    <td class="px-4">{{ player.score }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <span class="position-absolute start-0 bottom-0 text-primary">Credits:
+        https://www.vecteezy.com/vector-art/13416923-pirate-parrot-in-hat-on-anchor-on-sea-beach</span>
+</div>

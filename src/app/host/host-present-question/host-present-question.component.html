@@ -1,0 +1,7 @@
+<div id="page-container" class="vh-100 position-relative d-flex justify-content-center align-items-center">
+    <div class="position-absolute" id="loading-bar">
+        <div id="loading-progress" class="h-100" [style.animation-duration]="getTimerDuration()+'ms'"></div>
+    </div>
+    <h1 id="question" class="bg-light p-2 rounded text-center">{{ host.getCurrentStep()()!.getGameState().getCurrentQuestion()().question }}</h1>
+    <span class="position-absolute start-0 bottom-0 text-warning-emphasis">Credits: https://www.vecteezy.com/vector-art/15916932-abandoned-pirate-captain-ship-cabin-broken-room</span>
+</div>

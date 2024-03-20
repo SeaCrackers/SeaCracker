@@ -1,3 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/scss/bootstrap';
 
+@keyframes bounce {
+    80% {
+        font-size: 2rem;
+    }
+
+    40% {
+        font-size: 2.5rem;
+    }
+
+    60% {
+        font-size: 1.7rem;
+    }
+}

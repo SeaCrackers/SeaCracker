@@ -18,15 +18,15 @@
             <span class="text-dark fs-4">New Quiz</span>
             }
             <div class="d-flex">
-              <button (click)="editQuiz(quiz)" class="btn btn-primary">
+              <a [routerLink]="['/quiz', quiz.id, 'edit']" class="btn btn-primary">
                 Edit
-              </button>
+              </a>
               <button (click)="deleteQuiz(quiz)" class="btn btn-primary ms-1">
                 Delete
               </button>
-              <button (click)="playQuiz(quiz)" class="btn btn-primary ms-1">
-                Play
-              </button>
+              <a [routerLink]="['/host', quiz.id]" class="btn btn-primary ms-1">
+                Start
+              </a>
             </div>
           </div>
         </div>

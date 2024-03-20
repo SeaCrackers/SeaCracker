@@ -1,0 +1,13 @@
+
+<div id="page-container" class="vh-100 position-relative d-flex flex-column">
+  <div class="d-flex align-items-center p-4 flex-column">
+    <h1 class="text-white">SeaCrackers</h1>
+    <h2 class="text-white">Playerlist</h2>
+  </div>
+  <div class="flex-grow-1 d-flex justify-content-center align-items-center flex-row flex-wrap align-content-center">
+    @for (player of host.getCurrentStep()()!.getGameState().getPlayers()(); track player) {
+      <div class="bg-light p-2 rounded text-center m-2 shadow-lg player">{{ player.pseudo }}</div>
+    }
+  </div>
+  <span class="position-absolute start-0 bottom-0 text-warning-emphasis">Credits: https://www.vecteezy.com/vector-art/15916932-abandoned-pirate-captain-ship-cabin-broken-room</span>
+</div>
