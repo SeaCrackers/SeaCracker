@@ -21,7 +21,6 @@ import { toObservable } from "@angular/core/rxjs-interop";
  */
 export class AnswerStep extends GameStep {
   private playerAnswers$: Subject<void> = new Subject();
-  private isReadyToMoveToNextStep: WritableSignal<boolean> = signal(false);
   private readonly timeout$: Observable<void> = new Observable((subscriber) => {
     const intervalId = setTimeout(() => {
       subscriber.next();
