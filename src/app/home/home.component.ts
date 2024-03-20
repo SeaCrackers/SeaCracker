@@ -16,12 +16,15 @@ export class HomeComponent{
   }
 
   public deleteQuiz(quiz: Quiz) : void {
-    this.quizManager.deleteQuiz(quiz.id);
+    if (confirm("Are you sure you want to delete this quiz?")) {
+      this.quizManager.deleteQuiz(quiz.id);
+    }
   }
 
   public editQuiz(quiz: Quiz): void {
     this.router.navigate(['/quiz', quiz.id, 'edit']);
   }
+
   public playQuiz(quiz: Quiz): void {
     this.router.navigate(['/quiz', quiz.id, 'play']);
   }
