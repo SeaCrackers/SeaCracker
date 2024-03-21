@@ -29,7 +29,7 @@
     height: 70dvh;
 
     .podium-player-pseudo {
-        animation: show 1s 6s forwards;
+        animation: show 0s 15s forwards;
     }
 }
 
@@ -40,7 +40,7 @@
     translate: 2.5dvw;
 
     .podium-player-pseudo {
-        animation: show 1s 5s forwards;
+        animation: show 0s 11s forwards;
     }
 }
 
@@ -51,7 +51,7 @@
     translate: -2.5dvw;
 
     .podium-player-pseudo {
-        animation: show 1s 4s forwards;
+        animation: show 0s 7s forwards;
     }
 }
 
@@ -92,9 +92,12 @@
     width: 300dvw;
     inset: -100dvh 0dvw;
     z-index: 10;
-
+    opacity: 0;
+    
     animation:
-        lighten-3rd 1s 7s forwards,
+        show 1s 4s forwards,
+        lighten-3rd 1s 5s forwards,
         lighten-2nd 1s 9s forwards,
-        lighten-1st 1s 11s forwards;
+        lighten-1st 1s 13s forwards,
+        show 1s 17s reverse forwards;
 }
