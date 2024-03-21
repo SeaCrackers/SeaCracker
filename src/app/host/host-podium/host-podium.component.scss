@@ -4,6 +4,11 @@
     background-position: center;
   }
   
+  @keyframes podium-tier-enter {
+    to {
+        transform: translateY(10dvh);
+    }
+  }
 
 .podium-tier {
     position: relative;
@@ -12,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translateY(10vh);
+    transform: translateY(70vh);
     padding-top: 4dvh;
     text-align: center;
     color: white;
@@ -20,30 +25,33 @@
 }
 
 #podium-1 {
+    animation: podium-tier-enter 1s 3s forwards;
     height: 70vh;
 
     .podium-player-pseudo {
-        animation: show 1s 3s forwards;
+        animation: show 1s 6s forwards;
     }
 }
 
 #podium-2 {
+    animation: podium-tier-enter 1s 2s forwards;
     height: 55vh;
     rotate: -10deg;
     translate: 2.5dvw;
 
     .podium-player-pseudo {
-        animation: show 1s 2s forwards;
+        animation: show 1s 5s forwards;
     }
 }
 
 #podium-3 {
+    animation: podium-tier-enter 1s 1s forwards;
     height: 40vh;
     rotate: 10deg;
     translate: -2.5dvw;
 
     .podium-player-pseudo {
-        animation: show 1s 1s forwards;
+        animation: show 1s 4s forwards;
     }
 }
 
