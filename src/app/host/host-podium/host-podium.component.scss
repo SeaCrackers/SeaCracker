@@ -2,13 +2,13 @@
     background-image: url(../../../assets/images/vecteezy_wreck-pirate-ship-underwater-with-torn-flag_21449294.jpg);
     background-size: cover;
     background-position: center;
-  }
-  
-  @keyframes podium-tier-enter {
+}
+
+@keyframes podium-tier-enter {
     to {
         transform: translateY(10dvh);
     }
-  }
+}
 
 .podium-tier {
     position: relative;
@@ -26,7 +26,7 @@
 
 #podium-1 {
     animation: podium-tier-enter 1s 3s forwards;
-    height: 70vh;
+    height: 70dvh;
 
     .podium-player-pseudo {
         animation: show 1s 6s forwards;
@@ -35,7 +35,7 @@
 
 #podium-2 {
     animation: podium-tier-enter 1s 2s forwards;
-    height: 55vh;
+    height: 55dvh;
     rotate: -10deg;
     translate: 2.5dvw;
 
@@ -46,7 +46,7 @@
 
 #podium-3 {
     animation: podium-tier-enter 1s 1s forwards;
-    height: 40vh;
+    height: 40dvh;
     rotate: 10deg;
     translate: -2.5dvw;
 
@@ -64,14 +64,37 @@
     opacity: 0;
 }
 
+@keyframes lighten-3rd {
+    100% {
+        inset: -86dvh -81dvw;
+    }
+}
+
+@keyframes lighten-2nd {
+    100% {
+        inset: -100dvh -119.5dvw;
+    }
+}
+
+@keyframes lighten-1st {
+    100% {
+        inset: -116dvh -100dvw;
+    }
+}
+
 #light-effect {
-    background: radial-gradient(circle at center, transparent 7rem, rgba(0, 0, 0, 0.7) 7.3rem);
+    background: radial-gradient(circle at center, transparent 12dvh, rgba(0, 0, 0, 0.7) 13dvh);
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 300dvh;
     width: 300dvw;
-    inset: -100dvh -100dvw;
+    inset: -100dvh 0dvw;
     z-index: 10;
+
+    animation:
+        lighten-3rd 1s 7s forwards,
+        lighten-2nd 1s 9s forwards,
+        lighten-1st 1s 11s forwards;
 }
