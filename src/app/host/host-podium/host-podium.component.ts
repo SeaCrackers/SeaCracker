@@ -18,4 +18,6 @@ export class HostPodiumComponent extends HostComponent{
     super(host);
     this.step = host.getCurrentStep()() as PodiumStep;
   }
+
+  players : object[] = [{pseudo: "toto", score: 100}, {pseudo: "tata", score: 0}, {pseudo: "titi", score: 200}];
 }
