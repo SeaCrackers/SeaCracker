@@ -21,18 +21,30 @@
 
 #podium-1 {
     height: 70vh;
+
+    .podium-player-pseudo {
+        animation: show 1s 3s forwards;
+    }
 }
 
 #podium-2 {
     height: 55vh;
     rotate: -10deg;
     translate: 2.5dvw;
+
+    .podium-player-pseudo {
+        animation: show 1s 2s forwards;
+    }
 }
 
 #podium-3 {
     height: 40vh;
     rotate: 10deg;
     translate: -2.5dvw;
+
+    .podium-player-pseudo {
+        animation: show 1s 1s forwards;
+    }
 }
 
 .podium-player-pseudo {
@@ -41,4 +53,5 @@
     font-size: 5dvh;
     color: black;
     text-align: center;
+    opacity: 0;
 }
