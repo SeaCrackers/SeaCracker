@@ -26,6 +26,31 @@
     }
 }
 
+@keyframes dancing {
+    0% {
+        transform: rotate(0);
+        translate: 0;
+    }
+
+    25% {
+        transform: rotate(10deg);
+        translate: 1dvw 1dvh;
+    }
+
+    50% {
+        transform: rotate(0);
+        translate: 0 0;
+    }
+
+    75% {
+        transform: rotate(-10deg);
+        translate: -1dvw 1dvh;
+    }
+
+}
+
+
+
 .podium-tier {
     position: relative;
     width: 20dvw;
@@ -47,7 +72,8 @@
     .podium-player-pseudo {
         animation:
             show 0s 15s forwards,
-            podium-bounce 0.5s 1 15s linear;
+            podium-bounce 0.5s 1 15s linear,
+            dancing 1s infinite 16s linear;
     }
 }
 
@@ -60,7 +86,8 @@
     .podium-player-pseudo {
         animation:
             show 0s 11s forwards,
-            podium-bounce 0.5s 1 11s linear;
+            podium-bounce 0.5s 1 11s linear,
+            dancing 1s infinite 12s linear;
     }
 }
 
@@ -73,17 +100,19 @@
     .podium-player-pseudo {
         animation:
             show 0s 7s forwards,
-            podium-bounce 0.5s 1 7s linear;
+            podium-bounce 0.5s 1 7s linear,
+            dancing 1s infinite 8s linear;
     }
 }
 
 .podium-player-pseudo {
     position: absolute;
-    top: -10dvh;
+    top: -11dvh;
     font-size: 5dvh;
     color: black;
     text-align: center;
     opacity: 0;
+    transform-origin: center bottom;
 }
 
 @keyframes lighten-3rd {
