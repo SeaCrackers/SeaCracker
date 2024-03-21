@@ -63,3 +63,15 @@
     text-align: center;
     opacity: 0;
 }
+
+#light-effect {
+    background: radial-gradient(circle at center, transparent 7rem, rgba(0, 0, 0, 0.7) 7.3rem);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300dvh;
+    width: 300dvw;
+    inset: -100dvh -100dvw;
+    z-index: 10;
+}
