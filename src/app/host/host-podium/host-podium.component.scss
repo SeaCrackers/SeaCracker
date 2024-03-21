@@ -1,0 +1,26 @@
+.podium-tier {
+    width: 20dvw;
+    background: purple;
+    display: block;
+    transform: translateY(10vh);
+    padding-top: 4dvh;
+    text-align: center;
+    color: white;
+    font-size: 10dvh;
+}
+
+#podium-1 {
+    height: 70vh;
+}
+
+#podium-2 {
+    height: 55vh;
+    rotate: -10deg;
+    translate: 2.5dvw;
+}
+
+#podium-3 {
+    height: 40vh;
+    rotate: 10deg;
+    translate: -2.5dvw;
+}
