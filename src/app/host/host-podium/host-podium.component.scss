@@ -9,7 +9,9 @@
     position: relative;
     width: 20dvw;
     background: purple;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transform: translateY(10vh);
     padding-top: 4dvh;
     text-align: center;
@@ -34,10 +36,8 @@
 }
 
 .podium-player-pseudo {
-    width: 100%;
-    left: 0;
-    top: -8dvh;
     position: absolute;
+    top: -10dvh;
     font-size: 5dvh;
     color: black;
     text-align: center;
