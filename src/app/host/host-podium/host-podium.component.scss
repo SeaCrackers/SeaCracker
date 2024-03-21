@@ -116,20 +116,29 @@
 }
 
 @keyframes lighten-3rd {
+    70% {
+        inset: -85vh -82vw;
+    }
     100% {
-        inset: -86dvh -81dvw;
+        inset: -86vh -81vw;
     }
 }
 
 @keyframes lighten-2nd {
+    70% {
+        inset: -101vh -120.5vw;
+    }
     100% {
-        inset: -100dvh -119.5dvw;
+        inset: -100vh -119.5vw;
     }
 }
 
 @keyframes lighten-1st {
+    70% {
+        inset: -118vh -99vw;
+    }
     100% {
-        inset: -116dvh -100dvw;
+        inset: -116vh -100vw;
     }
 }
 
