@@ -19,5 +19,11 @@ export class HostPodiumComponent extends HostComponent{
     this.step = host.getCurrentStep()() as PodiumStep;
   }
 
-  public players : any[] = [{pseudo: "toto", score: 100}, {pseudo: "tata", score: 0}, {pseudo: "titi", score: 200}];
+  getLeaderboard() {
+    const players = this.host.getCurrentStep()()!.getGameState().getPlayers()();
+    
+    return players.sort((a, b) => {
+      return b.score - a.score;
+    });
+  }
 }
