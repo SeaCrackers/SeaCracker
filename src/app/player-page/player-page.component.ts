@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
 import {HostService} from "../services/game/host.service";
@@ -25,6 +25,11 @@ export class PlayerPageComponent {
         player.joinRoom(roomID!);
     }
 
+    @HostListener('window:beforeunload', ['$event'])
+    unloadNotification($event: any) {
+      $event.returnValue = false;
+    }
+
     canAnswer() {
         return this.player.getCanAnswer();
     }
@@ -37,6 +42,6 @@ export class PlayerPageComponent {
         this.player.answerQuestion(answerId);
     }
 
-    
+
 
 }

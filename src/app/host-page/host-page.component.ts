@@ -1,4 +1,4 @@
-import { Component, OnInit, Type } from '@angular/core';
+import {Component, HostListener, OnInit, Type} from '@angular/core';
 import { RoomCommunicationsService } from "../services/communications/room-communications.service";
 import { RandomGenerator } from "../utils/random-generator";
 import { HostService } from "../services/game/host.service";
@@ -41,6 +41,11 @@ export class HostPageComponent {
     if (this.host.getCurrentStep()()!.hasNextStep())
       return this.host.nextStep();
     this.router.navigate(['/']);
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    $event.returnValue = false;
   }
 
   /**
