@@ -18,10 +18,10 @@ export class EditQuizComponent{
   quiz: Quiz;
   question!: Question;
 
-  constructor(private quizManger: QuizManagerService, private router: Router, private route: ActivatedRoute) {
+  constructor(private quizManager: QuizManagerService, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    let potentialQuiz = this.quizManger.getQuizById(id);
+    let potentialQuiz = this.quizManager.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }
@@ -39,29 +39,29 @@ export class EditQuizComponent{
 
   public deleteQuestion(question: Question) : void {
     if (confirm("Are you sure you want to delete this question?")) {
-      this.quizManger.deleteQuestion(this.quiz.id, question);
+      this.quizManager.deleteQuestion(this.quiz.id, question);
     }
   }
 
   public addQuestion() : void {
-    const newQuestion: Question = this.quizManger.emptyQuestionFactory();
-    this.quizManger.addQuestionToQuiz(this.quiz.id, newQuestion)
+    const newQuestion: Question = this.quizManager.emptyQuestionFactory();
+    this.quizManager.addQuestionToQuiz(this.quiz.id, newQuestion)
     this.question = newQuestion;
   }
 
   public setCorrectAnswer(answer: Answer): void {
     answer.correct = !answer.correct;
-    this.quizManger.updateQuestion(this.quiz.id, this.question);
+    this.quizManager.updateQuestion(this.quiz.id, this.question);
   }
 
   public updateQuizTitle(event: Event): void {
     this.quiz.title = (event.target as HTMLInputElement).value;
-    this.quizManger.updateQuiz(this.quiz);
+    this.quizManager.updateQuiz(this.quiz);
   }
 
   public updateQuestionTimer(question: Question, event: Event): void {
     question.timer = parseInt((event.target as HTMLInputElement).value);
-    this.quizManger.updateQuestion(this.quiz.id, question);
+    this.quizManager.updateQuestion(this.quiz.id, question);
   }
 
   public getPredefinedTimers() : number[] {
@@ -69,12 +69,12 @@ export class EditQuizComponent{
   }
   public updateQuestionTitle(question: Question, event: Event): void {
     question.question = (event.target as HTMLInputElement).value;
-    this.quizManger.updateQuestion(this.quiz.id, question);
+    this.quizManager.updateQuestion(this.quiz.id, question);
   }
 
   public updateAnswer(question: Question, answer: Answer, $event: Event): void {
     answer.answer = ($event.target as HTMLInputElement).value;
-    this.quizManger.updateQuestion(this.quiz.id, question);
+    this.quizManager.updateQuestion(this.quiz.id, question);
   }
 
   public swapQuestions(question: Question, direction: string): void {
