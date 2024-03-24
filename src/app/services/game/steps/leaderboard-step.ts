@@ -4,7 +4,7 @@ import {PresentQuestionStep} from "./present-question-step";
 import {PodiumStep} from "./podium-step";
 
 /**
- * A leaderboard phase in the host is a dump phase (ment to display score based on game status)
+ * A leaderboard phase in the host is a simple phase ment to display score based on game status
  */
 export class LeaderboardStep extends GameStep{
   goToNextStep(): GameStep {
