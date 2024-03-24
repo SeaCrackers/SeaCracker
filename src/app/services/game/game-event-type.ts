@@ -4,5 +4,6 @@
 export enum GameEventType{
   Setup="Setup",
   StartAnswering="StartAnswering",
+  StopAnswering="StopAnswering",
   Answer="Answer",
 }

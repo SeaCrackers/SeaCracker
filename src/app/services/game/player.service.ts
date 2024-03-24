@@ -44,10 +44,19 @@ export class PlayerService extends UserService{
       .pipe(filter((event)=>event.type === GameEventType.StartAnswering))
   }
 
+  private onHostStopAnswering(): Observable<GameEvent>{
+    return this.room.onEventReceived<GameEvent>()
+      .pipe(filter((event)=>event.type === GameEventType.StopAnswering))
+  }
+
   private registerEvents(): void{
     this.onHostStartAnswering().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
       console.log("Received start answering event"+gameEvent.content)
       this.canAnswer.set(true)
+    });
+    this.onHostStopAnswering().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
+      console.log("Received stop answering event"+gameEvent.content)
+      this.canAnswer.set(false)
     });
   }
 }
