@@ -17,14 +17,14 @@
               <span class="text-dark fs-4">{{ quiz.title || 'New Quiz' }}</span>
             <div class="d-flex">
               <a [routerLink]="['/quiz', quiz.id, 'edit']" class="btn btn-primary">
-                Edit
+                <i class="fas fa-edit"></i>
               </a>
-              <button (click)="deleteQuiz(quiz)" class="btn btn-primary ms-1">
-                Delete
-              </button>
               <a [routerLink]="['/host', quiz.id]" class="btn btn-primary ms-1">
-                Start
+                <i class="fas fa-play"></i>
               </a>
+              <button (click)="deleteQuiz(quiz)" class="btn btn-danger ms-1">
+                <i class="fas fa-trash"></i>
+              </button>
             </div>
           </div>
         </div>
