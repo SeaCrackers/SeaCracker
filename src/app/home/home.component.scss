@@ -4,3 +4,8 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.quiz-container {
+  max-height: 75vh;
+  overflow-y: auto;
+}
