@@ -21,6 +21,8 @@ import { HostComponent } from "../host/host-component";
 import { HostLoadingComponent } from "../host/host-loading/host-loading.component";
 import { QuizManagerService } from "../services/quizManager.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import {RevealStep} from "../services/game/steps/reveal-step";
+import {HostRevealComponent} from "../host/host-reveal/host-reveal.component";
 @Component({
   selector: 'app-host-page',
   standalone: true,
@@ -56,6 +58,8 @@ export class HostPageComponent {
         return HostPresentQuestionComponent;
       case AnswerStep:
         return HostAnswerComponent;
+      case RevealStep:
+        return HostRevealComponent;
       case LeaderboardStep:
         return HostLeaderboardComponent;
       case PodiumStep:
