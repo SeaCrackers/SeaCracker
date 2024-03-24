@@ -49,7 +49,7 @@ export class EditQuizComponent{
     this.question = newQuestion;
   }
 
-  public setCorrectAnswer(answer: Answer): void {
+  public toggleCorrectAnswer(answer: Answer): void {
     answer.correct = !answer.correct;
     this.quizManager.updateQuestion(this.quiz.id, this.question);
   }
@@ -81,5 +81,4 @@ export class EditQuizComponent{
     let questionToSwap = this.quiz.questions[this.quiz.questions.indexOf(question) + (direction === 'up' ? -1 : 1)];
     this.quizManager.swapQuestionIndexes(this.quiz.id, question, questionToSwap);
   }
-  
 }

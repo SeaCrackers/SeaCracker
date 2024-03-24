@@ -56,7 +56,7 @@
           <div class="card rounded bg-light shadow-sm mt-3 mb-4">
             <div class="card-body d-flex align-items-center justify-content-between">
               <input class="form-control" style="width:45rem;" type="text" [value]="answer.answer" placeholder="Write your answer and check the correct one" (change)="updateAnswer(question, answer, $event)">
-              <input class="form-check-input" type="checkbox" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="setCorrectAnswer(answer)">
+              <input class="form-check-input" type="checkbox" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="toggleCorrectAnswer(answer)">
             </div>
           </div>
           }
