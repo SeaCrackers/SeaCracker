@@ -23,7 +23,7 @@
         @for (q of quiz.questions; track question; let i = $index) {
           <div class="card mb-3 p-3 rounded bg-light shadow-sm question" [class.selected]="q === question">
           <div class="card-body d-flex bd-highlight align-items-center justify-content-between p-0" (click)="setSelectedQuestion(q)">
-            <span class="fs-5">{{ truncateString(q.question, 20) }}</span>
+            <span class="fs-5 truncate">{{ q.question }}</span>
             <div class="d-flex align-items-center">
             <button class="btn btn-danger" (click)="deleteQuestion(q)">
               <i class="fa fa-trash"></i>

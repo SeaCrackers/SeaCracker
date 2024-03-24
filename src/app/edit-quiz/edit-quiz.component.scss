@@ -21,3 +21,10 @@
   max-height: 70vh;
   overflow-y: auto;
 }
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
