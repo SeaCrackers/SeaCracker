@@ -47,9 +47,7 @@ export class HostService extends UserService{
     if(this.timeoutSubscription)
       this.timeoutSubscription.unsubscribe();
     this.currentStep.set(this.currentStep()!.goToNextStep());
-    if(this.currentStep()!.acceptPlayerAnswer())
-      this.startAnsweringBroadcast();
-    else this.StopAnsweringBroadcast();
+      this.answeringBroadcast(this.currentStep()!.acceptPlayerAnswer());
     if(!this.currentStep()!.needManualInput()){
       this.timeoutSubscription = this.currentStep()!.onIsReadyToMoveToNextStep().subscribe(()=>{
         this.nextStep();
@@ -89,12 +87,8 @@ export class HostService extends UserService{
     this.currentStep()?.playerAnswer(event.emitter!, event.content)
   }
 
-  private startAnsweringBroadcast(): void{
-    this.room.sendEventTo(this.roomCode!,new GameEvent(GameEventType.StartAnswering))
-  }
-
-  private StopAnsweringBroadcast(): void{
-    this.room.sendEventTo(this.roomCode!,new GameEvent(GameEventType.StopAnswering))
+  private answeringBroadcast(canAnswer : boolean): void{
+    this.room.sendEventTo(this.roomCode!,new GameEvent(GameEventType.AnsweringState,undefined,canAnswer))
   }
 
   public static getHostOnlyRoom(roomCode:string): string{

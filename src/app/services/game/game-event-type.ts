@@ -3,7 +3,6 @@
  */
 export enum GameEventType{
   Setup="Setup",
-  StartAnswering="StartAnswering",
-  StopAnswering="StopAnswering",
+  AnsweringState="AnsweringState",
   Answer="Answer",
 }
