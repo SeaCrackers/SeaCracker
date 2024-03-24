@@ -13,6 +13,7 @@ import {HostService} from "../../services/game/host.service";
 })
 export class HostAnswerComponent extends HostComponent{
   private step: AnswerStep;
+  public musicUrl: string = this.randomMusicUrl();
   constructor(host:HostService) {
     super(host);
     this.step = host.getCurrentStep()() as AnswerStep;
@@ -20,5 +21,8 @@ export class HostAnswerComponent extends HostComponent{
 
   getTimerDuration() {
     return this.step.getTimerDuration();
+  }
+  randomMusicUrl() {
+    return "assets/audio/music-answer-"+(Math.floor(Math.random()*5.49)+1)+".ogg";
   }
 }
