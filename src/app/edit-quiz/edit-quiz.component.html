@@ -19,7 +19,7 @@
     <div class="row">
 
       <!-- Left Container -->
-      <section class="col">
+      <section class="col question-container">
         @for (q of quiz.questions; track question; let i = $index) {
           <div class="card mb-3 p-3 rounded bg-light shadow-sm question" [class.selected]="q === question">
           <div class="card-body d-flex bd-highlight align-items-center justify-content-between p-0" (click)="setSelectedQuestion(q)">
