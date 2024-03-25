@@ -10,4 +10,21 @@
   background-color: #93c5fd !important;
 }
 
-// TODO: Add background
+#pageContainer{
+  height: 100dvh;
+  background-image: url('/assets/edit-quiz-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.question-container {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

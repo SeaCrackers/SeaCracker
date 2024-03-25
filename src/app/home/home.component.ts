@@ -17,8 +17,10 @@ export class HomeComponent{
   constructor(private quizManager: QuizManagerService) {
   }
 
-  public deleteQuiz(quiz: Quiz) : void {
-    this.quizManager.deleteQuiz(quiz.id);
+  public tryToDeleteQuiz(quiz: Quiz) : void {
+    if (confirm("Are you sure you want to delete this quiz?")) {
+      this.quizManager.deleteQuiz(quiz.id);
+    }
   }
 
   public addQuiz() : void {
