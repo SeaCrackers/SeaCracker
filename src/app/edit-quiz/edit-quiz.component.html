@@ -85,7 +85,7 @@
             <select class="form-select w-25" (change)="updateQuestionTimer(question, $event)">
               <option selected>{{ question.timer }}</option>
               @for (time of getPredefinedTimers();track time) {
-                @if (time != question.timer) {
+                @if (time !== question.timer) {
                   <option [selected]="time === question.timer">{{ time }}</option>
                 }
               }
