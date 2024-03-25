@@ -38,6 +38,7 @@
             </div>
             </div>
           </div>
+          </div>
         }
         <button class="btn btn-success" (click)="addQuestion()">
           <i class="fa fa-plus"></i> Add a question
@@ -57,6 +58,7 @@
               <input class="form-control" style="width:45rem;" type="text" [value]="answer.answer" placeholder="Write your answer and check the correct one" (change)="updateAnswer(question, answer, $event)">
               <input class="form-check-input" type="checkbox" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="toggleCorrectAnswer(answer)">
             </div>
+          </div>
           }
         </div>
       </section>

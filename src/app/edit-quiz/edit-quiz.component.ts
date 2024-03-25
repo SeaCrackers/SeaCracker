@@ -20,7 +20,7 @@ export class EditQuizComponent {
   constructor(private quizManager: QuizManagerService, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    const potentialQuiz: Quiz | undefined = this.quizManger.getQuizById(id);
+    const potentialQuiz: Quiz | undefined = this.quizManager.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }
@@ -52,7 +52,7 @@ export class EditQuizComponent {
   public toggleCorrectAnswer(answer: Answer): void {
     answer.correct = !answer.correct;
     this.quizManager.updateQuestion(this.quiz.id, this.question);
-
+  }
 
   public updateQuizTitle(event: Event): void {
     this.quiz.title = (event.target as HTMLInputElement).value;
