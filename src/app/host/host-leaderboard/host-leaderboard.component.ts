@@ -4,6 +4,7 @@ import { LeaderboardStep } from "../../services/game/steps/leaderboard-step";
 import { HostComponent } from "../host-component";
 import { HostService } from "../../services/game/host.service";
 import { AnswerStep } from "../../services/game/steps/answer-step";
+import {GameStep} from "../../services/game/steps/game-step";
 
 @Component({
   selector: 'app-host-leaderboard',
@@ -13,15 +14,12 @@ import { AnswerStep } from "../../services/game/steps/answer-step";
   styleUrl: './host-leaderboard.component.scss'
 })
 export class HostLeaderboardComponent extends HostComponent {
-  private step: LeaderboardStep;
   constructor(host: HostService) {
-    super(host);
-    this.step = host.getCurrentStep()() as LeaderboardStep;
+    super(host)
   }
-
   getLeaderboard() {
     const players = this.host.getCurrentStep()()!.getGameState().getPlayers()();
-    
+
     // TODO: refactor the sort to edit a copy of the array
     return players.sort((a, b) => {
       return b.score - a.score;

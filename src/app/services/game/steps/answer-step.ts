@@ -8,11 +8,12 @@ import {
   Subject,
 } from "rxjs";
 import {RevealStep} from "./reveal-step";
+import {TimedStep} from "./timed-step";
 
 /**
  * An answering phase in the host (retrieve player responses / timeout).
  */
-export class AnswerStep extends GameStep {
+export class AnswerStep extends GameStep implements TimedStep {
   private playerAnswers$: Subject<void> = new Subject();
   private readonly timeout$: Observable<void> = new Observable((subscriber) => {
     const intervalId = setTimeout(() => {
