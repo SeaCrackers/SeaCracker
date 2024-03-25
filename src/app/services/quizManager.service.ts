@@ -144,4 +144,8 @@ export class QuizManagerService{
       console.error('Error while importing quiz');
     }
   }
+
+  public quizAsJson(quiz: Quiz): string {
+    return JSON.stringify(quiz);
+  }
 }

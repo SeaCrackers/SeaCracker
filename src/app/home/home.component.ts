@@ -28,4 +28,11 @@ export class HomeComponent{
   public importQuiz(quizToImport : string) : void {
     this.quizManager.importQuiz(quizToImport);
   }
+
+  public copyQuizExportToClipboard(quiz: Quiz) : void {
+    let quizAsJson : string = this.quizManager.quizAsJson(quiz);
+    navigator.clipboard.writeText(quizAsJson).then(r => {
+      console.log("Copied to clipboard");
+    });
+  }
 }
