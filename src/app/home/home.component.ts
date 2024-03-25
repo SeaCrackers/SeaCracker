@@ -24,4 +24,8 @@ export class HomeComponent{
   public addQuiz() : void {
     this.quizManager.addEmptyQuiz();
   }
+
+  public importQuiz(quizToImport : string) : void {
+    this.quizManager.importQuiz(quizToImport);
+  }
 }
