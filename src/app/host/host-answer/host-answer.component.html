@@ -7,21 +7,16 @@
 
 
   <h1 id="question" class="position-absolute bg-light p-2 rounded text-center">
-    {{ host.getCurrentStep()()!.getGameState().getCurrentQuestion()().question }}
+    {{ getCurrentQuestion().question }}
   </h1>
   <span class="position-absolute start-0 bottom-0 text-warning-emphasis">
     Credits:
     https://www.vecteezy.com/vector-art/15916932-abandoned-pirate-captain-ship-cabin-broken-room
   </span>
   <div class="grid w-100">
-    <div class="box rounded bg-primary">{{
-      host.getCurrentStep()()!.getGameState().getCurrentQuestion()().answers[0].answer }}</div>
-    <div class="box rounded bg-success">{{
-      host.getCurrentStep()()!.getGameState().getCurrentQuestion()().answers[1].answer }}</div>
-    <div class="box rounded bg-danger">{{
-      host.getCurrentStep()()!.getGameState().getCurrentQuestion()().answers[2].answer }}</div>
-    <div class="box rounded">{{ host.getCurrentStep()()!.getGameState().getCurrentQuestion()().answers[3].answer }}
-    </div>
+    @for (answer of getCurrentQuestion().answers; track answer; let id = $index) {
+      <div [className]="buttonColor(id)">{{ answer.answer }}</div>
+    }
   </div>
   <audio [src]="musicUrl" autoplay loop></audio>
 </div>

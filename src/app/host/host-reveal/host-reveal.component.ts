@@ -3,6 +3,7 @@ import {AnswerStep} from "../../services/game/steps/answer-step";
 import {HostService} from "../../services/game/host.service";
 import {RevealStep} from "../../services/game/steps/reveal-step";
 import {HostComponent} from "../host-component";
+import {GameStep} from "../../services/game/steps/game-step";
 
 @Component({
   selector: 'app-host-reveal',
@@ -12,9 +13,7 @@ import {HostComponent} from "../host-component";
   styleUrl: './host-reveal.component.scss'
 })
 export class HostRevealComponent extends HostComponent{
-  private step: RevealStep;
-  constructor(host:HostService) {
-    super(host);
-    this.step = host.getCurrentStep()() as RevealStep;
+  constructor(host: HostService) {
+    super(host)
   }
 }

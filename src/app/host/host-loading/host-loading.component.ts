@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HostComponent} from "../host-component";
 import {HostService} from "../../services/game/host.service";
 import {PodiumStep} from "../../services/game/steps/podium-step";
+import {GameStep} from "../../services/game/steps/game-step";
 
 @Component({
   selector: 'app-host-loading',
@@ -11,7 +12,7 @@ import {PodiumStep} from "../../services/game/steps/podium-step";
   styleUrl: './host-loading.component.scss'
 })
 export class HostLoadingComponent extends HostComponent{
-  constructor(host:HostService) {
-    super(host);
+  constructor(host: HostService) {
+    super(host)
   }
 }

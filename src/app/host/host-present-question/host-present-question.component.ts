@@ -4,6 +4,8 @@ import { PlayerListStep } from "../../services/game/steps/player-list-step";
 import { PresentQuestionStep } from "../../services/game/steps/present-question-step";
 import { HostComponent } from "../host-component";
 import { AnswerStep } from "../../services/game/steps/answer-step";
+import {TimedStep} from "../../services/game/steps/timed-step";
+import {GameStep} from "../../services/game/steps/game-step";
 
 @Component({
   selector: 'app-host-present-question',
@@ -13,15 +15,12 @@ import { AnswerStep } from "../../services/game/steps/answer-step";
   styleUrl: './host-present-question.component.scss'
 })
 export class HostPresentQuestionComponent extends HostComponent {
-  private step: PresentQuestionStep;
-
   constructor(host: HostService) {
-    super(host);
-    this.step = host.getCurrentStep()() as PresentQuestionStep;
+    super(host)
   }
 
-  getTimerDuration() {
-    return this.step.getTimerDuration();
+  getTimerDuration() : number {
+    return (this.host.getCurrentStep()() as unknown as TimedStep).getTimerDuration();
   }
 }
 
