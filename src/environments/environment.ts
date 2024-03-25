@@ -1,3 +1,3 @@
 export const environment = {
-  webSocketRelayUrl : 'https://seacracker.eliott.pro/'
+  webSocketRelayUrl: 'https://seacracker.eliott.pro/'
 };

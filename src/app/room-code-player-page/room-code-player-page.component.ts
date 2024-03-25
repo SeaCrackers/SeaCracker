@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room-code-player-page',
@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class RoomCodePlayerPageComponent {
   roomID: string | null = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   joinRoom() {
     this.router.navigate(['/play/', this.roomID]);

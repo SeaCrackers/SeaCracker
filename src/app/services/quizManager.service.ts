@@ -12,9 +12,10 @@ import {Injectable} from "@angular/core";
 @Injectable({
   providedIn: 'root'
 })
-export class QuizManagerService{
+export class QuizManagerService {
   private quizzes: Quiz[];
   private dataSaver: DataSaver;
+
   constructor() {
     //TODO : Dependency injection instead
     this.dataSaver = new LocalStorageDataSaverService('quizzes')
@@ -24,36 +25,33 @@ export class QuizManagerService{
   private getQuizzesFromLocalStorage(): Quiz[] {
     return this.dataSaver.getData() as Quiz[];
   }
+
   private saveQuizzesToLocalStorage(): void {
     this.dataSaver.saveData(this.quizzes);
   }
+
   // CREATE
 
-  public addQuestionToQuiz(quizId: number, question: Question): void{
-    const quiz : Quiz | undefined = this.getQuizById(quizId);
+  public addQuestionToQuiz(quizId: number, question: Question): void {
+    const quiz: Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
       quiz.questions.push(question);
       this.updateQuiz(quiz);
     }
   }
 
-  private addQuiz(quiz: Quiz) : void {
+  private addQuiz(quiz: Quiz): void {
     this.quizzes.push(quiz);
     this.saveQuizzesToLocalStorage();
   }
 
-  public addEmptyQuiz(): void{
-    this.addQuiz(
-      this.emptyQuizFactory(
-        this.getHighestQuizId() + 1
-      )
-    );
+  public addEmptyQuiz(): void {
+    this.addQuiz(this.emptyQuizFactory(this.getHighestQuizId() + 1));
   }
 
-  private emptyAnswerFactory(correct : boolean = false): Answer {
+  private emptyAnswerFactory(correct: boolean = false): Answer {
     return {
-      answer: '',
-      correct: correct
+      answer: '', correct: correct
     } as Answer;
   }
 
@@ -61,22 +59,13 @@ export class QuizManagerService{
     return {
       question: '',
       timer: 40,
-      answers: [
-        this.emptyAnswerFactory(true),
-        this.emptyAnswerFactory(),
-        this.emptyAnswerFactory(),
-        this.emptyAnswerFactory()
-      ]
+      answers: [this.emptyAnswerFactory(true), this.emptyAnswerFactory(), this.emptyAnswerFactory(), this.emptyAnswerFactory()]
     } as Question;
   }
 
   private emptyQuizFactory(id: number): Quiz {
     return {
-      id: id,
-      title: '',
-      questions: [
-        this.emptyQuestionFactory()
-      ]
+      id: id, title: '', questions: [this.emptyQuestionFactory()]
     } as Quiz;
   }
 
@@ -86,8 +75,8 @@ export class QuizManagerService{
     return this.quizzes;
   }
 
-  public getQuizById(quizId : number) : Quiz | undefined{
-    return this.quizzes.find((q : Quiz) : boolean => {
+  public getQuizById(quizId: number): Quiz | undefined {
+    return this.quizzes.find((q: Quiz): boolean => {
       return q.id == quizId
     });
   }
@@ -98,15 +87,17 @@ export class QuizManagerService{
 
   // UPDATE
 
-  public updateQuiz(quiz: Quiz): void{
-    this.quizzes[this.quizzes.findIndex((q: Quiz) : boolean => {return q.id == quiz.id;})] = quiz;
+  public updateQuiz(quiz: Quiz): void {
+    this.quizzes[this.quizzes.findIndex((q: Quiz): boolean => {
+      return q.id == quiz.id;
+    })] = quiz;
     this.saveQuizzesToLocalStorage();
   }
 
   public updateQuestion(quizId: number, question: Question): void {
-    const quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz: Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      const index : number = quiz.questions.indexOf(question);
+      const index: number = quiz.questions.indexOf(question);
       if (index !== -1) {
         quiz.questions[index] = question;
         this.updateQuiz(quiz);
@@ -116,8 +107,8 @@ export class QuizManagerService{
 
   // DELETE
 
-  public deleteQuiz(quizId: number): void{
-    const index = this.quizzes.findIndex((q: Quiz) : boolean => {
+  public deleteQuiz(quizId: number): void {
+    const index = this.quizzes.findIndex((q: Quiz): boolean => {
       return q.id == quizId;
     });
     this.quizzes.splice(index, 1);
@@ -125,9 +116,9 @@ export class QuizManagerService{
   }
 
   public deleteQuestion(quizId: number, question: Question): void {
-    const quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz: Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      const index : number = quiz.questions.indexOf(question);
+      const index: number = quiz.questions.indexOf(question);
       if (index !== -1) {
         quiz.questions.splice(index, 1);
         this.updateQuiz(quiz);

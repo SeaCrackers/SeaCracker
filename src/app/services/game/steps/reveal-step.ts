@@ -4,7 +4,7 @@ import {LeaderboardStep} from "./leaderboard-step";
 /**
  * A reveal phase in the host is a phase meant to display the correct answers to the players.
  */
-export class RevealStep extends GameStep{
+export class RevealStep extends GameStep {
   goToNextStep(): GameStep {
     return new LeaderboardStep(this.gameState);
   }

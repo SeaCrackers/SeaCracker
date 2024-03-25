@@ -1,3 +1,3 @@
 export const environment = {
-  webSocketRelayUrl : 'http://localhost:3000'
+  webSocketRelayUrl: 'http://localhost:3000'
 };

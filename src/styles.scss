@@ -2,63 +2,63 @@
 
 // Animations
 @keyframes bounce {
-    80% {
-        font-size: 2rem;
-    }
+  80% {
+    font-size: 2rem;
+  }
 
-    40% {
-        font-size: 2.5rem;
-    }
+  40% {
+    font-size: 2.5rem;
+  }
 
-    60% {
-        font-size: 1.7rem;
-    }
+  60% {
+    font-size: 1.7rem;
+  }
 }
 
 @keyframes countdown {
-    from {
-        width: 100%;
-    }
+  from {
+    width: 100%;
+  }
 
-    to {
-        width: 0%;
-    }
+  to {
+    width: 0;
+  }
 }
 
 @keyframes slide {
-    to {
-        translate: 0 calc(-50dvh + 8rem);
-    }
+  to {
+    translate: 0 calc(-50dvh + 8rem);
+  }
 }
 
 @keyframes slide-small {
-    to {
-        translate: 0 -6rem;
-    }
+  to {
+    translate: 0 -6rem;
+  }
 }
 
 @keyframes show {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 // END Animations
 
 #loading-bar {
-    top: 0;
-    margin-top: 8rem;
-    width: 60rem;
-    height: 2rem;
-    border: 5px solid white;
+  top: 0;
+  margin-top: 8rem;
+  width: 60rem;
+  height: 2rem;
+  border: 5px solid white;
 }
 
 #loading-progress {
-    background: white;
-    transition: all 1s linear;
-    animation: countdown 1 linear forwards;
+  background: white;
+  transition: all 1s linear;
+  animation: countdown 1 linear forwards;
 }

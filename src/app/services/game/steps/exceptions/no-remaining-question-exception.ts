@@ -1,2 +1,2 @@
-export class NoRemainingQuestionException extends Error{
+export class NoRemainingQuestionException extends Error {
 }

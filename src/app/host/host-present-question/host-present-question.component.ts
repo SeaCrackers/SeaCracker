@@ -1,11 +1,7 @@
-import { Component } from '@angular/core';
-import { HostService } from "../../services/game/host.service";
-import { PlayerListStep } from "../../services/game/steps/player-list-step";
-import { PresentQuestionStep } from "../../services/game/steps/present-question-step";
-import { HostComponent } from "../host-component";
-import { AnswerStep } from "../../services/game/steps/answer-step";
+import {Component} from '@angular/core';
+import {HostService} from "../../services/game/host.service";
+import {HostComponent} from "../host-component";
 import {TimedStep} from "../../services/game/steps/timed-step";
-import {GameStep} from "../../services/game/steps/game-step";
 
 @Component({
   selector: 'app-host-present-question',
@@ -19,7 +15,7 @@ export class HostPresentQuestionComponent extends HostComponent {
     super(host)
   }
 
-  getTimerDuration() : number {
+  getTimerDuration(): number {
     return (this.host.getCurrentStep()() as unknown as TimedStep).getTimerDuration();
   }
 }

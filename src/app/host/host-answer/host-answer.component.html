@@ -14,7 +14,7 @@
     https://www.vecteezy.com/vector-art/15916932-abandoned-pirate-captain-ship-cabin-broken-room
   </span>
   <div class="grid w-100">
-    @for (answer of getCurrentQuestion().answers; track answer; let id = $index) {
+    @for (answer of getCurrentQuestion().answers;track answer;let id = $index) {
       <div [className]="buttonColor(id)">{{ answer.answer }}</div>
     }
   </div>

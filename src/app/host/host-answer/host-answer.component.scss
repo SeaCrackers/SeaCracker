@@ -1,41 +1,41 @@
 #loading-bar {
-    animation: slide-small 1.5s 1 forwards;
+  animation: slide-small 1.5s 1 forwards;
 }
 
 #question {
-    position: absolute;
-    font-size: 2rem;
-    max-width: 75%;
-    animation: slide 1.5s 1 forwards;
+  position: absolute;
+  font-size: 2rem;
+  max-width: 75%;
+  animation: slide 1.5s 1 forwards;
 }
 
 #page-container {
-    position: relative;
-    background-image: url(../../../assets/images/vecteezy_abandoned-pirate-captain-ship-cabin-broken-room_15916932.jpg);
-    background-size: cover;
-    background-position: center;
+  position: relative;
+  background-image: url(../../../assets/images/vecteezy_abandoned-pirate-captain-ship-cabin-broken-room_15916932.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .grid {
-    opacity: 0;
-    animation: show 1s 0.5s 1 linear forwards;
-    margin-top: 10rem;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: calc(50% - 4rem) calc(50% - 4rem);
-    grid-template-rows: 12rem 12rem;
-    gap: 2.5rem;
+  opacity: 0;
+  animation: show 1s 0.5s 1 linear forwards;
+  margin-top: 10rem;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: calc(50% - 4rem) calc(50% - 4rem);
+  grid-template-rows: 12rem 12rem;
+  gap: 2.5rem;
 
-    .box {
-        background-color: orange;
-        padding: 2rem;
-        font-size: 1.8rem;
-        font-weight: 600;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow-wrap: break-word;
-        overflow: hidden;
-    }
+  .box {
+    background-color: orange;
+    padding: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: break-word;
+    overflow: hidden;
+  }
 }

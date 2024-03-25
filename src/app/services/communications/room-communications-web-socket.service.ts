@@ -1,6 +1,6 @@
 import {Injectable, signal, Signal, WritableSignal} from '@angular/core';
 import {RoomCommunicationsService} from "./room-communications.service";
-import {Observable, Subscriber} from "rxjs";
+import {Observable} from "rxjs";
 import {SocketRelayService} from "../transport/websockets/socket-relay.service";
 import {RoomEvents} from "./room-events";
 
@@ -11,8 +11,9 @@ import {RoomEvents} from "./room-events";
 @Injectable({
   providedIn: 'root'
 })
-export class RoomCommunicationsWebSocketService implements RoomCommunicationsService{
-  private roomsSignal : WritableSignal<string[]> = signal([]);
+export class RoomCommunicationsWebSocketService implements RoomCommunicationsService {
+  private roomsSignal: WritableSignal<string[]> = signal([]);
+
   constructor(private socket: SocketRelayService) {
   }
 
@@ -22,20 +23,20 @@ export class RoomCommunicationsWebSocketService implements RoomCommunicationsSer
 
   joinRoom(roomName: string): void {
     this.socket.emit(RoomEvents.Join, roomName);
-    this.roomsSignal.update((rooms : string[]) => {
+    this.roomsSignal.update((rooms: string[]) => {
       return [...rooms, roomName];
     });
   }
 
   leaveRoom(roomName: string): void {
     this.socket.emit(RoomEvents.Leave, roomName);
-    this.roomsSignal.update((rooms : string[]) => {
+    this.roomsSignal.update((rooms: string[]) => {
       return rooms.filter(room => room !== roomName)
     });
   }
 
   sendEventTo(roomName: string, content: any): void {
-    this.socket.emit(RoomEvents.Broadcast, {room:roomName, content:content});
+    this.socket.emit(RoomEvents.Broadcast, {room: roomName, content: content});
   }
 
   onEventReceived<T>(): Observable<T> {

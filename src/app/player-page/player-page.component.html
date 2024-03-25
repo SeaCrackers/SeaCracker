@@ -1,53 +1,55 @@
 <div id="page-container" class="d-flex flex-column justify-content-center align-items-center text-center">
 
-    @if (playerNickName) {
-    @if(canAnswer()()){
+  @if (playerNickName) {
+    @if (canAnswer()()) {
 
-    <!-- send 0,1,2,3 to answerQuestion() on  -->
+      <!-- send 0,1,2,3 to answerQuestion() on  -->
 
-    <div class="d-flex flex-column">
+      <div class="d-flex flex-column">
         <div class="d-flex">
-            <button (click)="answerQuestion(0)" class="answer bg-primary"></button>
-            <button (click)="answerQuestion(1)" class="answer bg-success"></button>
+          <button (click)="answerQuestion(0)" class="answer bg-primary"></button>
+          <button (click)="answerQuestion(1)" class="answer bg-success"></button>
         </div>
         <div class="d-flex">
-            <button (click)="answerQuestion(2)" class="answer bg-danger"></button>
-            <button (click)="answerQuestion(3)" class="answer"></button>
+          <button (click)="answerQuestion(2)" class="answer bg-danger"></button>
+          <button (click)="answerQuestion(3)" class="answer"></button>
         </div>
-    </div>
-    }@else{
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <h5 class="bg-light p-2 rounded text-center mb-5">Your name for this room is <span class="text-primary">{{playerNickName}}</span>.
+      </div>
+    } @else {
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h5 class="bg-light p-2 rounded text-center mb-5">Your name for this room is <span
+          class="text-primary">{{ playerNickName }}</span>.
         </h5>
         <span class="bg-light p-1 rounded text-secondary">Waiting for the host...</span>
         <div class="mt-4">
-            <div class="spinner-grow text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
-    </div>
+      </div>
     }
 
 
-    } @else {
+  } @else {
 
-    <h1 class="bg-light p-2 rounded text-center">You are in the room {{getRoomCode()}}</h1>
+    <h1 class="bg-light p-2 rounded text-center">You are in the room {{ getRoomCode() }}</h1>
 
     <!-- Form -->
 
     <form class="d-flex justify-content-center align-items-center gap-2 mt-5">
-        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Your nickname" style="width:12rem;" required #nicknameInput>
-        <button type="submit" class="btn btn-primary" (click)="setPlayerNickName(nicknameInput.value)">Join</button>
+      <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Your nickname"
+             style="width:12rem;" required #nicknameInput>
+      <button type="submit" class="btn btn-primary" (click)="setPlayerNickName(nicknameInput.value)">Join</button>
     </form>
 
-    }
+  }
 
-    <span class="position-absolute start-0 bottom-0 text-warning-emphasis">Credits:
+  <span class="position-absolute start-0 bottom-0 text-warning-emphasis">Credits:
         https://www.vecteezy.com/vector-art/15917197-sea-lagoon-with-wooden-pirate-ship</span>
 </div>

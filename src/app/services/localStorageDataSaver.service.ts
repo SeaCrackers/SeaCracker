@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {DataSaver} from "../interfaces/data-saver.interface";
 
 /**
@@ -11,7 +10,7 @@ export class LocalStorageDataSaverService implements DataSaver {
     this.key = key;
   }
 
-  public saveData(data : any): void {
+  public saveData(data: any): void {
     if (!localStorage) throw new Error('Local storage is not supported');
 
     try {
@@ -24,7 +23,7 @@ export class LocalStorageDataSaverService implements DataSaver {
   public getData(): any {
     if (!localStorage) throw new Error('Local storage is not supported');
 
-    const item : string | null = localStorage.getItem(this.key);
+    const item: string | null = localStorage.getItem(this.key);
     if (item) {
       try {
         return JSON.parse(item);

@@ -1,7 +1,6 @@
-import { GameStep } from "./game-step";
-import { AnswerStep } from "./answer-step";
-import { LeaderboardStep } from "./leaderboard-step";
-import {filter, firstValueFrom, map, merge, scan, Observable, Subscriber} from "rxjs";
+import {GameStep} from "./game-step";
+import {AnswerStep} from "./answer-step";
+import {Observable, Subscriber} from "rxjs";
 import {TimedStep} from "./timed-step";
 
 const TIME_TO_PRESENT_QUESTION = 4000;
@@ -20,7 +19,7 @@ export class PresentQuestionStep extends GameStep implements TimedStep {
   }
 
   override onIsReadyToMoveToNextStep(): Observable<void> {
-    return new Observable((subscriber : Subscriber<void>):void => {
+    return new Observable((subscriber: Subscriber<void>): void => {
       setTimeout(() => {
         subscriber.next();
       }, TIME_TO_PRESENT_QUESTION);

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Socket} from "ngx-socket-io";
 import {environment} from "../../../../environments/environment";
 
@@ -10,6 +10,6 @@ import {environment} from "../../../../environments/environment";
 })
 export class SocketRelayService extends Socket {
   constructor() {
-    super({ url: environment.webSocketRelayUrl, options: {} });
+    super({url: environment.webSocketRelayUrl, options: {}});
   }
 }

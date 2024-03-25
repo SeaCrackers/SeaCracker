@@ -1,12 +1,5 @@
-import { GameStep } from "./game-step";
-import {
-  filter,
-  map,
-  merge,
-  Observable,
-  scan,
-  Subject, Subscriber,
-} from "rxjs";
+import {GameStep} from "./game-step";
+import {filter, map, merge, Observable, scan, Subject, Subscriber,} from "rxjs";
 import {RevealStep} from "./reveal-step";
 import {TimedStep} from "./timed-step";
 
@@ -15,7 +8,7 @@ import {TimedStep} from "./timed-step";
  */
 export class AnswerStep extends GameStep implements TimedStep {
   private playerAnswers$: Subject<void> = new Subject();
-  private readonly timeout$: Observable<void> = new Observable((subscriber : Subscriber<void>) => {
+  private readonly timeout$: Observable<void> = new Observable((subscriber: Subscriber<void>) => {
     const intervalId = setTimeout(() => {
       subscriber.next();
     }, this.getTimerDuration());
@@ -23,7 +16,7 @@ export class AnswerStep extends GameStep implements TimedStep {
       clearInterval(intervalId);
     };
   });
-  private startedAt:Date = new Date();
+  private startedAt: Date = new Date();
 
   goToNextStep(): GameStep {
     return new RevealStep(this.gameState);
@@ -34,18 +27,12 @@ export class AnswerStep extends GameStep implements TimedStep {
   }
 
   getTimerDuration(): number {
-    return this.gameState.getCurrentQuestion()().timer*1000;
+    return this.gameState.getCurrentQuestion()().timer * 1000;
   }
 
   override onIsReadyToMoveToNextStep(): Observable<void> {
-    return merge(
-      this.playerAnswers$.pipe(
-        scan((answersCount) => answersCount + 1, 0),
-        filter((answersCount) : boolean => answersCount === this.gameState.getPlayers()().length),
-        map(() => { })
-      ),
-      this.timeout$
-    );
+    return merge(this.playerAnswers$.pipe(scan((answersCount) => answersCount + 1, 0), filter((answersCount): boolean => answersCount === this.gameState.getPlayers()().length), map(() => {
+    })), this.timeout$);
   }
 
   override needManualInput(): boolean {
@@ -57,7 +44,7 @@ export class AnswerStep extends GameStep implements TimedStep {
   }
 
   override playerAnswer(playerId: string, answer: number): void {
-    if(this.gameState.getCurrentQuestion()().answers[answer].correct){
+    if (this.gameState.getCurrentQuestion()().answers[answer].correct) {
       this.gameState.addPlayerScore(playerId, Math.round((1 - ((Date.now() - this.startedAt.getTime()) / (2 * this.getTimerDuration()))) * 1000));
     }
     this.playerAnswers$.next();

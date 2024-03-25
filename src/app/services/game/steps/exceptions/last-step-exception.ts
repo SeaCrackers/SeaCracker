@@ -1,2 +1,2 @@
-export class LastStepException extends Error{
+export class LastStepException extends Error {
 }
