@@ -1,4 +1,4 @@
-import {DataSaver} from "../interfaces/data-saver.interface";
+import {DataSaver} from "../../interfaces/data-saver.interface";
 
 /**
  * A implementation of the DataSaver for local storage.

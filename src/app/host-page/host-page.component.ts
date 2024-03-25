@@ -14,7 +14,7 @@ import {HostAnswerComponent} from "../host/host-answer/host-answer.component";
 import {NgComponentOutlet} from "@angular/common";
 import {HostComponent} from "../host/host-component";
 import {HostLoadingComponent} from "../host/host-loading/host-loading.component";
-import {QuizManagerService} from "../services/quizManager.service";
+import {QuizManagerService} from "../services/quiz-management/quizManager.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RevealStep} from "../services/game/steps/reveal-step";
 import {HostRevealComponent} from "../host/host-reveal/host-reveal.component";

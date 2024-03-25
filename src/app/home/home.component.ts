@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QuizManagerService} from "../services/quizManager.service";
+import {QuizManagerService} from "../services/quiz-management/quizManager.service";
 import {Quiz} from "../interfaces/quiz.interface";
 import {RouterLink} from '@angular/router';
 
@@ -20,7 +20,7 @@ export class HomeComponent {
   }
 
   public tryToDeleteQuiz(quiz: Quiz): void {
-    if (confirm("Are you sure you want to delete this quiz?")) {
+    if (confirm("Are you sure you want to delete this quiz-management?")) {
       this.quizManager.deleteQuiz(quiz.id);
     }
   }

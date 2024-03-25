@@ -1,8 +1,8 @@
-import {Quiz} from "../interfaces/quiz.interface";
-import {Question} from "../interfaces/question.interface";
-import {Answer} from "../interfaces/answer.interface";
+import {Quiz} from "../../interfaces/quiz.interface";
+import {Question} from "../../interfaces/question.interface";
+import {Answer} from "../../interfaces/answer.interface";
 import {LocalStorageDataSaverService} from "./localStorageDataSaver.service";
-import {DataSaver} from "../interfaces/data-saver.interface";
+import {DataSaver} from "../../interfaces/data-saver.interface";
 import {Injectable} from "@angular/core";
 
 /**
@@ -143,7 +143,7 @@ export class QuizManagerService {
       quiz.id = this.getHighestQuizId() + 1;
       this.addQuiz(quiz);
     } catch (e) {
-      console.error('Error while importing quiz');
+      console.error('Error while importing quiz-management');
     }
   }
 

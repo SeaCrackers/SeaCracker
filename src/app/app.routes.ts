@@ -11,5 +11,5 @@ export const routes: Routes = [
   { path: 'host/:id', component: HostPageComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component:  HomeComponent},
-  { path: 'quiz/:id/edit', component: EditQuizComponent}
+  { path: 'quiz-management/:id/edit', component: EditQuizComponent}
 ];

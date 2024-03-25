@@ -5,7 +5,7 @@ import {Player} from "../../../interfaces/player.interface";
 import {Question} from "../../../interfaces/question.interface";
 
 /**
- * Game state is a model that shows the current status of the quiz and players in a host.
+ * Game state is a model that shows the current status of the quiz-management and players in a host.
  */
 export class GameState {
   private currentQuestionId: WritableSignal<number> = signal(0);
