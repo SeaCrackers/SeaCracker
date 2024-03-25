@@ -1,4 +1,5 @@
-import { Answer } from './answer.interface';
+import {Answer} from './answer.interface';
+
 export interface Question {
   question: string;
   timer: number;

@@ -38,7 +38,6 @@
             </div>
             </div>
           </div>
-        </div>
         }
         <button class="btn btn-success" (click)="addQuestion()">
           <i class="fa fa-plus"></i> Add a question
@@ -58,7 +57,6 @@
               <input class="form-control" style="width:45rem;" type="text" [value]="answer.answer" placeholder="Write your answer and check the correct one" (change)="updateAnswer(question, answer, $event)">
               <input class="form-check-input" type="checkbox" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="toggleCorrectAnswer(answer)">
             </div>
-          </div>
           }
         </div>
       </section>
@@ -70,9 +68,9 @@
             <p class="card-title fs-5">Timer of the question in seconds</p>
             <select class="form-select w-25" (change)="updateQuestionTimer(question, $event)">
               <option selected>{{ question.timer }}</option>
-              @for (time of getPredefinedTimers(); track time) {
-                @if (time != question.timer) {
-                <option [selected]="time === question.timer">{{ time }}</option>
+              @for (time of getPredefinedTimers();track time) {
+                @if (time !== question.timer) {
+                  <option [selected]="time === question.timer">{{ time }}</option>
                 }
               }
             </select>

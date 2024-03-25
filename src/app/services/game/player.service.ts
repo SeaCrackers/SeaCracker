@@ -14,40 +14,41 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 @Injectable({
   providedIn: 'root'
 })
-export class PlayerService extends UserService{
-  private canAnswer:WritableSignal<boolean> = signal(false)
-  constructor(room:RoomCommunicationsService) {
+export class PlayerService extends UserService {
+  private canAnswer: WritableSignal<boolean> = signal(false)
+
+  constructor(room: RoomCommunicationsService) {
     super(room)
   }
 
-  public joinRoom(roomCode : string): void {
+  public joinRoom(roomCode: string): void {
     this.roomCode = roomCode
     this.room.joinRoom(this.roomCode)
     this.registerEvents()
   }
 
-  public setupName(pseudo: string): void{
-    this.room.sendEventTo(HostService.getHostOnlyRoom(this.roomCode!),new GameEvent(GameEventType.Setup,this.room.getMyUniqueIdentifier(),pseudo))
+  public setupName(pseudo: string): void {
+    this.room.sendEventTo(HostService.getHostOnlyRoom(this.roomCode!), new GameEvent(GameEventType.Setup, this.room.getMyUniqueIdentifier(), pseudo))
   }
 
-  public getCanAnswer() : Signal<boolean>{
+  public getCanAnswer(): Signal<boolean> {
     return this.canAnswer.asReadonly()
   }
 
-  public answerQuestion(answerId: number): void{
-    this.room.sendEventTo(HostService.getHostOnlyRoom(this.roomCode!),new GameEvent(GameEventType.Answer,this.room.getMyUniqueIdentifier(),answerId))
+  public answerQuestion(answerId: number): void {
+    this.room.sendEventTo(HostService.getHostOnlyRoom(this.roomCode!), new GameEvent(GameEventType.Answer, this.room.getMyUniqueIdentifier(), answerId))
     this.canAnswer.set(false)
   }
 
-  private onHostStartAnswering(): Observable<GameEvent>{
+  private onHostAnsweringState(): Observable<GameEvent> {
     return this.room.onEventReceived<GameEvent>()
-      .pipe(filter((event)=>event.type === GameEventType.StartAnswering))
+      .pipe(filter((event: GameEvent): boolean => event.type === GameEventType.AnsweringState))
   }
 
-  private registerEvents(): void{
-    this.onHostStartAnswering().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
-      console.log("Received start answering event"+gameEvent.content)
-      this.canAnswer.set(true)
+  private registerEvents(): void {
+    this.onHostAnsweringState().pipe(takeUntilDestroyed()).subscribe((gameEvent: GameEvent): void => {
+      console.log("Received start answering event" + gameEvent.content)
+      this.canAnswer.set(gameEvent.content)
     });
   }
 }

@@ -1,0 +1,42 @@
+#question {
+  position: absolute;
+  font-size: 2rem;
+  max-width: 75%;
+  translate: 0 calc(-50dvh + 8rem);
+}
+
+#page-container {
+  position: relative;
+  background-image: url(../../../assets/images/vecteezy_abandoned-pirate-captain-ship-cabin-broken-room_15916932.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.grid {
+  margin-top: 10rem;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: calc(50% - 4rem) calc(50% - 4rem);
+  grid-template-rows: 12rem 12rem;
+  gap: 2.5rem;
+
+  .box {
+    padding: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: break-word;
+    overflow: hidden;
+
+    &.correct {
+      background-color: rgb(0, 168, 53);
+    }
+
+    &.incorrect {
+      background-color: rgba(79, 0, 0, 0.5);
+    }
+  }
+}

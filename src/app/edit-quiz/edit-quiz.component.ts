@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Quiz} from "../interfaces/quiz.interface";
 import {Question} from "../interfaces/question.interface";
@@ -8,20 +8,19 @@ import {QuizManagerService} from "../services/quizManager.service";
 @Component({
   selector: 'app-edit-quiz',
   standalone: true,
-  imports: [
-    RouterLink
-  ],
+  imports: [RouterLink],
   templateUrl: './edit-quiz.component.html',
   styleUrl: './edit-quiz.component.scss'
 })
-export class EditQuizComponent{
+
+export class EditQuizComponent {
   quiz: Quiz;
   question!: Question;
 
   constructor(private quizManager: QuizManagerService, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    let potentialQuiz = this.quizManager.getQuizById(id);
+    const potentialQuiz: Quiz | undefined = this.quizManger.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }
@@ -32,9 +31,10 @@ export class EditQuizComponent{
       this.addQuestion();
     }
   }
+
   public setSelectedQuestion(question: Question): Question {
-     this.question = question;
-     return this.question;
+    this.question = question;
+    return this.question;
   }
 
   public deleteQuestion(question: Question) : void {
@@ -52,7 +52,7 @@ export class EditQuizComponent{
   public toggleCorrectAnswer(answer: Answer): void {
     answer.correct = !answer.correct;
     this.quizManager.updateQuestion(this.quiz.id, this.question);
-  }
+
 
   public updateQuizTitle(event: Event): void {
     this.quiz.title = (event.target as HTMLInputElement).value;
@@ -64,9 +64,10 @@ export class EditQuizComponent{
     this.quizManager.updateQuestion(this.quiz.id, question);
   }
 
-  public getPredefinedTimers() : number[] {
+  public getPredefinedTimers(): number[] {
     return [20, 40, 60, 80];
   }
+
   public updateQuestionTitle(question: Question, event: Event): void {
     question.question = (event.target as HTMLInputElement).value;
     this.quizManager.updateQuestion(this.quiz.id, question);
