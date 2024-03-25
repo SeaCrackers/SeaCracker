@@ -1,0 +1,12 @@
+<div class="d-flex p-2 justify-content-between position-absolute w-100" [style.zIndex]="'100'">
+
+  <div class="d-flex flex-column align-items-center bg-light">
+    <app-qr-code [roomCode]="host.getRoomCode()"></app-qr-code>
+    <h5 class="">{{ host.getRoomCode() }}</h5>
+  </div>
+
+  <button class="btn btn-primary h-25 m-3" (click)="handleNextStepClick()">Next Step</button>
+  <audio src="../../../assets/audio/sea-amb.ogg" autoplay loop></audio>
+</div>
+
+<ng-container *ngComponentOutlet="activeStepComponent"></ng-container>

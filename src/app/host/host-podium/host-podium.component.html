@@ -1,0 +1,15 @@
+<div id="page-container" class="vh-100 position-relative d-flex justify-content-center align-items-end overflow-hidden">
+  <div id="light-effect"></div>
+
+  @for (place of getPodiumViewPlaces(); track place){
+    <div [id]="'podium-'+place" class="podium-tier">
+      <span class="podium-player-pseudo bg-light p-2 rounded text-center">
+        {{ getLeaderboard()[place-1]?.pseudo ?? 'Nobody' }}
+      </span>
+      {{ place }}
+    </div>
+  }
+
+  <span class="position-absolute start-0 bottom-0 text-warning-emphasis">Credits:
+        https://www.vecteezy.com/vector-art/21449294-wreck-pirate-ship-underwater-with-torn-flag</span>
+</div>
