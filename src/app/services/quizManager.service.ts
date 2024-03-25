@@ -125,4 +125,18 @@ export class QuizManagerService {
       }
     }
   }
+
+  public importQuiz(quizToImport : string) : void {
+    try {
+      const quiz : Quiz = JSON.parse(quizToImport);
+      quiz.id = this.getHighestQuizId() + 1;
+      this.addQuiz(quiz);
+    } catch (e) {
+      console.error('Error while importing quiz');
+    }
+  }
+
+  public quizAsJson(quiz: Quiz): string {
+    return JSON.stringify(quiz);
+  }
 }
