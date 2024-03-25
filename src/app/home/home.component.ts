@@ -32,7 +32,7 @@ export class HomeComponent{
   }
 
   public copyQuizExportToClipboard(quiz: Quiz) : void {
-    let quizAsJson : string = this.quizManager.quizAsJson(quiz);
+    const quizAsJson : string = this.quizManager.quizAsJson(quiz);
     navigator.clipboard.writeText(quizAsJson).then(r => {
       console.log("Copied to clipboard");
     });

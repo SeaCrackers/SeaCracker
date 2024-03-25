@@ -79,7 +79,7 @@ export class EditQuizComponent {
   }
 
   public swapQuestions(question: Question, direction: string): void {
-    let questionToSwap = this.quiz.questions[this.quiz.questions.indexOf(question) + (direction === 'up' ? -1 : 1)];
+    const questionToSwap = this.quiz.questions[this.quiz.questions.indexOf(question) + (direction === 'up' ? -1 : 1)];
     this.quizManager.swapQuestionIndexes(this.quiz.id, question, questionToSwap);
   }
 }

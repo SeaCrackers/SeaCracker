@@ -106,10 +106,10 @@ export class QuizManagerService {
   }
 
   public swapQuestionIndexes(quizId: number, question1: Question, question2: Question): void {
-    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz : Quiz | undefined = this.getQuizById(quizId);
     if (!quiz) return;
-    let index1 : number = quiz.questions.indexOf(question1);
-    let index2 : number = quiz.questions.indexOf(question2);
+    const index1 : number = quiz.questions.indexOf(question1);
+    const index2 : number = quiz.questions.indexOf(question2);
     if (index1 !== -1 && index2 !== -1 && index1 < quiz.questions.length && index2 < quiz.questions.length) {
       [quiz.questions[index1], quiz.questions[index2]] = [quiz.questions[index2], quiz.questions[index1]];
       this.updateQuiz(quiz);
