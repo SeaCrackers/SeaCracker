@@ -14,14 +14,9 @@
     https://www.vecteezy.com/vector-art/15916932-abandoned-pirate-captain-ship-cabin-broken-room
   </span>
   <div class="grid w-100">
-    <div class="box rounded bg-primary">{{
-      getCurrentQuestion().answers[0].answer }}</div>
-    <div class="box rounded bg-success">{{
-      getCurrentQuestion().answers[1].answer }}</div>
-    <div class="box rounded bg-danger">{{
-      getCurrentQuestion().answers[2].answer }}</div>
-    <div class="box rounded">{{ getCurrentQuestion().answers[3].answer }}
-    </div>
+    @for (answer of getCurrentQuestion().answers; track answer; let id = $index) {
+      <div [className]="buttonColor(id)">{{ answer.answer }}</div>
+    }
   </div>
   <audio [src]="musicUrl" autoplay loop></audio>
 </div>

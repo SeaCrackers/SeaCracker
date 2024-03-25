@@ -14,6 +14,7 @@ import {TimedStep} from "../../services/game/steps/timed-step";
   styleUrl: './host-answer.component.scss'
 })
 export class HostAnswerComponent extends HostComponent{
+  private buttonClassColors = ["bg-primary", "bg-success", "bg-danger", ""];
   public musicUrl: string = this.randomMusicUrl();
 
   constructor(host: HostService) {
@@ -26,5 +27,9 @@ export class HostAnswerComponent extends HostComponent{
 
   randomMusicUrl() {
     return "assets/audio/music-answer-"+(Math.floor(Math.random()*5.49)+1)+".ogg";
+  }
+
+  buttonColor(id: number) {
+    return "box rounded "+this.buttonClassColors[id];
   }
 }
