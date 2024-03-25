@@ -1,20 +1,13 @@
 import { GameStep } from "./game-step";
-import { LeaderboardStep } from "./leaderboard-step";
-import { effect, signal, Signal, WritableSignal } from "@angular/core";
 import {
-  catchError,
-  filter, firstValueFrom,
-  lastValueFrom,
+  filter,
   map,
   merge,
   Observable,
   scan,
   Subject,
-  switchMap,
-  takeWhile,
-  timeout
 } from "rxjs";
-import { toObservable } from "@angular/core/rxjs-interop";
+import {RevealStep} from "./reveal-step";
 
 /**
  * An answering phase in the host (retrieve player responses / timeout).
@@ -31,7 +24,7 @@ export class AnswerStep extends GameStep {
   });
 
   goToNextStep(): GameStep {
-    return new LeaderboardStep(this.gameState);
+    return new RevealStep(this.gameState);
   }
 
   hasNextStep(): boolean {
