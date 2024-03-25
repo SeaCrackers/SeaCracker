@@ -27,7 +27,7 @@ export class EditQuizComponent {
     this.quiz = potentialQuiz!;
     if (this.quiz.questions.length > 0) {
       this.setSelectedQuestion(this.quiz.questions[0]);
-    }else{
+    } else {
       this.addQuestion();
     }
   }
@@ -37,13 +37,13 @@ export class EditQuizComponent {
     return this.question;
   }
 
-  public deleteQuestion(question: Question) : void {
+  public deleteQuestion(question: Question): void {
     if (confirm("Are you sure you want to delete this question?")) {
       this.quizManager.deleteQuestion(this.quiz.id, question);
     }
   }
 
-  public addQuestion() : void {
+  public addQuestion(): void {
     const newQuestion: Question = this.quizManager.emptyQuestionFactory();
     this.quizManager.addQuestionToQuiz(this.quiz.id, newQuestion)
     this.question = newQuestion;
