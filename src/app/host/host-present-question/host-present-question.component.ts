@@ -19,8 +19,8 @@ export class HostPresentQuestionComponent extends HostComponent {
     super(host)
   }
 
-  getTimerDuration() {
-    return (this.step as unknown as TimedStep).getTimerDuration();
+  getTimerDuration() : number {
+    return (this.host.getCurrentStep()() as unknown as TimedStep).getTimerDuration();
   }
 }
 
