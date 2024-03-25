@@ -21,7 +21,7 @@ export class EditQuizComponent{
   constructor(private quizManger: QuizManagerService, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    let potentialQuiz = this.quizManger.getQuizById(id);
+    const potentialQuiz = this.quizManger.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }

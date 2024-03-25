@@ -30,7 +30,7 @@ export class QuizManagerService{
   // CREATE
 
   public addQuestionToQuiz(quizId: number, question: Question): void{
-    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
       quiz.questions.push(question);
       this.updateQuiz(quiz);
@@ -104,9 +104,9 @@ export class QuizManagerService{
   }
 
   public updateQuestion(quizId: number, question: Question): void {
-    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      let index = quiz.questions.indexOf(question);
+      const index = quiz.questions.indexOf(question);
       if (index !== -1) {
         quiz.questions[index] = question;
         this.updateQuiz(quiz);
@@ -117,7 +117,7 @@ export class QuizManagerService{
   // DELETE
 
   public deleteQuiz(quizId: number): void{
-    let index = this.quizzes.findIndex((q: Quiz) => {
+    const index = this.quizzes.findIndex((q: Quiz) => {
       return q.id == quizId;
     });
     this.quizzes.splice(index, 1);
@@ -125,9 +125,9 @@ export class QuizManagerService{
   }
 
   public deleteQuestion(quizId: number, question: Question): void {
-    let quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      let index = quiz.questions.indexOf(question);
+      const index = quiz.questions.indexOf(question);
       if (index !== -1) {
         quiz.questions.splice(index, 1);
         this.updateQuiz(quiz);

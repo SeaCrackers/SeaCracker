@@ -24,7 +24,7 @@ export class LocalStorageDataSaverService implements DataSaver {
   public getData(): any {
     if (!localStorage) throw new Error('Local storage is not supported');
 
-    let item : string | null = localStorage.getItem(this.key);
+    const item : string | null = localStorage.getItem(this.key);
     if (item) {
       try {
         return JSON.parse(item);

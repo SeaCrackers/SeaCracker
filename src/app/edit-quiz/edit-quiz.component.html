@@ -10,7 +10,7 @@
       <h1>SeaCracker - Edit Quiz</h1>
       <div class="mt-4 align-self-center w-25">
         <p class="text fs-5">Quiz :</p>
-        @if (quiz.title != ''){
+        @if (quiz.title !== ''){
         <input class="form-control text-center" type="text" [value]="quiz.title" (change)="updateQuizTitle($event)">
         } @else {
           <input class="form-control text-center" type="text" placeholder="Write your quiz title" (change)="updateQuizTitle($event)">
@@ -44,7 +44,7 @@
         <div class="row mx-5 mb-3">
           <div class="card mb-5 p-3 border border-light rounded bg-light shadow-sm">
             <p class="text-center fs-5">Question :</p>
-            @if (question.question != ''){
+            @if (question.question !== ''){
               <input class="form-control " type="text" [value]="question.question" (change)="updateQuestionTitle(question, $event)">
             } @else {
               <input class="form-control " type="text" placeholder="Write your question" (change)="updateQuestionTitle(question, $event)">
@@ -55,7 +55,7 @@
           <div class="card border border-light rounded bg-light shadow-sm mt-3 mb-4">
             <div class="card-body d-flex align-items-center justify-content-between">
               <span class="text-center">{{ i + 1 }}</span>
-              @if (answer.answer != '') {
+              @if (answer.answer !== '') {
               <input class="form-control" style="width:45rem;" type="text" [value]="answer.answer" (change)="updateAnswer(question, answer, $event)">
               <input class="form-check-input" type="radio" [value]="answer.correct" [checked]="answer.correct" name="correctAnswer" (click)="setCorrectAnswer(answer)">
               }
