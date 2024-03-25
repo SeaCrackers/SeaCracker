@@ -29,7 +29,7 @@ import {HostRevealComponent} from "../host/host-reveal/host-reveal.component";
 export class HostPageComponent {
   constructor(public host: HostService, private quizManager: QuizManagerService, private activatedroute: ActivatedRoute, private router: Router) {
     const quizId = parseInt(this.activatedroute.snapshot.paramMap.get("id") ?? "-1")
-    const quiz = this.quizManager.getQuizById(quizId);
+    const quiz = this.quizManager.getQuizUsingId(quizId);
     if (!quiz) this.router.navigate(['/']);
     this.host.setupQuiz(quiz!)
   }

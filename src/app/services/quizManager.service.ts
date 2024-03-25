@@ -33,7 +33,7 @@ export class QuizManagerService {
   // CREATE
 
   public addQuestionToQuiz(quizId: number, question: Question): void {
-    const quiz: Quiz | undefined = this.getQuizById(quizId);
+    const quiz: Quiz | undefined = this.getQuizUsingId(quizId);
     if (quiz) {
       quiz.questions.push(question);
       this.updateQuiz(quiz);
@@ -75,7 +75,7 @@ export class QuizManagerService {
     return this.quizzes;
   }
 
-  public getQuizById(quizId: number): Quiz | undefined {
+  public getQuizUsingId(quizId: number): Quiz | undefined {
     return this.quizzes.find((q: Quiz): boolean => {
       return q.id == quizId
     });
@@ -95,7 +95,7 @@ export class QuizManagerService {
   }
 
   public updateQuestion(quizId: number, question: Question): void {
-    const quiz: Quiz | undefined = this.getQuizById(quizId);
+    const quiz: Quiz | undefined = this.getQuizUsingId(quizId);
     if (quiz) {
       const index: number = quiz.questions.indexOf(question);
       if (index !== -1) {
@@ -106,7 +106,7 @@ export class QuizManagerService {
   }
 
   public swapQuestionIndexes(quizId: number, question1: Question, question2: Question): void {
-    const quiz : Quiz | undefined = this.getQuizById(quizId);
+    const quiz : Quiz | undefined = this.getQuizUsingId(quizId);
     if (!quiz) return;
     const index1 : number = quiz.questions.indexOf(question1);
     const index2 : number = quiz.questions.indexOf(question2);
@@ -127,7 +127,7 @@ export class QuizManagerService {
   }
 
   public deleteQuestion(quizId: number, question: Question): void {
-    const quiz: Quiz | undefined = this.getQuizById(quizId);
+    const quiz: Quiz | undefined = this.getQuizUsingId(quizId);
     if (quiz) {
       const index: number = quiz.questions.indexOf(question);
       if (index !== -1) {
