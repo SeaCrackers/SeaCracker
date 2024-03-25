@@ -1,6 +1,6 @@
 import {Injectable, signal, Signal, WritableSignal} from '@angular/core';
 import {RoomCommunicationsService} from "./room-communications.service";
-import {Observable} from "rxjs";
+import {Observable, Subscriber} from "rxjs";
 import {SocketRelayService} from "../transport/websockets/socket-relay.service";
 import {RoomEvents} from "./room-events";
 
@@ -22,14 +22,14 @@ export class RoomCommunicationsWebSocketService implements RoomCommunicationsSer
 
   joinRoom(roomName: string): void {
     this.socket.emit(RoomEvents.Join, roomName);
-    this.roomsSignal.update(rooms => {
+    this.roomsSignal.update((rooms : string[]) => {
       return [...rooms, roomName];
     });
   }
 
   leaveRoom(roomName: string): void {
     this.socket.emit(RoomEvents.Leave, roomName);
-    this.roomsSignal.update(rooms => {
+    this.roomsSignal.update((rooms : string[]) => {
       return rooms.filter(room => room !== roomName)
     });
   }

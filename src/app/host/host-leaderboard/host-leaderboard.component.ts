@@ -19,14 +19,7 @@ export class HostLeaderboardComponent extends HostComponent {
   }
   getLeaderboard() {
     const players = this.host.getCurrentStep()()!.getGameState().getPlayers()();
-<<<<<<< HEAD
-    
     return [...players].sort((a, b) => {
-=======
-
-    // TODO: refactor the sort to edit a copy of the array
-    return players.sort((a, b) => {
->>>>>>> b02c4c38854519ec2d3090d144a4d44553da1c7e
       return b.score - a.score;
     });
   }

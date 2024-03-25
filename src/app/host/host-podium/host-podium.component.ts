@@ -5,6 +5,7 @@ import {PodiumStep} from "../../services/game/steps/podium-step";
 import {HostComponent} from "../host-component";
 import {AnswerStep} from "../../services/game/steps/answer-step";
 import {GameStep} from "../../services/game/steps/game-step";
+import {Player} from "../../interfaces/player.interface";
 
 @Component({
   selector: 'app-host-podium',
@@ -18,16 +19,9 @@ export class HostPodiumComponent extends HostComponent{
     super(host)
   }
 
-  getLeaderboard() {
-    const players = this.host.getCurrentStep()()!.getGameState().getPlayers()();
-<<<<<<< HEAD
-    
+  getLeaderboard() : Player[] {
+    const players : Player[] = this.host.getCurrentStep()()!.getGameState().getPlayers()();
     return [...players].sort((a, b) => {
-=======
-
-    // TODO: refactor the sort to edit a copy of the array
-    return players.sort((a, b) => {
->>>>>>> b02c4c38854519ec2d3090d144a4d44553da1c7e
       return b.score - a.score;
     });
   }

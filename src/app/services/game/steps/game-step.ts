@@ -1,6 +1,6 @@
 import {GameState} from "./game-state";
 import {signal, Signal} from "@angular/core";
-import { Observable } from "rxjs";
+import {Observable, Subscriber} from "rxjs";
 
 /**
  * A step is a generic stage used in a game hosting context.
@@ -13,15 +13,15 @@ export abstract class GameStep {
   public abstract goToNextStep():GameStep;
 
   public onIsReadyToMoveToNextStep():Observable<void> {
-    return new Observable<void>((subscriber) => {
+    return new Observable<void>((subscriber : Subscriber<void>) : void => {
       subscriber.next();
     });
   }
 
-  public getGameState(){
+  public getGameState() : GameState{
     return this.gameState;
   }
-  public playerAnswer(playerId:string, answer:number){
+  public playerAnswer(playerId:string, answer:number) : void{
     //Do nothing by default for 'late' players
   }
 

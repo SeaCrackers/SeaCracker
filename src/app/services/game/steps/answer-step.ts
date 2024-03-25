@@ -5,7 +5,7 @@ import {
   merge,
   Observable,
   scan,
-  Subject,
+  Subject, Subscriber,
 } from "rxjs";
 import {RevealStep} from "./reveal-step";
 import {TimedStep} from "./timed-step";
@@ -15,7 +15,7 @@ import {TimedStep} from "./timed-step";
  */
 export class AnswerStep extends GameStep implements TimedStep {
   private playerAnswers$: Subject<void> = new Subject();
-  private readonly timeout$: Observable<void> = new Observable((subscriber) => {
+  private readonly timeout$: Observable<void> = new Observable((subscriber : Subscriber<void>) => {
     const intervalId = setTimeout(() => {
       subscriber.next();
     }, this.getTimerDuration());
@@ -40,7 +40,7 @@ export class AnswerStep extends GameStep implements TimedStep {
     return merge(
       this.playerAnswers$.pipe(
         scan((answersCount) => answersCount + 1, 0),
-        filter((answersCount) => answersCount === this.gameState.getPlayers()().length),
+        filter((answersCount) : boolean => answersCount === this.gameState.getPlayers()().length),
         map(() => { })
       ),
       this.timeout$

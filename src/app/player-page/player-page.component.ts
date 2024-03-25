@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, Signal} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
 import {HostService} from "../services/game/host.service";
@@ -15,7 +15,7 @@ import {PlayerService} from "../services/game/player.service";
 export class PlayerPageComponent {
     playerNickName: string | null = null;
 
-    setPlayerNickName(nickname: string) {
+    setPlayerNickName(nickname: string) : void {
         this.playerNickName = nickname;
         this.player.setupName(nickname);
     }
@@ -30,18 +30,15 @@ export class PlayerPageComponent {
       $event.returnValue = false;
     }
 
-    canAnswer() {
+    canAnswer() : Signal<boolean> {
         return this.player.getCanAnswer();
     }
 
-    getRoomCode() {
+    getRoomCode() : string | undefined {
         return this.player.getRoomCode();
     }
 
-    answerQuestion(answerId: number) {
+    answerQuestion(answerId: number) : void {
         this.player.answerQuestion(answerId);
     }
-
-
-
 }

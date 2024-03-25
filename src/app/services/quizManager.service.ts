@@ -50,7 +50,7 @@ export class QuizManagerService{
     );
   }
 
-  private emptyAnswerFactory(correct = false): Answer {
+  private emptyAnswerFactory(correct : boolean = false): Answer {
     return {
       answer: '',
       correct: correct
@@ -87,7 +87,7 @@ export class QuizManagerService{
   }
 
   public getQuizById(quizId : number) : Quiz | undefined{
-    return this.quizzes.find((q : Quiz)=> {
+    return this.quizzes.find((q : Quiz) : boolean => {
       return q.id == quizId
     });
   }
@@ -99,14 +99,14 @@ export class QuizManagerService{
   // UPDATE
 
   public updateQuiz(quiz: Quiz): void{
-    this.quizzes[this.quizzes.findIndex((q: Quiz) => {return q.id == quiz.id;})] = quiz;
+    this.quizzes[this.quizzes.findIndex((q: Quiz) : boolean => {return q.id == quiz.id;})] = quiz;
     this.saveQuizzesToLocalStorage();
   }
 
   public updateQuestion(quizId: number, question: Question): void {
     const quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      const index = quiz.questions.indexOf(question);
+      const index : number = quiz.questions.indexOf(question);
       if (index !== -1) {
         quiz.questions[index] = question;
         this.updateQuiz(quiz);
@@ -117,7 +117,7 @@ export class QuizManagerService{
   // DELETE
 
   public deleteQuiz(quizId: number): void{
-    const index = this.quizzes.findIndex((q: Quiz) => {
+    const index = this.quizzes.findIndex((q: Quiz) : boolean => {
       return q.id == quizId;
     });
     this.quizzes.splice(index, 1);
@@ -127,7 +127,7 @@ export class QuizManagerService{
   public deleteQuestion(quizId: number, question: Question): void {
     const quiz : Quiz | undefined = this.getQuizById(quizId);
     if (quiz) {
-      const index = quiz.questions.indexOf(question);
+      const index : number = quiz.questions.indexOf(question);
       if (index !== -1) {
         quiz.questions.splice(index, 1);
         this.updateQuiz(quiz);

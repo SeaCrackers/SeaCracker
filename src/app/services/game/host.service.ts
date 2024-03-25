@@ -27,7 +27,7 @@ export class HostService extends UserService{
     super(room, RandomGenerator.generateString(4))
   }
 
-  public setupQuiz(quiz:Quiz){
+  public setupQuiz(quiz:Quiz) : void {
     this.currentStep.set(new PlayerListStep(new GameState(quiz)))
     this.joinRoom()
   }
@@ -43,7 +43,7 @@ export class HostService extends UserService{
     });
   }
 
-  public nextStep() {
+  public nextStep() : void {
     if(this.timeoutSubscription)
       this.timeoutSubscription.unsubscribe();
     this.currentStep.set(this.currentStep()!.goToNextStep());
@@ -71,10 +71,10 @@ export class HostService extends UserService{
   }
 
   private registerEvents(): void{
-    this.onPlayerSetup().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
+    this.onPlayerSetup().pipe(takeUntilDestroyed()).subscribe((gameEvent: GameEvent):void=>{
       this.setupPlayer(gameEvent as GameEvent);
     });
-    this.onPlayerAnswer().pipe(takeUntilDestroyed()).subscribe((gameEvent)=>{
+    this.onPlayerAnswer().pipe(takeUntilDestroyed()).subscribe((gameEvent: GameEvent):void=>{
       this.addPlayerAnswer(gameEvent as GameEvent);
     });
   }
@@ -83,7 +83,7 @@ export class HostService extends UserService{
     this.currentStep()?.getGameState().addPlayer(event.emitter!, event.content)
   }
 
-  private addPlayerAnswer(event : GameEvent){
+  private addPlayerAnswer(event : GameEvent):void{
     this.currentStep()?.playerAnswer(event.emitter!, event.content)
   }
 

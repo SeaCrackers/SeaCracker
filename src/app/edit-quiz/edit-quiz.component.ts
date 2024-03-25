@@ -21,7 +21,7 @@ export class EditQuizComponent{
   constructor(private quizManger: QuizManagerService, private router: Router, private route: ActivatedRoute) {
 
     const id = this.route.snapshot.params["id"];
-    const potentialQuiz = this.quizManger.getQuizById(id);
+    const potentialQuiz : Quiz|undefined = this.quizManger.getQuizById(id);
     if (potentialQuiz == undefined) {
       this.router.navigate(["/"])
     }
@@ -47,7 +47,7 @@ export class EditQuizComponent{
   }
 
   public setCorrectAnswer(answer: Answer): void {
-    this.question.answers.forEach(answer => answer.correct = false);
+    this.question.answers.forEach((answer : Answer) : boolean => answer.correct = false);
     answer.correct = true;
     this.quizManger.updateQuestion(this.quiz.id, this.question);
   }

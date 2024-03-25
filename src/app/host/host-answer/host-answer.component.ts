@@ -25,11 +25,11 @@ export class HostAnswerComponent extends HostComponent{
     return (this.host.getCurrentStep()() as unknown as TimedStep).getTimerDuration();
   }
 
-  randomMusicUrl() {
+  randomMusicUrl() : string {
     return "assets/audio/music-answer-"+(Math.floor(Math.random()*5.49)+1)+".ogg";
   }
 
-  buttonColor(id: number) {
+  buttonColor(id: number) :string {
     return "box rounded "+this.buttonClassColors[id];
   }
 }

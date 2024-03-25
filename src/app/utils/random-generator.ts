@@ -12,8 +12,8 @@ export class RandomGenerator{
    * Generate a string / room code for a given length
    * @param length
    */
-  public static generateString(length : number) {
-    let result = '';
+  public static generateString(length : number) : string {
+    let result : string = '';
     const charactersLength = this.characters.length;
     for ( let i = 0; i < length; i++ ) {
       result += this.characters.charAt(Math.floor(Math.random() * charactersLength));
