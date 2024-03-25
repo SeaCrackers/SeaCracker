@@ -22,6 +22,7 @@ export class AnswerStep extends GameStep {
       clearInterval(intervalId);
     };
   });
+  private startedAt:Date = new Date();
 
   goToNextStep(): GameStep {
     return new RevealStep(this.gameState);
@@ -56,7 +57,7 @@ export class AnswerStep extends GameStep {
 
   override playerAnswer(playerId: string, answer: number): void {
     if(this.gameState.getCurrentQuestion()().answers[answer].correct){
-      this.gameState.addPlayerScore(playerId, 100);
+      this.gameState.addPlayerScore(playerId, Math.round((1 - ((Date.now() - this.startedAt.getTime()) / (2 * this.getTimerDuration()))) * 1000));
     }
     this.playerAnswers$.next();
   }
