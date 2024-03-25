@@ -23,7 +23,7 @@ export abstract class GameStep {
     return this.gameState;
   }
 
-  public playerAnswer(playerId: string, answer: number): void {
+  public playerAnswer(_playerId: string, _answer: number): void {
     //Do nothing by default for 'late' players
   }
 
