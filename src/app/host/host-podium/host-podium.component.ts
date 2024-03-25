@@ -11,6 +11,8 @@ import {Player} from "../../interfaces/player.interface";
   styleUrl: './host-podium.component.scss'
 })
 export class HostPodiumComponent extends HostComponent {
+  private podiumViewPlaces: number[] = [2,1,3]
+
   constructor(host: HostService) {
     super(host)
   }
@@ -20,5 +22,9 @@ export class HostPodiumComponent extends HostComponent {
     return [...players].sort((a, b) => {
       return b.score - a.score;
     });
+  }
+
+  getPodiumViewPlaces(): number[] {
+    return this.podiumViewPlaces;
   }
 }
