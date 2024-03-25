@@ -16,35 +16,37 @@
 }
 
 @keyframes countdown {
-    0% {
+    from {
         width: 100%;
     }
 
-    100% {
+    to {
         width: 0%;
     }
 }
 
 @keyframes slide {
-    100% {
+    to {
         translate: 0 calc(-50dvh + 8rem);
     }
 }
 
 @keyframes slide-small {
-    100% {
+    to {
         translate: 0 -6rem;
     }
 }
 
 @keyframes show {
-    0% {
+    from {
         opacity: 0;
     }
-    100% {
+
+    to {
         opacity: 1;
     }
 }
+
 // END Animations
 
 #loading-bar {
