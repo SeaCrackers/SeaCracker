@@ -1,7 +1,7 @@
 import {Component, HostListener, Signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {NgIf} from '@angular/common';
-import {PlayerService} from "../services/game/player.service";
+import {PlayerService} from "../../services/game/player.service";
 
 
 @Component({

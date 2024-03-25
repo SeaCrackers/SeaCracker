@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {QuizManagerService} from "../services/quiz-management/quizManager.service";
-import {Quiz} from "../interfaces/quiz.interface";
+import {QuizManagerService} from "../../services/quiz-management/quizManager.service";
+import {Quiz} from "../../interfaces/quiz.interface";
 import {RouterLink} from '@angular/router';
 
 @Component({

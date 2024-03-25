@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {Quiz} from "../interfaces/quiz.interface";
-import {Question} from "../interfaces/question.interface";
-import {Answer} from "../interfaces/answer.interface";
-import {QuizManagerService} from "../services/quiz-management/quizManager.service";
+import {Quiz} from "../../interfaces/quiz.interface";
+import {Question} from "../../interfaces/question.interface";
+import {Answer} from "../../interfaces/answer.interface";
+import {QuizManagerService} from "../../services/quiz-management/quizManager.service";
 
 @Component({
   selector: 'app-edit-quiz-management',

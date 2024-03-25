@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {HostPageComponent} from "./host-page/host-page.component";
+import {HostPageComponent} from "./pages/host-page/host-page.component";
 
 @Component({
   selector: 'app-root',
