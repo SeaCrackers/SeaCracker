@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {DataSaver} from "../interfaces/dataSaver.interface";
+import {DataSaver} from "../interfaces/data-saver.interface";
 
 /**
  * A implementation of the DataSaver for local storage.

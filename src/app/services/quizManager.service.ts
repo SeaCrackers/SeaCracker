@@ -2,7 +2,7 @@ import {Quiz} from "../interfaces/quiz.interface";
 import {Question} from "../interfaces/question.interface";
 import {Answer} from "../interfaces/answer.interface";
 import {LocalStorageDataSaverService} from "./localStorageDataSaver.service";
-import {DataSaver} from "../interfaces/dataSaver.interface";
+import {DataSaver} from "../interfaces/data-saver.interface";
 import {Injectable} from "@angular/core";
 
 /**
