@@ -1,16 +1,16 @@
-import {computed, Injectable, Signal, signal, WritableSignal} from '@angular/core';
-import {UserService} from "./user.service";
-import {RoomCommunicationsService} from "../communications/room-communications.service";
-import {RandomGenerator} from "../../utils/random-generator";
-import {filter, Observable, Subscription} from "rxjs";
-import {GameEvent} from "./game-event";
-import {GameEventType} from "./game-event-type";
-import {GameStep} from "./steps/game-step";
-import {PlayerListStep} from "./steps/player-list-step";
-import {GameState} from "./steps/game-state";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {Question} from "../../interfaces/question.interface";
-import {Quiz} from "../../interfaces/quiz.interface";
+import { computed, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { UserService } from "./user.service";
+import { RoomCommunicationsService } from "../communications/room-communications.service";
+import { RandomGenerator } from "../../utils/random-generator";
+import { filter, Observable, Subject, Subscription, takeUntil } from "rxjs";
+import { GameEvent } from "./game-event";
+import { GameEventType } from "./game-event-type";
+import { GameStep } from "./steps/game-step";
+import { PlayerListStep } from "./steps/player-list-step";
+import { GameState } from "./steps/game-state";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { Question } from "../../interfaces/question.interface";
+import { Quiz } from "../../interfaces/quiz.interface";
 
 /**
  * The host service manage the steps / phases of the game for a hosting game point of view.
@@ -21,7 +21,7 @@ import {Quiz} from "../../interfaces/quiz.interface";
 })
 export class HostService extends UserService {
   private currentStep: WritableSignal<GameStep | undefined> = signal(undefined);
-  private timeoutSubscription?: Subscription;
+  private onStepChange$: Subject<void> = new Subject<void>();
 
   constructor(room: RoomCommunicationsService) {
     super(room, RandomGenerator.generateString(4))
@@ -45,11 +45,11 @@ export class HostService extends UserService {
   }
 
   public nextStep(): void {
-    if (this.timeoutSubscription) this.timeoutSubscription.unsubscribe();
+    this.onStepChange$.next();
     this.currentStep.set(this.currentStep()!.goToNextStep());
     this.answeringBroadcast(this.currentStep()!.acceptPlayerAnswer());
     if (!this.currentStep()!.needManualInput()) {
-      this.timeoutSubscription = this.currentStep()!.onIsReadyToMoveToNextStep().subscribe(() => {
+      this.currentStep()!.onIsReadyToMoveToNextStep().pipe(takeUntil(this.onStepChange$)).subscribe(() => {
         this.nextStep();
       });
     }
