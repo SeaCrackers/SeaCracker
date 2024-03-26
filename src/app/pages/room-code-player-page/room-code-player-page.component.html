@@ -1,11 +1,11 @@
-<h1 class="text-center mb-5">Join a room</h1>
+<div id="page-container" class="d-flex flex-column justify-content-center align-items-center text-center">
 
-<div class="d-flex flex-column text-center">
+  <h1 class="bg-light p-2 rounded text-center text-black">Join a room</h1>
 
-  <form class="d-flex justify-content-center align-items-center gap-3">
-    <label for="roomID" class="mr-2">Type the room code:</label>
-    <input type="text" class="form-control" id="roomID" name="roomID" [(ngModel)]="roomID" style="width:12rem;"
-           required>
-    <button type="submit" class="btn btn-primary ml-2" (click)="joinRoom()">Join</button>
+  <form class="d-flex justify-content-center align-items-center gap-2 mt-5">
+    <input type="text" class="form-control" id="roomID" name="roomID" placeholder="Room code" [(ngModel)]="roomID" style="width:12rem;"
+      required>
+    <button type="submit" class="btn btn-primary" (click)="joinRoom()">Join</button>
   </form>
+
 </div>
