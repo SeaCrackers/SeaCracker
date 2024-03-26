@@ -62,3 +62,16 @@
   transition: all 1s linear;
   animation: countdown 1 linear forwards;
 }
+
+.credits {
+  position: fixed;
+  content: 'Visual assets from: vecteezy.com';
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+    &::after {
+      content: 'Visual assets from: vecteezy.com';
+    }
+}
