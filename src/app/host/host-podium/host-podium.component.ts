@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {HostService} from "../../services/game/host.service";
 import {HostComponent} from "../host-component";
 import {Player} from "../../interfaces/player.interface";
+import { sortBy } from 'lodash';
 
 @Component({
   selector: 'app-host-podium',
@@ -19,9 +20,7 @@ export class HostPodiumComponent extends HostComponent {
 
   getLeaderboard(): Player[] {
     const players: Player[] = this.host.getCurrentStep()()!.getGameState().getPlayers()();
-    return [...players].sort((a, b) => {
-      return b.score - a.score;
-    });
+    return sortBy(players, ({score})=>score);
   }
 
   getPodiumViewPlaces(): number[] {

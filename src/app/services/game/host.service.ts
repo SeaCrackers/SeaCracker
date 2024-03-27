@@ -1,7 +1,7 @@
 import {computed, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {UserService} from "./user.service";
 import {RoomCommunicationsService} from "../communications/room-communications.service";
-import {RandomGenerator} from "../../utils/random-generator";
+import { generateRandomString } from "../../utils/random.helper";
 import {filter, Observable, Subscription} from "rxjs";
 import {GameEvent} from "./game-event";
 import {GameEventType} from "./game-event-type";
@@ -24,7 +24,11 @@ export class HostService extends UserService {
   private timeoutSubscription?: Subscription;
 
   constructor(room: RoomCommunicationsService) {
-    super(room, RandomGenerator.generateString(4))
+    super(room, HostService.generateRandomRoomName())
+  }
+
+  private static generateRandomRoomName(){
+    return generateRandomString(4)
   }
 
   public setupQuiz(quiz: Quiz): void {
@@ -33,9 +37,7 @@ export class HostService extends UserService {
   }
 
   public getCurrentStep(): Signal<GameStep | undefined> {
-    return computed(() => {
-      return this.currentStep();
-    });
+    return this.currentStep.asReadonly()
   }
 
   public getCurrentQuestion(): Signal<Question | undefined> {

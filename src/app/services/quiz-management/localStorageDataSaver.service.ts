@@ -1,16 +1,16 @@
-import {DataSaver} from "../../interfaces/data-saver.interface";
+import {Repository} from "../../interfaces/data-saver.interface";
 
 /**
  * A implementation of the DataSaver for local storage.
  */
-export class LocalStorageDataSaverService implements DataSaver {
+export class LocalStorageDataSaverService<T> implements Repository<T> {
   private readonly key: string;
 
   constructor(key: string) {
     this.key = key;
   }
 
-  public saveData(data: any): void {
+  public saveData(data: T): void {
     if (!localStorage) throw new Error('Local storage is not supported');
 
     try {
@@ -20,18 +20,18 @@ export class LocalStorageDataSaverService implements DataSaver {
     }
   }
 
-  public getData(): any {
+  public getData(): T | undefined {
     if (!localStorage) throw new Error('Local storage is not supported');
 
     const item: string | null = localStorage.getItem(this.key);
-    if (item) {
+    if (item !== null) {
       try {
         return JSON.parse(item);
       } catch (error) {
         throw new Error('Failed to parse data from local storage');
       }
     } else {
-      return [];
+      return undefined;
     }
   }
 }

@@ -2,7 +2,7 @@ import {Quiz} from "../../interfaces/quiz.interface";
 import {Question} from "../../interfaces/question.interface";
 import {Answer} from "../../interfaces/answer.interface";
 import {LocalStorageDataSaverService} from "./localStorageDataSaver.service";
-import {DataSaver} from "../../interfaces/data-saver.interface";
+import {Repository} from "../../interfaces/data-saver.interface";
 import {Injectable} from "@angular/core";
 
 /**
@@ -14,16 +14,16 @@ import {Injectable} from "@angular/core";
 })
 export class QuizManagerService {
   private quizzes: Quiz[];
-  private dataSaver: DataSaver;
+  private dataSaver: Repository<Quiz[]>;
 
   constructor() {
     //TODO : Dependency injection instead
-    this.dataSaver = new LocalStorageDataSaverService('quizzes')
+    this.dataSaver = new LocalStorageDataSaverService<Quiz[]>('quizzes')
     this.quizzes = this.getQuizzesFromLocalStorage();
   }
 
   private getQuizzesFromLocalStorage(): Quiz[] {
-    return this.dataSaver.getData() as Quiz[];
+    return this.dataSaver.getData() ?? [];
   }
 
   private saveQuizzesToLocalStorage(): void {
@@ -66,7 +66,7 @@ export class QuizManagerService {
   private emptyQuizFactory(id: number): Quiz {
     return {
       id: id, title: '', questions: [this.emptyQuestionFactory()]
-    } as Quiz;
+  };
   }
 
   // READ
@@ -142,7 +142,7 @@ export class QuizManagerService {
       const quiz : Quiz = JSON.parse(quizToImport);
       quiz.id = this.getHighestQuizId() + 1;
       this.addQuiz(quiz);
-    } catch (e) {
+    } catch (error) {
       console.error('Error while importing quiz-management');
     }
   }

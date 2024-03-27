@@ -1,8 +1,8 @@
 /**
  * A contract to save and retrieve data in an object form.
  */
-export interface DataSaver {
-  saveData(data: any): void;
+export interface Repository<T> {
+  saveData(data: T): void;
 
-  getData(): any;
+  getData(): T | undefined;
 }
